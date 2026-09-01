@@ -31,23 +31,29 @@
     .table-row:hover{background:#f8fafc}
     button,select,input{font:inherit}
     :focus-visible{outline:3px solid rgba(79,70,229,.28);outline-offset:2px}
-    @media(max-width:780px){.shell{padding:0 16px}.grid-cell{min-height:94px}.chart-wrap{height:270px}}
+    @media(max-width:780px){.shell{padding:0 16px}.header-shell{padding-block:12px}.mobile-header-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mobile-header-actions a,button,select,input{min-height:44px}.grid-cell{min-height:100px}.chart-wrap{height:270px}.overflow-x-auto{overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
     @media print{.no-print{display:none!important}.paper{box-shadow:none}body{background:#fff}.shell{max-width:none}}
   </style>
 </head>
 <body>
   <header class="border-b border-line bg-white">
-    <div class="shell flex min-h-16 items-center justify-between gap-4">
+    <div class="header-shell shell flex min-h-16 flex-wrap items-center justify-between gap-4">
       <a href="#top" class="flex items-center gap-3 font-bold tracking-tight">
         <span class="grid h-9 w-9 place-items-center rounded-lg bg-ink text-xs text-white">TG</span>
-        <span>Talent Growth Engine</span>
+        <span class="hidden sm:inline">Talent Growth Engine</span>
       </a>
-      <nav class="no-print hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex" aria-label="Primary">
+      <div class="mobile-header-actions no-print">
+        <a class="flex items-center justify-center rounded-lg border border-line bg-white px-3 py-2 text-sm font-bold text-slate-700 hover:border-indigo hover:text-indigo" href="../index.html"><span aria-hidden="true">←</span>&nbsp;Master Portfolio</a>
+        <a class="flex items-center justify-center rounded-lg border border-indigo/30 bg-indigo-50 px-3 py-2 text-sm font-bold text-indigo hover:border-indigo lg:hidden" href="Skills_Based_LD_Planner_Mobile_Case_Study.pdf" target="_blank" rel="noopener"><span aria-hidden="true">▯</span>&nbsp;Phone PDF</a>
+      </div>
+      <nav class="no-print hidden items-center gap-4 text-sm font-semibold text-slate-600 lg:flex" aria-label="Primary">
         <a class="hover:text-indigo" href="#talent">Talent matrix</a>
         <a class="hover:text-indigo" href="#skills">Skill gaps</a>
         <a class="hover:text-indigo" href="#roster">IDP roster</a>
         <a class="rounded-lg bg-ink px-4 py-2 text-white hover:bg-slate-800" href="slides.html">Executive slides</a>
+        <a class="rounded-lg border border-line bg-white px-4 py-2 text-ink hover:border-indigo hover:text-indigo" href="Skills_Based_LD_Planner_Case_Study.pdf" download>Download Case Study</a>
+        <a class="rounded-lg border border-indigo/30 bg-indigo-50 px-4 py-2 text-indigo hover:border-indigo" href="Skills_Based_LD_Planner_Mobile_Case_Study.pdf" target="_blank" rel="noopener">Phone PDF</a>
       </nav>
     </div>
   </header>

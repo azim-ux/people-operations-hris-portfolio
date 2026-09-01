@@ -21,6 +21,7 @@ Open the [master interactive portfolio](index.html) or use the [ATS-ready projec
 - [Open interactive lab](04_Structured_Hiring_and_ATS_Lab/index.html)
 - [Open executive deck](04_Structured_Hiring_and_ATS_Lab/slides.html)
 - [Download PDF case study](04_Structured_Hiring_and_ATS_Lab/Structured_Hiring_and_ATS_Architecture_Case_Study.pdf)
+- [Read phone-friendly portrait PDF](04_Structured_Hiring_and_ATS_Lab/Structured_Hiring_and_ATS_Architecture_Mobile_Case_Study.pdf)
 - 4,000 synthetic candidates across 5 requisitions
 - 40/40/20 work-sample, structured-interview, and job-knowledge composite
 - 120 hires · 3.0% conversion · 28.5d mean time-to-fill
@@ -34,6 +35,7 @@ Open the [master interactive portfolio](index.html) or use the [ATS-ready projec
 - [Open interactive lab](project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/index.html)
 - [Open executive deck](project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/slides.html)
 - [Download PDF case study](project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf)
+- [Read phone-friendly portrait PDF](project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf)
 - 20-person synthetic active cohort with 60 onboarding tasks
 - 93.4% Day-1 readiness · 88.5% task SLA adherence
 - 24.2 days to role clarity · 3 open escalations
@@ -49,6 +51,7 @@ These are the live lab's source-reconciled measures. The model does not contain 
 - [Open interactive lab](05_Skills_Based_LD_Planner/index.html)
 - [Open executive deck](05_Skills_Based_LD_Planner/slides.html)
 - [Download PDF case study](05_Skills_Based_LD_Planner/Skills_Based_LD_Planner_Case_Study.pdf)
+- [Read phone-friendly portrait PDF](05_Skills_Based_LD_Planner/Skills_Based_LD_Planner_Mobile_Case_Study.pdf)
 - 70 synthetic workforce profiles · 20 competencies · 70 IDPs
 - 81.4% mastery · 58 active IDPs · 14 Star Talent profiles
 - +24.6% yield · -18.2% scrap · ₹4.8 lakhs quarterly savings

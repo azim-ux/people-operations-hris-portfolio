@@ -31,7 +31,9 @@ EXPECTED_FILES = {
     "synthetic_onboarding_tasks.csv",
     "index.html",
     "slides.html",
+    "mobile-case-study.html",
     "Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf",
+    "Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf",
 }
 
 INTERNAL_FILES = {

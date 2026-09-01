@@ -57,6 +57,8 @@ Research supports associations between proximal newcomer adjustment and outcomes
 | [Interactive dashboard](index.html) | Primary GitHub Pages entry point and standalone analytics interface |
 | [Five-slide case study](slides.html) | Responsive presentation with keyboard navigation and five-page print output |
 | [Downloadable PDF deck](Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf) | Five-page case-study document for offline review |
+| [Responsive phone case-study source](mobile-case-study.html) | Mobile-first HTML source used to produce the portrait edition |
+| [Phone-friendly portrait PDF](Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf) | Five-page, A5-width tall edition sized for comfortable fit-to-width reading on phones |
 | [Research foundation](RESEARCH_FOUNDATION.md) | Evidence review, research-to-control mapping, caveats, and bibliography |
 | [Organization and roles](ORGANIZATION_AND_ROLES.md) | APD structure, grade architecture, Frappe mapping, and lifecycle flows |
 | [30-60-90 templates](ONBOARDING_TEMPLATES_30_60_90.md) | Phase gates, templates, checklists, evidence, and offboarding workflow |
@@ -76,7 +78,7 @@ Research supports associations between proximal newcomer adjustment and outcomes
 3. Search or filter the employee register and open a row’s “View details” action to inspect milestone progress.
 4. Trace the metric definitions to [METHODOLOGY_AND_LIMITATIONS.md](METHODOLOGY_AND_LIMITATIONS.md) and the raw records to the two CSV files.
 5. Review [UAT_TEST_REGISTER.md](UAT_TEST_REGISTER.md) to see how the proposed configuration would be validated before release.
-6. Open [slides.html](slides.html) for the five-slide recruiter case study, use Left/Right arrows to navigate, or download the ready-made [PDF deck](Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf).
+6. Open [slides.html](slides.html) for the five-slide recruiter case study, use Left/Right arrows to navigate, download the ready-made [PDF deck](Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf), or use the [phone-friendly portrait edition](Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf).
 
 No installation, build process, backend, credentials, or proprietary software is required. The dashboard reads embedded copies of the same synthetic CSV rows so it continues to work when opened directly from the filesystem.
 

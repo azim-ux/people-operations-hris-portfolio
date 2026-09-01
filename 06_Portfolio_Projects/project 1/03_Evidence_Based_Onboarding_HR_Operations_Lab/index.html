@@ -41,9 +41,10 @@
       --rose: #f43f5e;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       margin: 0;
+      overflow-x: hidden;
       min-width: 320px;
       font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
       background:
@@ -96,7 +97,14 @@
     :focus-visible { outline: 3px solid #36d6c4; outline-offset: 3px; }
     select { background-image: none; }
     .chart-shell { height: 290px; }
-    @media (max-width: 640px) { .chart-shell { height: 250px; } }
+    @media (max-width: 640px) {
+      .chart-shell { height: 250px; }
+      .toolbar { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+      .toolbar > a, .toolbar > button { display: flex; min-height: 44px; align-items: center; justify-content: center; text-align: center; }
+      .toolbar .mobile-pdf-link { grid-column: 1 / -1; }
+      .filters input, .filters select, .quick-chip, #previous-page, #next-page { min-height: 44px; }
+      .overflow-x-auto { overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
+    }
     @media print {
       @page { size: A4 landscape; margin: 10mm; }
       :root { color-scheme: light; }
@@ -142,6 +150,7 @@
         <button id="reset-filters" type="button" class="toolbar-action rounded-lg border border-line bg-panel/80 px-3 py-2.5 font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"><span aria-hidden="true">↺</span> Reset Filters</button>
         <a href="README.md" class="rounded-lg border border-line px-3 py-2.5 font-semibold text-slate-300 transition hover:border-cyan/40 hover:text-cyan">Methodology</a>
         <a href="Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf" download class="rounded-lg border border-line px-3 py-2.5 font-semibold text-slate-300 transition hover:border-cyan/40 hover:text-cyan"><span aria-hidden="true">↓</span> Download Case Study</a>
+        <a href="Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf" target="_blank" rel="noopener" class="mobile-pdf-link rounded-lg border border-cyan/30 bg-cyan/10 px-3 py-2.5 font-semibold text-cyan transition hover:border-cyan/60 hover:bg-cyan/15"><span aria-hidden="true">▯</span> Phone PDF</a>
       </div>
     </div>
   </header>

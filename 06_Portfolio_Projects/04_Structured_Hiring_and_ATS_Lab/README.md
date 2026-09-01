@@ -16,6 +16,8 @@ All people, identifiers, dates, scores, and events are fictional. Demographic co
 - [Open the high-volume analytics dashboard](dashboard.html)
 - [Open the five-slide case presentation](slides.html)
 - [Download the five-page PDF case study](Structured_Hiring_and_ATS_Architecture_Case_Study.pdf)
+- [Open the responsive phone case-study source](mobile-case-study.html)
+- [Read the five-page phone-friendly portrait edition](Structured_Hiring_and_ATS_Architecture_Mobile_Case_Study.pdf)
 
 Both dashboard pages embed all three source datasets as JSON. Search, filtering, 25/50-row pagination, charts, and scorecards run directly from the local file. Custom CSS preserves the application shell if the visual CDN libraries are unavailable.
 

@@ -31,6 +31,7 @@ PROJECTS = [
             "project": "04_Structured_Hiring_and_ATS_Lab/index.html",
             "slides": "04_Structured_Hiring_and_ATS_Lab/slides.html",
             "pdf": "04_Structured_Hiring_and_ATS_Lab/Structured_Hiring_and_ATS_Architecture_Case_Study.pdf",
+            "mobile_pdf": "04_Structured_Hiring_and_ATS_Lab/Structured_Hiring_and_ATS_Architecture_Mobile_Case_Study.pdf",
         },
     },
     {
@@ -49,6 +50,7 @@ PROJECTS = [
             "project": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/index.html",
             "slides": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/slides.html",
             "pdf": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf",
+            "mobile_pdf": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/Evidence_Based_Onboarding_HR_Operations_Mobile_Case_Study.pdf",
         },
     },
     {
@@ -68,6 +70,7 @@ PROJECTS = [
             "project": "05_Skills_Based_LD_Planner/index.html",
             "slides": "05_Skills_Based_LD_Planner/slides.html",
             "pdf": "05_Skills_Based_LD_Planner/Skills_Based_LD_Planner_Case_Study.pdf",
+            "mobile_pdf": "05_Skills_Based_LD_Planner/Skills_Based_LD_Planner_Mobile_Case_Study.pdf",
         },
     },
 ]
@@ -112,6 +115,8 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
             self.assertTrue((project_dir / "index.html").is_file(), project["directory"])
             self.assertTrue((project_dir / "slides.html").is_file(), project["directory"])
             self.assertTrue((HUB / unquote(project["links"]["pdf"])).is_file(), project["links"]["pdf"])
+            self.assertTrue((project_dir / "mobile-case-study.html").is_file(), project["directory"])
+            self.assertTrue((HUB / unquote(project["links"]["mobile_pdf"])).is_file(), project["links"]["mobile_pdf"])
 
     def test_02_root_redirect_and_hub_links_are_complete(self):
         root_html = ROOT_ENTRY.read_text(encoding="utf-8")
@@ -126,12 +131,15 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
             page = project["links"]["project"]
             slides = project["links"]["slides"]
             pdf = project["links"]["pdf"]
+            mobile_pdf = project["links"]["mobile_pdf"]
             self.assertIn(f'href="{page}"', html, page)
             self.assertIn(f'href="{slides}"', html, slides)
             self.assertIn(f'href="{pdf}"', html, pdf)
+            self.assertIn(f'href="{mobile_pdf}"', html, mobile_pdf)
             self.assertIn(f']({page})', readme, page)
             self.assertIn(f']({slides})', readme, slides)
             self.assertIn(f']({pdf})', readme, pdf)
+            self.assertIn(f']({mobile_pdf})', readme, mobile_pdf)
 
     def test_03_embedded_metadata_matches_governed_metrics(self):
         html = load_html()

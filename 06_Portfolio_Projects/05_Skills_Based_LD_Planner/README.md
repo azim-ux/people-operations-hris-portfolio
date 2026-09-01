@@ -24,7 +24,9 @@ A privacy-safe portfolio lab that turns a governed competency ontology into visi
 
 ## Start here
 
-Open [index.html](index.html) for the full interactive experience, [dashboard.html](dashboard.html) for the analytics view, [slides.html](slides.html) for the five-slide executive narrative, or download the [PDF case study](Skills_Based_LD_Planner_Case_Study.pdf). All artifacts are static files; internet access is only needed for the Tailwind CSS and Chart.js delivery networks.
+Open [index.html](index.html) for the full interactive experience, [dashboard.html](dashboard.html) for the analytics view, [slides.html](slides.html) for the five-slide executive narrative, download the [desktop PDF case study](Skills_Based_LD_Planner_Case_Study.pdf), or read the [phone-friendly portrait edition](Skills_Based_LD_Planner_Mobile_Case_Study.pdf). All artifacts are static files; internet access is only needed for the Tailwind CSS and Chart.js delivery networks.
+
+The portrait PDF is produced from the [responsive phone case-study source](mobile-case-study.html), which also reads cleanly as a continuous mobile web document.
 
 ## Data assets
 

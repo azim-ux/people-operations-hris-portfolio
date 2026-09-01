@@ -31,7 +31,9 @@ EXPECTED_FILES = {
     "dashboard.html",
     "index.html",
     "slides.html",
+    "mobile-case-study.html",
     "Structured_Hiring_and_ATS_Architecture_Case_Study.pdf",
+    "Structured_Hiring_and_ATS_Architecture_Mobile_Case_Study.pdf",
 }
 
 REQUISITION_HEADERS = [
@@ -189,7 +191,8 @@ class StructuredHiringATSLabAcceptanceTests(unittest.TestCase):
                     ["pdfinfo", str(path)], check=True, capture_output=True, text=True
                 ).stdout
                 self.assertRegex(metadata, r"(?m)^Pages:\s+5$", path.name)
-                self.assertRegex(metadata, r"(?m)^Page size:\s+960 x 540 pts", path.name)
+                expected_size = r"420 x 720 pts" if "_Mobile_" in path.name else r"960 x 540 pts"
+                self.assertRegex(metadata, rf"(?m)^Page size:\s+{expected_size}", path.name)
                 continue
             text = path.read_text(encoding="utf-8")
             domains = {match.group(1).lower() for match in email_pattern.finditer(text)}
