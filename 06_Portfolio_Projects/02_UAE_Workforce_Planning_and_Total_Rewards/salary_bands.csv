@@ -1,0 +1,25 @@
+Job_Family,Job_Level,Band_Min_AED,Band_Mid_AED,Band_Max_AED,Benchmark_Status
+Operations,L1,5800,7200,8600,Hypothetical portfolio assumption
+Operations,L2,9000,11200,13400,Hypothetical portfolio assumption
+Operations,L3,13500,16900,20300,Hypothetical portfolio assumption
+Operations,L4,20500,25600,30700,Hypothetical portfolio assumption
+Commercial,L1,6600,8200,9800,Hypothetical portfolio assumption
+Commercial,L2,10200,12700,15200,Hypothetical portfolio assumption
+Commercial,L3,15400,19300,23200,Hypothetical portfolio assumption
+Commercial,L4,23300,29100,34900,Hypothetical portfolio assumption
+Customer Experience,L1,5400,6800,8200,Hypothetical portfolio assumption
+Customer Experience,L2,8400,10500,12600,Hypothetical portfolio assumption
+Customer Experience,L3,12800,16000,19200,Hypothetical portfolio assumption
+Customer Experience,L4,19300,24100,28900,Hypothetical portfolio assumption
+Technology,L1,9200,11500,13800,Hypothetical portfolio assumption
+Technology,L2,14200,17800,21400,Hypothetical portfolio assumption
+Technology,L3,21600,27000,32400,Hypothetical portfolio assumption
+Technology,L4,32600,40800,49000,Hypothetical portfolio assumption
+Finance,L1,7400,9200,11000,Hypothetical portfolio assumption
+Finance,L2,11400,14300,17200,Hypothetical portfolio assumption
+Finance,L3,17300,21600,25900,Hypothetical portfolio assumption
+Finance,L4,26200,32700,39200,Hypothetical portfolio assumption
+People & Culture,L1,6700,8400,10100,Hypothetical portfolio assumption
+People & Culture,L2,10400,13000,15600,Hypothetical portfolio assumption
+People & Culture,L3,15800,19700,23600,Hypothetical portfolio assumption
+People & Culture,L4,23800,29800,35800,Hypothetical portfolio assumption

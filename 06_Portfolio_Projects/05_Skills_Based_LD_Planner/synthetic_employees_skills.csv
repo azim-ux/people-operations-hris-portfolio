@@ -1,0 +1,71 @@
+Employee_ID,Synthetic_Name,Department,Grade,Performance_Score,Potential_Score,9_Box_Category,Technical_Mastery_Percent,Compliance_Mastery_Percent,Leadership_Mastery_Percent,Overall_Mastery_Percent,Mean_Skill_Gap
+APD-2026-001,Synthetic Colleague 001,Engineering,G1,3,3,Star Talent,91.4,90.8,88.4,90.2,-0.30
+APD-2026-002,Synthetic Colleague 002,Engineering,G2,3,3,Star Talent,91.4,90.8,90.2,90.8,-0.36
+APD-2026-003,Synthetic Colleague 003,Engineering,G3,3,3,Star Talent,91.4,90.8,92.0,91.4,-0.42
+APD-2026-004,Synthetic Colleague 004,Engineering,G4,3,3,Star Talent,91.4,93.2,91.4,92.0,-0.48
+APD-2026-005,Synthetic Colleague 005,Engineering,G5,3,3,Star Talent,91.4,91.4,95.0,92.6,-0.54
+APD-2026-006,Synthetic Colleague 006,Engineering,G1,3,3,Star Talent,91.4,90.8,88.4,90.2,-0.60
+APD-2026-007,Synthetic Colleague 007,Engineering,G2,3,3,Star Talent,91.4,90.8,90.2,90.8,-0.66
+APD-2026-008,Synthetic Colleague 008,Engineering,G3,3,3,Star Talent,91.4,90.8,92.0,91.4,-0.30
+APD-2026-009,Synthetic Colleague 009,Engineering,G4,3,3,Star Talent,91.4,93.2,91.4,92.0,-0.36
+APD-2026-010,Synthetic Colleague 010,Engineering,G5,3,3,Star Talent,91.4,91.4,95.0,92.6,-0.42
+APD-2026-011,Synthetic Colleague 011,Engineering,G1,3,3,Star Talent,91.4,90.8,88.4,90.2,-0.48
+APD-2026-012,Synthetic Colleague 012,Engineering,G2,3,3,Star Talent,91.4,90.8,90.2,90.8,-0.54
+APD-2026-013,Synthetic Colleague 013,Engineering,G3,3,3,Star Talent,91.4,90.8,92.0,91.4,-0.60
+APD-2026-014,Synthetic Colleague 014,Engineering,G4,3,3,Star Talent,91.4,93.2,91.4,92.0,-0.66
+APD-2026-015,Synthetic Colleague 015,Engineering,G5,2,3,High Potential,83.4,83.4,87.0,84.6,-0.30
+APD-2026-016,Synthetic Colleague 016,Engineering,G1,2,3,High Potential,83.4,82.8,80.4,82.2,-0.36
+APD-2026-017,Synthetic Colleague 017,Engineering,G2,2,3,High Potential,83.4,82.8,82.2,82.8,-0.42
+APD-2026-018,Synthetic Colleague 018,Engineering,G3,2,3,High Potential,83.4,82.8,84.0,83.4,-0.48
+APD-2026-019,Synthetic Colleague 019,Engineering,G4,2,3,High Potential,83.4,85.2,83.4,84.0,-0.54
+APD-2026-020,Synthetic Colleague 020,Engineering,G5,2,3,High Potential,83.4,83.4,87.0,84.6,-0.60
+APD-2026-021,Synthetic Colleague 021,Engineering,G1,2,3,High Potential,83.4,82.8,80.4,82.2,-0.66
+APD-2026-022,Synthetic Colleague 022,Engineering,G2,2,3,High Potential,83.4,82.8,82.2,82.8,-0.30
+APD-2026-023,Synthetic Colleague 023,Engineering,G3,1,3,Emerging Potential,72.4,71.8,73.0,72.4,-0.36
+APD-2026-024,Synthetic Colleague 024,Engineering,G4,1,3,Emerging Potential,72.4,74.2,72.4,73.0,-0.42
+APD-2026-025,Synthetic Colleague 025,Quality,G5,1,3,Emerging Potential,72.4,72.4,76.0,73.6,-0.48
+APD-2026-026,Synthetic Colleague 026,Quality,G1,1,3,Emerging Potential,72.4,71.8,69.4,71.2,-0.54
+APD-2026-027,Synthetic Colleague 027,Quality,G2,3,2,High Performer,87.4,86.8,86.2,86.8,-0.60
+APD-2026-028,Synthetic Colleague 028,Quality,G3,3,2,High Performer,87.4,86.8,88.0,87.4,-0.66
+APD-2026-029,Synthetic Colleague 029,Quality,G4,3,2,High Performer,87.4,89.2,87.4,88.0,-0.30
+APD-2026-030,Synthetic Colleague 030,Quality,G5,3,2,High Performer,87.4,87.4,91.0,88.6,-0.36
+APD-2026-031,Synthetic Colleague 031,Quality,G1,3,2,High Performer,87.4,86.8,84.4,86.2,-0.42
+APD-2026-032,Synthetic Colleague 032,Quality,G2,3,2,High Performer,87.4,86.8,86.2,86.8,-0.48
+APD-2026-033,Synthetic Colleague 033,Quality,G3,3,2,High Performer,87.4,86.8,88.0,87.4,-0.54
+APD-2026-034,Synthetic Colleague 034,Quality,G4,3,2,High Performer,87.4,89.2,87.4,88.0,-0.60
+APD-2026-035,Synthetic Colleague 035,Quality,G5,2,2,Core Contributor,80.4,80.4,84.0,81.6,-0.66
+APD-2026-036,Synthetic Colleague 036,Quality,G1,2,2,Core Contributor,80.4,79.8,77.4,79.2,-0.30
+APD-2026-037,Synthetic Colleague 037,Quality,G2,2,2,Core Contributor,80.4,79.8,79.2,79.8,-0.36
+APD-2026-038,Synthetic Colleague 038,Quality,G3,2,2,Core Contributor,80.4,79.8,81.0,80.4,-0.42
+APD-2026-039,Synthetic Colleague 039,Quality,G4,2,2,Core Contributor,80.4,82.2,80.4,81.0,-0.48
+APD-2026-040,Synthetic Colleague 040,Quality,G5,2,2,Core Contributor,80.4,80.4,84.0,81.6,-0.54
+APD-2026-041,Synthetic Colleague 041,Supply Chain,G1,2,2,Core Contributor,80.4,79.8,77.4,79.2,-0.60
+APD-2026-042,Synthetic Colleague 042,Supply Chain,G2,2,2,Core Contributor,80.4,79.8,79.2,79.8,-0.66
+APD-2026-043,Synthetic Colleague 043,Supply Chain,G3,2,2,Core Contributor,80.4,79.8,81.0,80.4,-0.30
+APD-2026-044,Synthetic Colleague 044,Supply Chain,G4,2,2,Core Contributor,80.4,82.2,80.4,81.0,-0.36
+APD-2026-045,Synthetic Colleague 045,Supply Chain,G5,2,2,Core Contributor,80.4,80.4,84.0,81.6,-0.42
+APD-2026-046,Synthetic Colleague 046,Supply Chain,G1,2,2,Core Contributor,80.4,79.8,77.4,79.2,-0.48
+APD-2026-047,Synthetic Colleague 047,Supply Chain,G2,2,2,Core Contributor,80.4,79.8,79.2,79.8,-0.54
+APD-2026-048,Synthetic Colleague 048,Supply Chain,G3,2,2,Core Contributor,80.4,79.8,81.0,80.4,-0.60
+APD-2026-049,Synthetic Colleague 049,Supply Chain,G4,2,2,Core Contributor,80.4,82.2,80.4,81.0,-0.66
+APD-2026-050,Synthetic Colleague 050,Supply Chain,G5,2,2,Core Contributor,80.4,80.4,84.0,81.6,-0.30
+APD-2026-051,Synthetic Colleague 051,Supply Chain,G1,1,2,Development Focus,69.5,68.9,66.5,68.3,-0.36
+APD-2026-052,Synthetic Colleague 052,Supply Chain,G2,1,2,Development Focus,69.5,68.9,68.3,68.9,-0.42
+APD-2026-053,Synthetic Colleague 053,Supply Chain,G3,1,2,Development Focus,69.5,68.9,70.1,69.5,-0.48
+APD-2026-054,Synthetic Colleague 054,Supply Chain,G4,1,2,Development Focus,69.5,71.3,69.5,70.1,-0.54
+APD-2026-055,Synthetic Colleague 055,Supply Chain,G5,1,2,Development Focus,69.5,69.5,73.1,70.7,-0.60
+APD-2026-056,Synthetic Colleague 056,Supply Chain,G1,1,2,Development Focus,69.5,68.9,66.5,68.3,-0.66
+APD-2026-057,Synthetic Colleague 057,People & Culture,G2,3,1,Trusted Professional,84.5,83.9,83.3,83.9,-0.30
+APD-2026-058,Synthetic Colleague 058,People & Culture,G3,3,1,Trusted Professional,84.5,83.9,85.1,84.5,-0.36
+APD-2026-059,Synthetic Colleague 059,People & Culture,G4,3,1,Trusted Professional,84.5,86.3,84.5,85.1,-0.42
+APD-2026-060,Synthetic Colleague 060,People & Culture,G5,3,1,Trusted Professional,84.5,84.5,88.1,85.7,-0.48
+APD-2026-061,Synthetic Colleague 061,People & Culture,G1,3,1,Trusted Professional,84.5,83.9,81.5,83.3,-0.54
+APD-2026-062,Synthetic Colleague 062,People & Culture,G2,2,1,Effective Contributor,76.5,75.9,75.3,75.9,-0.60
+APD-2026-063,Synthetic Colleague 063,People & Culture,G3,2,1,Effective Contributor,76.5,75.9,77.1,76.5,-0.66
+APD-2026-064,Synthetic Colleague 064,People & Culture,G4,2,1,Effective Contributor,76.5,78.3,76.5,77.1,-0.30
+APD-2026-065,Synthetic Colleague 065,People & Culture,G5,2,1,Effective Contributor,76.5,76.5,80.1,77.7,-0.36
+APD-2026-066,Synthetic Colleague 066,People & Culture,G1,2,1,Effective Contributor,76.5,75.9,73.5,75.3,-0.42
+APD-2026-067,Synthetic Colleague 067,People & Culture,G2,1,1,Priority Support,63.5,62.9,62.3,62.9,-0.48
+APD-2026-068,Synthetic Colleague 068,People & Culture,G3,1,1,Priority Support,63.5,62.9,64.1,63.5,-0.54
+APD-2026-069,Synthetic Colleague 069,People & Culture,G4,1,1,Priority Support,63.5,65.3,63.5,64.1,-0.60
+APD-2026-070,Synthetic Colleague 070,People & Culture,G5,1,1,Priority Support,63.5,63.5,67.1,64.7,-0.66

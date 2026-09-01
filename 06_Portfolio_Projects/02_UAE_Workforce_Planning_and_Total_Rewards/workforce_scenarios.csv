@@ -1,0 +1,4 @@
+Scenario,Expected_Exits,Growth_Hires,Total_Hires_Required,Intervention_Cost_AED,Projected_People_Cost_AED,Avoided_Replacement_Cost_AED,Year_End_Headcount,Assumption
+Baseline,59,36,95,0,88588663,0,574,Current turnover rate continues; 36 net-growth hires join evenly through the year.
+Targeted Retention,50,36,86,764400,88936138,416925,574,"Selected pay corrections plus manager support are modelled with a 15% reduction in exits; this is a testable assumption, not a causal forecast."
+Growth-First,59,72,131,180000,91548151,0,610,"72 net-growth hires join evenly through the year; turnover remains unchanged and recruiting capacity receives AED 180,000."

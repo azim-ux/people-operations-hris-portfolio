@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A plain-English, five-slide guide to a better 90-day onboarding system.">
+  <title>How to Build a Great 90-Day Onboarding System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #020815;
+      --ink-soft: #071426;
+      --panel: rgba(12, 28, 52, 0.9);
+      --panel-deep: rgba(5, 17, 34, 0.94);
+      --white: #ffffff;
+      --text: #e2e8f0;
+      --soft: #cbd5e1;
+      --muted: #94a3b8;
+      --cyan: #36d6c4;
+      --green: #20d99a;
+      --blue: #6596ff;
+      --violet: #9b87ff;
+      --rose: #fb5b78;
+      --amber: #ffbf5b;
+      --line: rgba(148, 163, 184, 0.2);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+      --radius: clamp(1rem, 1.8vw, 1.6rem);
+      --eyebrow-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      --headline-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      --h3-size: clamp(1.15rem, 1.6vw, 1.5rem);
+      --body-size: clamp(0.95rem, 1.3vw, 1.25rem);
+      --tag-size: clamp(0.85rem, 1.05vw, 1.05rem);
+      --kpi-size: clamp(2.2rem, 4vw, 3.8rem);
+      --kpi-label-size: clamp(0.9rem, 1.15vw, 1.1rem);
+      --pad-x: clamp(1.5rem, 4.8vw, 4.8rem);
+      --pad-y: clamp(1.3rem, 3.8vh, 3.2rem);
+      --gap: clamp(0.8rem, 1.7vw, 1.7rem);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      margin: 0;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    .deck {
+      width: 100%;
+      height: 100%;
+      transition: transform 650ms var(--ease);
+      will-change: transform;
+    }
+
+    .slide {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      padding: var(--pad-y) var(--pad-x);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(54, 214, 196, 0.14), transparent 26%),
+        radial-gradient(circle at 90% 16%, rgba(101, 150, 255, 0.18), transparent 32%),
+        radial-gradient(circle at 70% 90%, rgba(155, 135, 255, 0.08), transparent 26%),
+        linear-gradient(145deg, #020713 0%, #071426 52%, #020815 100%);
+    }
+
+    .slide::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      opacity: 0.34;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 90%);
+      content: "";
+    }
+
+    .slide::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.025), transparent 32%, transparent 76%, rgba(54, 214, 196, 0.025));
+      content: "";
+    }
+
+    .slide-shell {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .slide-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 0 0 auto;
+      gap: 1rem;
+      margin-bottom: clamp(0.75rem, 2vh, 1.4rem);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--cyan);
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      flex: 0 0 auto;
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 1.1rem rgba(54, 214, 196, 0.9);
+      content: "";
+    }
+
+    .slide-index {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--soft);
+      font-size: var(--eyebrow-size);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .slide-index::before {
+      width: clamp(2rem, 4vw, 3.5rem);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan));
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2 {
+      max-width: 20ch;
+      color: var(--white);
+      background: linear-gradient(135deg, #ffffff 30%, #36d6c4 75%, #6596ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+    }
+
+    h3 {
+      color: var(--white);
+      font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    p,
+    .body-text,
+    .plain-list li,
+    .result-detail {
+      color: #e2e8f0;
+      font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+      line-height: 1.55;
+    }
+
+    .tag,
+    .pill,
+    .phase,
+    .timeline-step {
+      font-size: clamp(0.85rem, 1.05vw, 1.05rem);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+    }
+
+    .kpi-value {
+      color: var(--white);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .kpi-label,
+    .result-detail {
+      font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .glass-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
+        var(--panel);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+    }
+
+    .glass-card::after {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 34%);
+      content: "";
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(1.25rem);
+      transition:
+        opacity 680ms var(--ease),
+        transform 680ms var(--ease);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slide 1 */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(19rem, 0.75fr);
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      margin-bottom: clamp(1rem, 2.5vh, 1.8rem);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(54, 214, 196, 0.48);
+      border-radius: 999px;
+      color: #c7fff7;
+      background: rgba(54, 214, 196, 0.09);
+      box-shadow: 0 0 2rem rgba(54, 214, 196, 0.11);
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      line-height: 1.35;
+    }
+
+    .hero-copy h1 {
+      max-width: 14ch;
+    }
+
+    .hero-copy .subtitle {
+      max-width: 48ch;
+      margin-top: clamp(1rem, 2.6vh, 1.8rem);
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(0.55rem, 1vw, 0.9rem);
+      margin-top: clamp(1.2rem, 3vh, 2.2rem);
+    }
+
+    .tag {
+      border: 1px solid rgba(101, 150, 255, 0.38);
+      border-radius: 999px;
+      color: #e3ecff;
+      background: rgba(101, 150, 255, 0.1);
+      box-shadow: 0 0 1.6rem rgba(101, 150, 255, 0.08);
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .welcome-orbit {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(34vw, 31rem);
+      aspect-ratio: 1;
+      justify-self: end;
+    }
+
+    .orbit-ring,
+    .orbit-halo {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .orbit-ring {
+      inset: 6%;
+      border: 1px solid rgba(54, 214, 196, 0.32);
+      box-shadow: 0 0 3rem rgba(54, 214, 196, 0.06), inset 0 0 2rem rgba(54, 214, 196, 0.04);
+    }
+
+    .orbit-ring.second {
+      inset: 22%;
+      border-color: rgba(101, 150, 255, 0.34);
+    }
+
+    .orbit-halo {
+      inset: 26%;
+      background: radial-gradient(circle, rgba(54, 214, 196, 0.22), rgba(101, 150, 255, 0.06) 55%, transparent 74%);
+      filter: blur(0.5rem);
+    }
+
+    .orbit-core {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 43%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(54, 214, 196, 0.58);
+      border-radius: 50%;
+      background: rgba(5, 18, 35, 0.95);
+      box-shadow: 0 0 3.5rem rgba(54, 214, 196, 0.2);
+      text-align: center;
+    }
+
+    .orbit-core strong {
+      display: block;
+      color: var(--white);
+      font-size: var(--kpi-size);
+      font-weight: 900;
+      line-height: 0.95;
+    }
+
+    .orbit-core span {
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--cyan);
+      font-size: var(--tag-size);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+
+    .orbit-word {
+      position: absolute;
+      z-index: 3;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(4, 14, 29, 0.94);
+      box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.32);
+      font-size: var(--tag-size);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .orbit-word.one { top: 2%; left: 35%; }
+    .orbit-word.two { top: 45%; right: -4%; }
+    .orbit-word.three { bottom: 2%; left: 32%; }
+    .orbit-word.four { top: 45%; left: -5%; }
+
+    .hero-note {
+      flex: 0 0 auto;
+      padding-top: clamp(0.7rem, 1.6vh, 1.2rem);
+      border-top: 1px solid rgba(148, 163, 184, 0.16);
+      color: var(--soft);
+      font-size: var(--tag-size);
+      font-weight: 600;
+    }
+
+    /* Shared content slide layout */
+    .content-header {
+      flex: 0 0 auto;
+      margin-bottom: clamp(0.8rem, 2vh, 1.4rem);
+    }
+
+    .content-header h2 {
+      max-width: 26ch;
+    }
+
+    .two-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      flex: 1;
+      min-height: 0;
+      gap: var(--gap);
+    }
+
+    .plain-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: clamp(1rem, 2vw, 1.8rem);
+    }
+
+    .plain-card.warning {
+      border-color: rgba(251, 91, 120, 0.48);
+      box-shadow: var(--shadow), 0 0 2.6rem rgba(251, 91, 120, 0.09);
+    }
+
+    .plain-card.success {
+      border-color: rgba(54, 214, 196, 0.5);
+      box-shadow: var(--shadow), 0 0 2.8rem rgba(54, 214, 196, 0.1);
+    }
+
+    .card-kicker {
+      margin-bottom: 0.55rem;
+      color: var(--muted);
+      font-size: var(--eyebrow-size);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .warning .card-kicker { color: #ff9caf; }
+    .success .card-kicker { color: #80eee2; }
+
+    .plain-list {
+      display: grid;
+      align-content: center;
+      flex: 1;
+      gap: clamp(0.55rem, 1.7vh, 1rem);
+      padding: 0;
+      margin: clamp(0.6rem, 1.5vh, 1rem) 0 0;
+      list-style: none;
+    }
+
+    .plain-list li {
+      display: grid;
+      grid-template-columns: 2.35rem minmax(0, 1fr);
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bullet-mark {
+      display: grid;
+      place-items: center;
+      width: 2.35rem;
+      height: 2.35rem;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 0.75rem;
+      font-size: var(--body-size);
+      font-weight: 800;
+    }
+
+    .warning .bullet-mark {
+      border-color: rgba(251, 91, 120, 0.46);
+      color: #ff91a6;
+      background: rgba(251, 91, 120, 0.11);
+    }
+
+    .success .bullet-mark {
+      border-color: rgba(54, 214, 196, 0.48);
+      color: #78eee0;
+      background: rgba(54, 214, 196, 0.11);
+    }
+
+    /* Slide 3 */
+    .key-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      flex: 1;
+      min-height: 0;
+      gap: clamp(0.65rem, 1.2vw, 1.1rem);
+    }
+
+    .key-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(0.9rem, 1.55vw, 1.45rem);
+      border-color: rgba(101, 150, 255, 0.32);
+    }
+
+    .key-card:nth-child(2) { border-color: rgba(54, 214, 196, 0.34); }
+    .key-card:nth-child(3) { border-color: rgba(155, 135, 255, 0.38); }
+    .key-card:nth-child(4) { border-color: rgba(32, 217, 154, 0.36); }
+
+    .key-number {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--white), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: var(--kpi-size);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .key-card h3 {
+      margin-top: auto;
+      padding-top: 0.6rem;
+    }
+
+    .phase {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 0.7rem;
+      border: 1px solid rgba(54, 214, 196, 0.36);
+      border-radius: 999px;
+      color: var(--cyan);
+      background: rgba(54, 214, 196, 0.08);
+      line-height: 1.1;
+    }
+
+    .quote {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      flex: 0 0 auto;
+      gap: 0.3rem;
+      margin-top: clamp(0.7rem, 1.8vh, 1.15rem);
+      padding: clamp(0.7rem, 1.3vh, 1rem) 0.6rem;
+      border: 1px solid rgba(54, 214, 196, 0.28);
+      border-radius: 1rem;
+      background: rgba(5, 17, 34, 0.76);
+    }
+
+    .timeline::before {
+      position: absolute;
+      top: 1.35rem;
+      right: 8%;
+      left: 8%;
+      z-index: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--violet), var(--green));
+      content: "";
+    }
+
+    .timeline-step {
+      position: relative;
+      z-index: 1;
+      padding: 0;
+      color: var(--soft);
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .timeline-step::before {
+      display: block;
+      width: 0.8rem;
+      height: 0.8rem;
+      margin: 0.18rem auto 0.55rem;
+      border: 3px solid var(--ink-soft);
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0.9rem rgba(54, 214, 196, 0.85);
+      content: "";
+    }
+
+    .timeline-step:nth-child(2)::before,
+    .timeline-step:nth-child(3)::before { background: var(--blue); box-shadow: 0 0 0.9rem rgba(101, 150, 255, 0.8); }
+    .timeline-step:nth-child(4)::before,
+    .timeline-step:nth-child(5)::before { background: var(--violet); box-shadow: 0 0 0.9rem rgba(155, 135, 255, 0.8); }
+    .timeline-step:nth-child(6)::before { background: var(--green); box-shadow: 0 0 0.9rem rgba(32, 217, 154, 0.8); }
+
+    /* Slide 4 */
+    .role-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      flex: 1;
+      min-height: 0;
+      gap: var(--gap);
+    }
+
+    .role-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: clamp(1rem, 1.8vw, 1.7rem);
+    }
+
+    .role-card:first-child {
+      border-color: rgba(101, 150, 255, 0.38);
+    }
+
+    .role-card:last-child {
+      border-color: rgba(54, 214, 196, 0.42);
+    }
+
+    .role-list {
+      display: grid;
+      align-content: center;
+      flex: 1;
+      gap: clamp(0.55rem, 1.5vh, 0.95rem);
+      padding: 0;
+      margin: 0.45rem 0 0;
+      list-style: none;
+    }
+
+    .role-list li {
+      display: grid;
+      grid-template-columns: 2.8rem minmax(0, 1fr);
+      gap: 0.85rem;
+      align-items: start;
+    }
+
+    .role-icon {
+      display: grid;
+      place-items: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 1px solid rgba(101, 150, 255, 0.35);
+      border-radius: 0.9rem;
+      background: rgba(101, 150, 255, 0.1);
+      font-size: var(--h3-size);
+    }
+
+    .role-list strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: var(--white);
+      font-size: var(--h3-size);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .role-list span {
+      color: var(--text);
+      font-size: var(--body-size);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .quality-list .role-icon {
+      border-color: rgba(54, 214, 196, 0.38);
+      background: rgba(54, 214, 196, 0.1);
+    }
+
+    /* Slide 5 */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      flex: 1;
+      min-height: 0;
+      gap: clamp(0.55rem, 1vw, 0.95rem);
+    }
+
+    .result-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+      padding: clamp(0.9rem, 1.3vw, 1.25rem);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .result-card::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: var(--result-color, var(--cyan));
+      box-shadow: 0 0 1.4rem var(--result-color, var(--cyan));
+      content: "";
+    }
+
+    .result-card .kpi-value {
+      color: var(--result-color, var(--cyan));
+      text-shadow: 0 0 1.8rem color-mix(in srgb, var(--result-color, var(--cyan)) 24%, transparent);
+    }
+
+    .result-card h3 {
+      margin: 0.65rem 0 0.45rem;
+    }
+
+    .result-detail {
+      line-height: 1.45;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 0 0 auto;
+      gap: 1rem;
+      margin-top: clamp(0.7rem, 1.8vh, 1.2rem);
+      padding: clamp(0.85rem, 1.6vw, 1.3rem);
+      border: 1px solid rgba(54, 214, 196, 0.56);
+      border-radius: 1.1rem;
+      background:
+        radial-gradient(circle at 10% 30%, rgba(54, 214, 196, 0.14), transparent 36%),
+        linear-gradient(135deg, rgba(54, 214, 196, 0.07), rgba(101, 150, 255, 0.08));
+      box-shadow: 0 0 2.8rem rgba(54, 214, 196, 0.1);
+    }
+
+    .cta strong {
+      color: var(--white);
+      font-size: var(--h3-size);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .cta-link {
+      color: #d6fffa;
+      font-size: var(--tag-size);
+      font-weight: 800;
+      line-height: 1.4;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      right: 1.3rem;
+      bottom: 1.1rem;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 999px;
+      background: rgba(4, 13, 27, 0.86);
+      box-shadow: 0 0.9rem 2.4rem rgba(0, 0, 0, 0.36);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-button {
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 50%;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+    }
+
+    .nav-button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-count {
+      min-width: 4.5rem;
+      color: var(--soft);
+      font-size: var(--eyebrow-size);
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .progress {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 55;
+      height: 4px;
+      background: rgba(148, 163, 184, 0.1);
+    }
+
+    .progress-bar {
+      width: 20%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 1rem rgba(54, 214, 196, 0.75);
+      transition: width 600ms var(--ease);
+    }
+
+    @media (max-width: 1800px) {
+      .nav {
+        display: none;
+      }
+    }
+
+    /* Tablet and mobile keep the same readable type floor. */
+    @media (max-width: 900px) {
+      :root {
+        --pad-x: clamp(1rem, 4vw, 2rem);
+        --pad-y: clamp(1rem, 2.8vh, 1.6rem);
+        --gap: clamp(0.6rem, 1.7vw, 1rem);
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-orbit {
+        position: absolute;
+        top: 15%;
+        right: -18%;
+        z-index: -1;
+        width: min(70vw, 28rem);
+        opacity: 0.3;
+      }
+
+      .hero-copy {
+        max-width: 44rem;
+      }
+
+      .key-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .results-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .result-card:last-child {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 700px) {
+      h1,
+      h2 {
+        max-width: 100%;
+      }
+
+      .slide-index,
+      .hero-note {
+        display: none;
+      }
+
+      .welcome-orbit {
+        display: none;
+      }
+
+      .two-card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-card {
+        padding: 0.85rem 1rem;
+      }
+
+      .plain-list {
+        gap: 0.45rem;
+        margin-top: 0.35rem;
+      }
+
+      .plain-list li {
+        grid-template-columns: 2rem minmax(0, 1fr);
+        gap: 0.65rem;
+      }
+
+      .bullet-mark {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .role-card {
+        padding: 0.85rem 1rem;
+      }
+
+      .role-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .role-list {
+        gap: 0.45rem;
+      }
+
+      .role-list li {
+        grid-template-columns: 2.35rem minmax(0, 1fr);
+        gap: 0.6rem;
+      }
+
+      .role-icon {
+        width: 2.35rem;
+        height: 2.35rem;
+      }
+
+      .timeline {
+        gap: 0.1rem;
+        padding-inline: 0.2rem;
+      }
+
+      .timeline-step {
+        padding: 0;
+      }
+
+      .cta {
+        display: block;
+      }
+
+      .cta-link {
+        display: block;
+        margin-top: 0.4rem;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-height: 700px) {
+      :root {
+        --pad-y: clamp(0.8rem, 2.4vh, 1.2rem);
+      }
+
+      .slide-topbar,
+      .content-header {
+        margin-bottom: 0.55rem;
+      }
+
+      .plain-card,
+      .key-card,
+      .role-card,
+      .result-card {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+
+      .hero-copy .subtitle,
+      .hero-tags {
+        margin-top: 0.8rem;
+      }
+
+      .timeline,
+      .cta {
+        margin-top: 0.55rem;
+      }
+    }
+
+    @media (max-height: 600px) {
+      :root {
+        --pad-y: 0.7rem;
+        --pad-x: clamp(0.9rem, 3vw, 1.5rem);
+      }
+
+      .slide-topbar {
+        margin-bottom: 0.35rem;
+      }
+
+      .plain-list,
+      .role-list {
+        gap: 0.35rem;
+      }
+
+      .phase {
+        margin-bottom: 0.4rem;
+        padding-top: 0.35rem;
+        padding-bottom: 0.35rem;
+      }
+
+      .timeline {
+        padding-top: 0.45rem;
+        padding-bottom: 0.45rem;
+      }
+
+      .timeline::before {
+        top: 1rem;
+      }
+
+      .timeline-step::before {
+        margin-bottom: 0.3rem;
+      }
+    }
+
+    @media (max-height: 500px) {
+      :root {
+        --pad-y: 0.35rem;
+        --pad-x: clamp(0.8rem, 3vw, 1.25rem);
+      }
+
+      h1,
+      h2 {
+        line-height: 1.02;
+      }
+
+      h3 {
+        margin-bottom: 0.2rem;
+      }
+
+      .slide-topbar,
+      .content-header {
+        margin-bottom: 0.25rem;
+      }
+
+      .status-pill {
+        margin-bottom: 0.45rem;
+      }
+
+      .hero-tags {
+        gap: 0.35rem;
+      }
+
+      .welcome-orbit {
+        display: none;
+      }
+
+      .two-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .plain-card {
+        padding: 0.45rem 0.7rem;
+      }
+
+      .card-kicker {
+        margin-bottom: 0.15rem;
+      }
+
+      .plain-list {
+        align-content: start;
+        gap: 0.15rem;
+        margin-top: 0.1rem;
+      }
+
+      .plain-list li {
+        grid-template-columns: 1.65rem minmax(0, 1fr);
+        gap: 0.45rem;
+        line-height: 1.18;
+      }
+
+      .bullet-mark {
+        width: 1.65rem;
+        height: 1.65rem;
+        border-radius: 0.55rem;
+      }
+
+      .key-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .key-card {
+        padding: 0.4rem 0.55rem;
+      }
+
+      .key-card h3 {
+        margin-top: 0.1rem;
+        padding-top: 0;
+      }
+
+      .phase {
+        margin-bottom: 0.2rem;
+        padding: 0.25rem 0.55rem;
+      }
+
+      .quote {
+        font-size: 0.85rem;
+        line-height: 1.15;
+      }
+
+      .timeline {
+        margin-top: 0.3rem;
+        padding-block: 0.25rem;
+      }
+
+      .timeline::before {
+        top: 0.78rem;
+      }
+
+      .timeline-step {
+        font-size: 0.85rem;
+        line-height: 1.1;
+      }
+
+      .timeline-step::before {
+        width: 0.65rem;
+        height: 0.65rem;
+        margin: 0.05rem auto 0.15rem;
+        border-width: 2px;
+      }
+
+      .role-grid {
+        grid-template-columns: 1.08fr 0.92fr;
+      }
+
+      .role-card {
+        padding: 0.45rem 0.65rem;
+      }
+
+      .role-list {
+        align-content: start;
+        gap: 0.05rem;
+        margin-top: 0;
+      }
+
+      .role-list li {
+        grid-template-columns: 1.9rem minmax(0, 1fr);
+        gap: 0.45rem;
+      }
+
+      .role-icon {
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 0.65rem;
+        font-size: 0.9rem;
+      }
+
+      .role-list strong {
+        margin-bottom: 0;
+        font-size: 0.9rem;
+        line-height: 1.1;
+      }
+
+      .results-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .result-card:last-child {
+        grid-column: auto;
+      }
+
+      .result-detail {
+        display: none;
+      }
+
+      .role-list span {
+        font-size: 0.85rem;
+        line-height: 1.15;
+      }
+
+      .cta {
+        display: flex;
+        padding: 0.55rem 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @page { size: 16in 9in; margin: 0; }
+
+    @media print {
+      html,
+      body {
+        width: 16in;
+        height: auto;
+        overflow: visible;
+        background: var(--ink);
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .deck {
+        width: 16in;
+        height: auto;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .slide {
+        width: 16in;
+        height: 9in;
+        min-height: 9in;
+        padding: 0.48in 0.62in;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      h1,
+      h2 {
+        font-size: 36pt;
+        line-height: 1.08;
+      }
+
+      h3 {
+        font-size: 16pt;
+        line-height: 1.2;
+      }
+
+      p,
+      .body-text,
+      .plain-list li,
+      .role-list span,
+      .quote {
+        font-size: 13.5pt;
+        line-height: 1.42;
+      }
+
+      .eyebrow,
+      .status-pill,
+      .slide-index,
+      .tag,
+      .pill,
+      .phase,
+      .timeline-step,
+      .hero-note,
+      .cta-link {
+        font-size: 11.5pt;
+      }
+
+      .kpi-value,
+      .key-number,
+      .orbit-core strong {
+        font-size: 34pt;
+      }
+
+      .kpi-label,
+      .result-detail {
+        font-size: 12pt;
+      }
+
+      .hero-layout {
+        grid-template-columns: minmax(0, 1.25fr) minmax(3.7in, 0.75fr);
+      }
+
+      .welcome-orbit {
+        position: relative;
+        top: auto;
+        right: auto;
+        z-index: auto;
+        width: 4.1in;
+        opacity: 1;
+      }
+
+      .two-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .key-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .role-grid {
+        grid-template-columns: 1.08fr 0.92fr;
+      }
+
+      .results-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .result-card:last-child {
+        grid-column: auto;
+      }
+
+      .result-detail {
+        display: block;
+      }
+
+      .slide:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .glass-card {
+        backdrop-filter: none;
+      }
+
+      .nav,
+      .progress {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck" aria-label="A better 90-day onboarding system">
+    <section class="slide" id="slide-1" aria-labelledby="slide-1-title">
+      <div class="slide-shell">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <div class="status-pill reveal" style="--delay: 40ms">● HR OPERATIONS LAB · A BETTER WAY TO ONBOARD</div>
+            <h1 id="slide-1-title" class="reveal" style="--delay: 110ms">How to Build a Great 90-Day Onboarding System</h1>
+            <p class="subtitle reveal" style="--delay: 180ms">A practical HR system that helps new hires learn fast, feel welcome, and succeed from Day 1.</p>
+            <div class="hero-tags reveal" style="--delay: 250ms" aria-label="What the system includes">
+              <span class="tag">Clear Checklists</span>
+              <span class="tag">No IT Delays</span>
+              <span class="tag">Friendly Buddy System</span>
+              <span class="tag">Live Dashboard</span>
+            </div>
+          </div>
+
+          <div class="welcome-orbit reveal" style="--delay: 160ms" aria-label="A complete 90-day onboarding journey">
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring second"></div>
+            <div class="orbit-halo"></div>
+            <div class="orbit-core"><div><strong>90</strong><span>DAYS TO THRIVE</span></div></div>
+            <div class="orbit-word one">Ready</div>
+            <div class="orbit-word two">Clear</div>
+            <div class="orbit-word three">Confident</div>
+            <div class="orbit-word four">Welcome</div>
+          </div>
+        </div>
+        <div class="hero-note reveal" style="--delay: 320ms">A simple, trackable experience from offer acceptance to Day 90.</div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-2" aria-labelledby="slide-2-title">
+      <div class="slide-shell">
+        <div class="slide-topbar reveal">
+          <div class="eyebrow">THE CHALLENGE</div>
+          <div class="slide-index">02 / 05</div>
+        </div>
+        <header class="content-header reveal" style="--delay: 70ms">
+          <h2 id="slide-2-title">Why Most Onboarding Fails (And How We Fix It)</h2>
+        </header>
+
+        <div class="two-card-grid">
+          <article class="plain-card glass-card warning reveal" style="--delay: 140ms">
+            <div class="card-kicker">Broken &amp; frustrating</div>
+            <h3>The Old Way</h3>
+            <ul class="plain-list">
+              <li><span class="bullet-mark" aria-hidden="true">×</span><span>Laptops, emails, and logins arrive days late</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">×</span><span>Managers forget to hold weekly 1-on-1 check-ins</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">×</span><span>New hires feel lost, confused, and unsupported</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">×</span><span>Good people quit within their first 3 months</span></li>
+            </ul>
+          </article>
+
+          <article class="plain-card glass-card success reveal" style="--delay: 210ms">
+            <div class="card-kicker">Organized &amp; supported</div>
+            <h3>Our Way</h3>
+            <ul class="plain-list">
+              <li><span class="bullet-mark" aria-hidden="true">✓</span><span>Everything set up and ready before Day 1</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">✓</span><span>A dedicated friendly buddy from your first week</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">✓</span><span>Clear 30, 60, and 90-day goals with your manager</span></li>
+              <li><span class="bullet-mark" aria-hidden="true">✓</span><span>Continuous support so nobody gets left behind</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-3" aria-labelledby="slide-3-title">
+      <div class="slide-shell">
+        <div class="slide-topbar reveal">
+          <div class="eyebrow">THE 4-STEP FRAMEWORK</div>
+          <div class="slide-index">03 / 05</div>
+        </div>
+        <header class="content-header reveal" style="--delay: 70ms">
+          <h2 id="slide-3-title">The 4 Keys to Helping New Hires Succeed</h2>
+        </header>
+
+        <div class="key-grid">
+          <article class="key-card glass-card reveal" style="--delay: 130ms">
+            <div class="key-number">01</div>
+            <h3>Clear Goals</h3>
+            <span class="phase">Day 30</span>
+            <p class="quote">“I know exactly what my job is and what success looks like.”</p>
+          </article>
+          <article class="key-card glass-card reveal" style="--delay: 180ms">
+            <div class="key-number">02</div>
+            <h3>Doing the Work</h3>
+            <span class="phase">Day 60</span>
+            <p class="quote">“I can do my daily tasks on my own with confidence.”</p>
+          </article>
+          <article class="key-card glass-card reveal" style="--delay: 230ms">
+            <div class="key-number">03</div>
+            <h3>Feeling Welcome</h3>
+            <span class="phase">Day 45</span>
+            <p class="quote">“I have a helpful buddy, great teammates, and feel at home.”</p>
+          </article>
+          <article class="key-card glass-card reveal" style="--delay: 280ms">
+            <div class="key-number">04</div>
+            <h3>Big Picture</h3>
+            <span class="phase">Day 90</span>
+            <p class="quote">“I understand our company's mission and where we are heading.”</p>
+          </article>
+        </div>
+
+        <div class="timeline reveal" style="--delay: 340ms" aria-label="Six-stage onboarding timeline">
+          <div class="timeline-step">Before Day 1</div>
+          <div class="timeline-step">Day 1 Welcome</div>
+          <div class="timeline-step">Week 1 Basics</div>
+          <div class="timeline-step">Month 1 Goals</div>
+          <div class="timeline-step">Month 2 Practice</div>
+          <div class="timeline-step">Month 3 Confirmation</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-4" aria-labelledby="slide-4-title">
+      <div class="slide-shell">
+        <div class="slide-topbar reveal">
+          <div class="eyebrow">WHO DOES WHAT</div>
+          <div class="slide-index">04 / 05</div>
+        </div>
+        <header class="content-header reveal" style="--delay: 70ms">
+          <h2 id="slide-4-title">Clear Roles &amp; Built-In Quality Checks</h2>
+        </header>
+
+        <div class="role-grid">
+          <article class="role-card glass-card reveal" style="--delay: 140ms">
+            <h3>Who Does What</h3>
+            <ul class="role-list">
+              <li><span class="role-icon" aria-hidden="true">👤</span><div><strong>HR Team</strong><span>Prepares paperwork and welcomes the new hire.</span></div></li>
+              <li><span class="role-icon" aria-hidden="true">👔</span><div><strong>Manager</strong><span>Sets clear goals and gives regular feedback.</span></div></li>
+              <li><span class="role-icon" aria-hidden="true">💻</span><div><strong>IT Team</strong><span>Delivers laptops and logins on time.</span></div></li>
+              <li><span class="role-icon" aria-hidden="true">🤝</span><div><strong>Peer Buddy</strong><span>Shows you around and introduces you to teammates.</span></div></li>
+            </ul>
+          </article>
+
+          <article class="role-card glass-card reveal" style="--delay: 210ms">
+            <h3>Quality Checks (No Surprises)</h3>
+            <ul class="role-list quality-list">
+              <li><span class="role-icon" aria-hidden="true">⏱️</span><div><strong>Fast Help</strong><span>If a laptop is delayed, the system alerts managers right away.</span></div></li>
+              <li><span class="role-icon" aria-hidden="true">🔒</span><div><strong>Data Privacy</strong><span>Personal employee information is strictly locked and safe.</span></div></li>
+              <li><span class="role-icon" aria-hidden="true">🧪</span><div><strong>14 System Tests</strong><span>Checked every step to make sure the process runs smoothly.</span></div></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-5" aria-labelledby="slide-5-title">
+      <div class="slide-shell">
+        <div class="slide-topbar reveal">
+          <div class="eyebrow">LIVE RESULTS</div>
+          <div class="slide-index">05 / 05</div>
+        </div>
+        <header class="content-header reveal" style="--delay: 70ms">
+          <h2 id="slide-5-title">Real-Time Tracking: The Live Dashboard</h2>
+        </header>
+
+        <div class="results-grid">
+          <article class="result-card glass-card reveal" style="--delay: 120ms; --result-color: #36d6c4">
+            <div class="kpi-value">93.4%</div>
+            <h3>Ready on Day 1</h3>
+            <p class="result-detail">Laptops &amp; access ready on time</p>
+          </article>
+          <article class="result-card glass-card reveal" style="--delay: 170ms; --result-color: #6596ff">
+            <div class="kpi-value">88.5%</div>
+            <h3>On-Time Tasks</h3>
+            <p class="result-detail">HR &amp; managers completing steps on schedule</p>
+          </article>
+          <article class="result-card glass-card reveal" style="--delay: 220ms; --result-color: #9b87ff">
+            <div class="kpi-value">24 Days</div>
+            <h3>To Clear Goals</h3>
+            <p class="result-detail">New hires learn their role quickly</p>
+          </article>
+          <article class="result-card glass-card reveal" style="--delay: 270ms; --result-color: #20d99a">
+            <div class="kpi-value">20 Hires</div>
+            <h3>Tracked in 2026 Cohort</h3>
+            <p class="result-detail">Every new hire visible in one place</p>
+          </article>
+          <article class="result-card glass-card reveal" style="--delay: 320ms; --result-color: #fb5b78">
+            <div class="kpi-value">3 Flags</div>
+            <h3>Solved Early</h3>
+            <p class="result-detail">Issues caught early before they become problems</p>
+          </article>
+        </div>
+
+        <div class="cta reveal" style="--delay: 370ms">
+          <strong>👉 Explore the live interactive dashboard:</strong>
+          <a class="cta-link" href="https://azim-ux.github.io/evidence-based-onboarding-lab/" target="_blank" rel="noopener">https://azim-ux.github.io/evidence-based-onboarding-lab/</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="nav" aria-label="Slide navigation">
+    <button class="nav-button" id="prev" type="button" aria-label="Previous slide">←</button>
+    <div class="nav-count" aria-live="polite"><span id="current">01</span> / 05</div>
+    <button class="nav-button" id="next" type="button" aria-label="Next slide">→</button>
+  </nav>
+  <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress"></div></div>
+
+  <script>
+    (() => {
+      const deck = document.getElementById('deck');
+      const slides = [...document.querySelectorAll('.slide')];
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const current = document.getElementById('current');
+      const progress = document.getElementById('progress');
+      const hashMatch = window.location.hash.match(/^#slide-([1-5])$/);
+      let index = hashMatch ? Number(hashMatch[1]) - 1 : 0;
+      let wheelLocked = false;
+      let touchStartY = 0;
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+      function render(animate = true) {
+        deck.style.transition = animate ? '' : 'none';
+        deck.style.transform = `translate3d(0, -${index * 100}%, 0)`;
+        current.textContent = String(index + 1).padStart(2, '0');
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        prev.disabled = index === 0;
+        next.disabled = index === slides.length - 1;
+        slides.forEach((slide, slideIndex) => {
+          slide.setAttribute('aria-hidden', slideIndex === index ? 'false' : 'true');
+          if (slideIndex === index) {
+            slide.querySelectorAll('.reveal').forEach((element) => element.classList.add('is-visible'));
+          }
+        });
+        history.replaceState(null, '', `#slide-${index + 1}`);
+        if (!animate) requestAnimationFrame(() => { deck.style.transition = ''; });
+      }
+
+      function goTo(nextIndex) {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+        render();
+      }
+
+      prev.addEventListener('click', () => goTo(index - 1));
+      next.addEventListener('click', () => goTo(index + 1));
+
+      document.addEventListener('keydown', (event) => {
+        if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(event.key)) {
+          event.preventDefault();
+          goTo(index + 1);
+        }
+        if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(event.key)) {
+          event.preventDefault();
+          goTo(index - 1);
+        }
+        if (event.key === 'Home') goTo(0);
+        if (event.key === 'End') goTo(slides.length - 1);
+      });
+
+      window.addEventListener('wheel', (event) => {
+        if (wheelLocked || Math.abs(event.deltaY) < 16) return;
+        wheelLocked = true;
+        goTo(index + (event.deltaY > 0 ? 1 : -1));
+        window.setTimeout(() => { wheelLocked = false; }, 650);
+      }, { passive: true });
+
+      window.addEventListener('touchstart', (event) => {
+        touchStartY = event.changedTouches[0].screenY;
+      }, { passive: true });
+
+      window.addEventListener('touchend', (event) => {
+        const distance = touchStartY - event.changedTouches[0].screenY;
+        if (Math.abs(distance) > 45) goTo(index + (distance > 0 ? 1 : -1));
+      }, { passive: true });
+
+      window.addEventListener('hashchange', () => {
+        const match = window.location.hash.match(/^#slide-([1-5])$/);
+        if (match) {
+          index = Number(match[1]) - 1;
+          render(false);
+        }
+      });
+
+      render(false);
+    })();
+  </script>
+</body>
+</html>

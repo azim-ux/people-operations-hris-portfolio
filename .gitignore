@@ -1,0 +1,57 @@
+# ==========================================
+# Operating System & Editor Artifacts
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.obsidian/
+*.canvas
+graphify-out/
+.claude/
+.gstack/
+.agents/
+.codex/
+tmp/
+*.tmp
+*.log
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# ==========================================
+# Private Employment, Evidence & Workspaces
+# ==========================================
+08_Employment_Exit_Documents/
+01_Source_Evidence/
+99_Archive/
+09_Obsidian_Hub/
+07_Remote_Job_Applications/
+03_Career_Research/
+04_Application_Toolkit/
+05_Ready_to_Use_Application_Pack/
+*.docx
+*.pdf
+*.zip
+*.tar.gz
+
+# ==========================================
+# Secrets & Private Keys
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# ==========================================
+# Whitelist Audited Public CVs & Portfolio PDFs
+# ==========================================
+!02_CV_Library/**/*.pdf
+!06_Portfolio_Projects/**/*.pdf
+!06_Portfolio_Projects/**/slides.html

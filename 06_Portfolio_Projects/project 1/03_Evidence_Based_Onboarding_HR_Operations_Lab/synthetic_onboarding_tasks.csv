@@ -1,0 +1,61 @@
+Task_ID,Employee_ID,Phase,Task_Name,Assigned_Role,SLA_Hours,Actual_Hours,Variance_Hours,Status,Escalation_Required
+TASK-001,APD-2026-001,Day 1,Day 1 Readiness Verification,HR,24,18,-6,Completed,No
+TASK-002,APD-2026-001,Month 1,Day 30 Role Clarity Sign-off,HM,720,456,-264,Completed,No
+TASK-003,APD-2026-001,Preboarding,Document Verification,HR,48,36,-12,Completed,No
+TASK-004,APD-2026-002,Day 1,Day 1 Readiness Verification,IT,24,20,-4,Completed,No
+TASK-005,APD-2026-002,Month 1,Day 30 Role Clarity Sign-off,HM,720,480,-240,Completed,No
+TASK-006,APD-2026-002,Week 1,Buddy Introduction and Network Map,BY,48,30,-18,Completed,No
+TASK-007,APD-2026-003,Day 1,Day 1 Readiness Verification,HR,24,16,-8,Completed,No
+TASK-008,APD-2026-003,Month 1,Day 30 Role Clarity Sign-off,HM,720,504,-216,Completed,No
+TASK-009,APD-2026-003,Month 2,Manager Feedback Checkpoint,HM,48,288,240,Completed,No
+TASK-010,APD-2026-004,Day 1,Day 1 Readiness Verification,IT,24,22,-2,Completed,No
+TASK-011,APD-2026-004,Month 1,Day 30 Role Clarity Sign-off,HM,720,528,-192,Completed,No
+TASK-012,APD-2026-004,Month 3,Culture Navigation Reflection,EE,48,40,-8,Completed,No
+TASK-013,APD-2026-005,Day 1,Day 1 Readiness Verification,HR,24,17,-7,Completed,No
+TASK-014,APD-2026-005,Month 1,Day 30 Role Clarity Sign-off,HM,720,552,-168,Completed,No
+TASK-015,APD-2026-005,Preboarding,IT Provisioning,IT,48,336,288,Completed,No
+TASK-016,APD-2026-006,Day 1,Day 1 Readiness Verification,IT,24,21,-3,Completed,No
+TASK-017,APD-2026-006,Month 1,Day 30 Role Clarity Sign-off,HM,720,576,-144,Completed,No
+TASK-018,APD-2026-006,Week 1,Safety and Site Induction,EE,48,42,-6,Completed,No
+TASK-019,APD-2026-007,Day 1,Day 1 Readiness Verification,HR,24,18,-6,Completed,No
+TASK-020,APD-2026-007,Month 1,Day 30 Role Clarity Sign-off,HM,720,600,-120,Completed,No
+TASK-021,APD-2026-007,Month 2,Manager Feedback Checkpoint,HM,48,360,312,Completed,No
+TASK-022,APD-2026-008,Day 1,Day 1 Readiness Verification,IT,24,23,-1,Completed,No
+TASK-023,APD-2026-008,Month 1,Day 30 Role Clarity Sign-off,HM,720,624,-96,Completed,No
+TASK-024,APD-2026-008,Month 3,90-Day Review Pack,HR,48,44,-4,Completed,No
+TASK-025,APD-2026-009,Day 1,Day 1 Readiness Verification,HR,24,19,-5,Completed,No
+TASK-026,APD-2026-009,Month 1,Day 30 Role Clarity Sign-off,HM,720,648,-72,Completed,No
+TASK-027,APD-2026-009,Preboarding,Document Verification,HR,48,40,-8,Completed,No
+TASK-028,APD-2026-010,Day 1,Day 1 Readiness Verification,IT,24,16,-8,Completed,No
+TASK-029,APD-2026-010,Month 1,Day 30 Role Clarity Sign-off,HM,720,672,-48,Completed,No
+TASK-030,APD-2026-010,Week 1,Buddy Introduction and Network Map,BY,48,36,-12,Completed,No
+TASK-031,APD-2026-011,Day 1,Day 1 Readiness Verification,HR,24,22,-2,Completed,No
+TASK-032,APD-2026-011,Month 1,Day 30 Role Clarity Sign-off,HM,720,480,-240,Completed,No
+TASK-033,APD-2026-011,Month 2,Manager Feedback Checkpoint,HM,48,41,-7,Completed,No
+TASK-034,APD-2026-012,Day 1,Day 1 Readiness Verification,IT,24,17,-7,Completed,No
+TASK-035,APD-2026-012,Month 1,Day 30 Role Clarity Sign-off,HM,720,504,-216,Completed,No
+TASK-036,APD-2026-012,Month 3,Culture Navigation Reflection,EE,48,46,-2,Completed,No
+TASK-037,APD-2026-013,Day 1,Day 1 Readiness Verification,HR,24,20,-4,Completed,No
+TASK-038,APD-2026-013,Month 1,Day 30 Role Clarity Sign-off,HM,720,528,-192,Completed,No
+TASK-039,APD-2026-013,Preboarding,IT Provisioning,IT,48,43,-5,Completed,No
+TASK-040,APD-2026-014,Day 1,Day 1 Readiness Verification,IT,24,21,-3,Completed,No
+TASK-041,APD-2026-014,Month 1,Day 30 Role Clarity Sign-off,HM,720,552,-168,Completed,No
+TASK-042,APD-2026-014,Week 1,Quality SOP Walkthrough,EE,48,40,-8,Completed,No
+TASK-043,APD-2026-015,Day 1,Day 1 Readiness Verification,HR,24,18,-6,Completed,No
+TASK-044,APD-2026-015,Month 1,Day 30 Role Clarity Sign-off,HM,720,576,-144,Completed,No
+TASK-045,APD-2026-015,Month 2,Manager Feedback Checkpoint,HM,48,348,300,Overdue,Yes
+TASK-046,APD-2026-016,Day 1,Day 1 Readiness Verification,IT,24,23,-1,Completed,No
+TASK-047,APD-2026-016,Month 1,Day 30 Role Clarity Sign-off,HM,720,600,-120,Completed,No
+TASK-048,APD-2026-016,Month 3,90-Day Review Pack,HR,48,44,-4,In Progress,No
+TASK-049,APD-2026-017,Day 1,Day 1 Readiness Verification,HR,24,19,-5,Completed,No
+TASK-050,APD-2026-017,Month 1,Day 30 Role Clarity Sign-off,HM,720,624,-96,Completed,No
+TASK-051,APD-2026-017,Preboarding,Document Verification,HR,48,46,-2,Completed,No
+TASK-052,APD-2026-018,Day 1,Day 1 Readiness Verification,IT,24,18,-6,Completed,No
+TASK-053,APD-2026-018,Month 1,Day 30 Role Clarity Sign-off,HM,720,648,-72,Completed,No
+TASK-054,APD-2026-018,Week 1,Document Verification,HR,48,348,300,Overdue,Yes
+TASK-055,APD-2026-019,Day 1,Day 1 Readiness Verification,HR,24,20,-4,Completed,No
+TASK-056,APD-2026-019,Month 1,Day 30 Role Clarity Sign-off,HM,720,672,-48,Completed,No
+TASK-057,APD-2026-019,Month 2,Manager Feedback Checkpoint,HM,48,45,-3,In Progress,No
+TASK-058,APD-2026-020,Day 1,Day 1 Readiness Verification,IT,24,22,-2,Completed,No
+TASK-059,APD-2026-020,Month 1,Day 30 Role Clarity Sign-off,HM,720,792,72,Completed,No
+TASK-060,APD-2026-020,Month 3,IT Provisioning Remediation,IT,48,357.6,309.6,Overdue,Yes

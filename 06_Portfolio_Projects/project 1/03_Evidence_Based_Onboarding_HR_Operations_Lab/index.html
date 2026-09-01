@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>APD Onboarding Control Center</title>
+  <meta name="description" content="A synthetic, evidence-based 90-day onboarding and HR Operations dashboard for portfolio demonstration.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307111f'/%3E%3Cpath d='M17 44 31 14l16 30h-9l-3-7H24l-3 7Z' fill='%2336d6c4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#07111f',
+            panel: '#0d1b2d',
+            line: '#21324a',
+            cyan: '#36d6c4',
+            amber: '#f5b942'
+          },
+          boxShadow: { glow: '0 18px 50px rgba(0,0,0,.28)' }
+          ,fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui'],
+            data: ['Inter', 'ui-sans-serif', 'system-ui']
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --emerald: #10b981;
+      --cyan: #36d6c4;
+      --rose: #f43f5e;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% -5%, rgba(54, 214, 196, .12), transparent 31rem),
+        radial-gradient(circle at 92% 8%, rgba(72, 125, 255, .12), transparent 28rem),
+        #07111f;
+    }
+    .noise {
+      background-image: linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 34px 34px;
+    }
+    .panel {
+      background:
+        linear-gradient(145deg, rgba(17, 34, 55, .88), rgba(7, 18, 34, .82)) padding-box,
+        linear-gradient(135deg, rgba(99, 243, 225, .24), rgba(148, 163, 184, .08), rgba(91, 126, 255, .18)) border-box;
+      border: 1px solid transparent !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 18px 50px rgba(0,0,0,.24);
+    }
+    .kpi-card {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 24px 70px rgba(0,0,0,.36), 0 0 0 1px rgba(54,214,196,.16);
+    }
+    .ring-meter { background: conic-gradient(var(--meter-color) calc(var(--meter) * 1%), rgba(148,163,184,.14) 0); }
+    .ring-meter::after { content: ''; position: absolute; inset: 5px; border-radius: 9999px; background: #0d1b2d; }
+    .status-dot { box-shadow: 0 0 0 4px rgba(54,214,196,.08); }
+    .badge-dot { width: .45rem; height: .45rem; border-radius: 9999px; flex: 0 0 auto; }
+    .badge-dot--completed { background: #10b981; box-shadow: 0 0 10px rgba(16,185,129,.75); }
+    .badge-dot--progress { background: #36d6c4; box-shadow: 0 0 10px rgba(54,214,196,.75); }
+    .badge-dot--escalated { background: #f43f5e; box-shadow: 0 0 10px rgba(244,63,94,.75); }
+    .status-badge--completed { color: #6ee7b7; border-color: rgba(16,185,129,.28); background: rgba(16,185,129,.1); }
+    .status-badge--progress { color: #8ff9ed; border-color: rgba(54,214,196,.28); background: rgba(54,214,196,.1); }
+    .status-badge--escalated { color: #fda4af; border-color: rgba(244,63,94,.3); background: rgba(244,63,94,.1); }
+    .table-row:focus-within, .table-row:hover { background: rgba(54,214,196,.055); }
+    .toolbar-action { box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+    .quick-chip { transition: color .16s ease, border-color .16s ease, background-color .16s ease, transform .16s ease; }
+    .quick-chip:hover { transform: translateY(-1px); }
+    .quick-chip[data-active="true"] { border-color: rgba(54,214,196,.62); background: rgba(54,214,196,.12); color: #91fff2; box-shadow: 0 0 0 1px rgba(54,214,196,.08), 0 8px 28px rgba(54,214,196,.08); }
+    dialog::backdrop { background: rgba(2, 8, 18, .7); backdrop-filter: blur(12px); }
+    dialog[open] { animation: dialogSlide .22s cubic-bezier(.2,.8,.2,1); }
+    @keyframes dialogSlide { from { opacity: 0; transform: translateX(28px) scale(.99); } to { opacity: 1; transform: translateX(0) scale(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+    :focus-visible { outline: 3px solid #36d6c4; outline-offset: 3px; }
+    select { background-image: none; }
+    .chart-shell { height: 290px; }
+    @media (max-width: 640px) { .chart-shell { height: 250px; } }
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      :root { color-scheme: light; }
+      html, body { background: #ffffff !important; color: #111827 !important; }
+      body { min-width: 0; font-size: 9pt; }
+      .noise { background-image: none !important; }
+      .no-print, .print-hide, dialog, footer { display: none !important; }
+      header { background: #ffffff !important; border-color: #cbd5e1 !important; }
+      header h1, header p, main h2, main p, main span, th, td { color: #111827 !important; }
+      main { max-width: none !important; padding: 8mm 0 0 !important; }
+      .panel { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; backdrop-filter: none; }
+      .kpi-card { break-inside: avoid; padding: 12px !important; }
+      .kpi-card:hover { transform: none; box-shadow: none !important; }
+      .ring-meter { display: none !important; }
+      #register-heading { font-size: 16pt !important; }
+      table { font-size: 7.5pt !important; }
+      thead { background: #e2e8f0 !important; display: table-header-group; }
+      tr { break-inside: avoid; }
+      th, td { border-bottom: 1px solid #e2e8f0 !important; padding: 6px !important; }
+      th:last-child, td:last-child { display: none !important; }
+      .table-row:hover { background: transparent !important; }
+    }
+  </style>
+</head>
+<body class="noise min-h-screen font-sans text-slate-100 antialiased">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-cyan focus:px-4 focus:py-2 focus:font-semibold focus:text-ink">Skip to dashboard</a>
+
+  <header class="border-b border-line/80 bg-ink/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-[1600px] flex-col gap-5 px-4 py-6 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
+      <div>
+        <div class="mb-3 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-cyan">
+          <span class="h-2 w-2 rounded-full bg-cyan status-dot" aria-hidden="true"></span>
+          HR Operations control center
+          <span class="rounded-full border border-line bg-panel px-2.5 py-1 tracking-normal text-slate-400">Synthetic portfolio data</span>
+        </div>
+        <h1 class="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">Evidence-Based 90-Day Onboarding Lab</h1>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">Apex Precision Dynamics Ltd. · Four-pillar socialization model · Frappe HR–modeled lifecycle · 2026 simulation cohort</p>
+      </div>
+      <div class="toolbar no-print flex flex-wrap items-center gap-2 text-xs text-slate-400" aria-label="Dashboard actions">
+        <button id="export-cohort" type="button" class="toolbar-action rounded-lg border border-cyan/30 bg-cyan/10 px-3 py-2.5 font-semibold text-cyan transition hover:border-cyan/60 hover:bg-cyan/15"><span aria-hidden="true">↓</span> Export Cohort</button>
+        <button id="print-report" type="button" class="toolbar-action rounded-lg border border-line bg-panel/80 px-3 py-2.5 font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"><span aria-hidden="true">⌘</span> Print / Save PDF Report</button>
+        <button id="reset-filters" type="button" class="toolbar-action rounded-lg border border-line bg-panel/80 px-3 py-2.5 font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"><span aria-hidden="true">↺</span> Reset Filters</button>
+        <a href="README.md" class="rounded-lg border border-line px-3 py-2.5 font-semibold text-slate-300 transition hover:border-cyan/40 hover:text-cyan">Methodology</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="mx-auto max-w-[1600px] px-4 py-7 sm:px-6 lg:px-8">
+    <section aria-labelledby="kpi-heading">
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[.18em] text-slate-500">Executive control layer</p>
+          <h2 id="kpi-heading" class="mt-1 text-xl font-semibold text-white">Cohort health at a glance</h2>
+        </div>
+        <p id="integrity-note" class="hidden rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs font-medium text-red-200" role="alert">Data integrity check requires review.</p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        <article class="panel kpi-card rounded-2xl border border-line p-5 shadow-glow">
+          <div class="flex items-start justify-between gap-3">
+            <div><p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Day-1 readiness</p><p id="kpi-readiness" class="mt-3 text-3xl font-semibold tracking-tight text-white">93.4%</p></div>
+            <div class="ring-meter relative h-12 w-12 shrink-0 rounded-full" style="--meter:93.4;--meter-color:#f5b942" aria-hidden="true"></div>
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs"><span class="text-slate-500">Target &gt;95%</span><span class="rounded-full bg-amber/10 px-2 py-1 font-semibold text-amber">Watch</span></div>
+        </article>
+        <article class="panel kpi-card rounded-2xl border border-line p-5 shadow-glow">
+          <div class="flex items-start justify-between gap-3">
+            <div><p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Task SLA adherence</p><p id="kpi-sla" class="mt-3 text-3xl font-semibold tracking-tight text-white">88.5%</p></div>
+            <div class="ring-meter relative h-12 w-12 shrink-0 rounded-full" style="--meter:88.5;--meter-color:#f5b942" aria-hidden="true"></div>
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs"><span class="text-slate-500">Target &gt;90%</span><span class="rounded-full bg-amber/10 px-2 py-1 font-semibold text-amber">At risk</span></div>
+        </article>
+        <article class="panel kpi-card rounded-2xl border border-line p-5 shadow-glow">
+          <div class="flex items-start justify-between gap-3"><div><p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Time to role clarity</p><p class="mt-3 text-3xl font-semibold tracking-tight text-white"><span id="kpi-clarity">24.2</span><span class="ml-1 text-base text-slate-400">days</span></p></div><span class="rounded-lg bg-cyan/10 p-2 text-cyan" aria-hidden="true">↘</span></div>
+          <div class="mt-4 flex items-center justify-between text-xs"><span class="text-slate-500">Target &lt;30 days</span><span class="rounded-full bg-cyan/10 px-2 py-1 font-semibold text-cyan">On track</span></div>
+        </article>
+        <article class="panel kpi-card rounded-2xl border border-line p-5 shadow-glow">
+          <div class="flex items-start justify-between gap-3"><div><p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Active cohort</p><p id="kpi-cohort" class="mt-3 text-3xl font-semibold tracking-tight text-white">20</p></div><span class="rounded-lg bg-blue-500/10 p-2 text-blue-300" aria-hidden="true">◎</span></div>
+          <div class="mt-4 flex items-center justify-between text-xs"><span class="text-slate-500">4 quarterly groups</span><span class="text-slate-300">60 sampled tasks</span></div>
+        </article>
+        <article class="panel kpi-card rounded-2xl border border-red-500/25 p-5 shadow-glow">
+          <div class="flex items-start justify-between gap-3"><div><p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Open escalations</p><p id="kpi-escalations" class="mt-3 text-3xl font-semibold tracking-tight text-white">3</p></div><span class="rounded-lg bg-red-500/10 p-2 text-red-300" aria-hidden="true">!</span></div>
+          <div class="mt-4 flex items-center justify-between text-xs"><span class="text-slate-500">Target 0</span><span class="rounded-full bg-red-500/10 px-2 py-1 font-semibold text-red-300">Action needed</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="print-hide mt-7 grid gap-5 xl:grid-cols-2" aria-label="Onboarding analytics">
+      <article class="panel rounded-2xl border border-line p-5 shadow-glow sm:p-6">
+        <div class="mb-4 flex items-start justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan">Adjustment quality</p><h2 class="mt-1 text-lg font-semibold text-white">Socialization pillars by department</h2><p class="mt-1 text-xs leading-5 text-slate-500">1–5 averages. Culture is a disclosed three-score proxy.</p></div><span class="rounded-full border border-line px-2.5 py-1 text-xs text-slate-400">20 records</span></div>
+        <div class="chart-shell"><canvas id="socialization-chart" role="img" aria-label="Radar chart comparing four socialization pillars by department"></canvas></div>
+        <p class="chart-fallback hidden text-sm text-slate-400">The chart library is unavailable. Employee-level values remain in the table below.</p>
+      </article>
+
+      <article class="panel rounded-2xl border border-line p-5 shadow-glow sm:p-6">
+        <div class="mb-4 flex items-start justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-blue-300">Ownership</p><h2 class="mt-1 text-lg font-semibold text-white">SLA adherence by assigned role</h2><p class="mt-1 text-xs leading-5 text-slate-500">Same variance-weighted formula as the headline KPI.</p></div><span class="rounded-full border border-line px-2.5 py-1 text-xs text-slate-400">Target 90%</span></div>
+        <div class="chart-shell"><canvas id="sla-role-chart" role="img" aria-label="Bar chart of SLA adherence for HR, IT, Hiring Manager, and Buddy"></canvas></div>
+        <p class="chart-fallback hidden text-sm text-slate-400">The chart library is unavailable. Source task records remain embedded in this file.</p>
+      </article>
+
+      <article class="panel rounded-2xl border border-line p-5 shadow-glow sm:p-6">
+        <div class="mb-4 flex items-start justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-violet-300">Phase control</p><h2 class="mt-1 text-lg font-semibold text-white">Milestone stage progress</h2><p class="mt-1 text-xs leading-5 text-slate-500">Completed sampled tasks ÷ all sampled tasks in phase.</p></div><span class="rounded-full border border-line px-2.5 py-1 text-xs text-slate-400">6 phases</span></div>
+        <div class="chart-shell"><canvas id="milestone-chart" role="img" aria-label="Stage progress chart from Preboarding through Month 3"></canvas></div>
+        <p class="chart-fallback hidden text-sm text-slate-400">The chart library is unavailable. Phase status can be reviewed in employee details.</p>
+      </article>
+
+      <article class="panel rounded-2xl border border-line p-5 shadow-glow sm:p-6">
+        <div class="mb-4 flex items-start justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-amber">Exception ageing</p><h2 class="mt-1 text-lg font-semibold text-white">Delay reasons and ageing</h2><p class="mt-1 text-xs leading-5 text-slate-500">Count of positive-variance tasks in three ageing bands.</p></div><span class="rounded-full border border-line px-2.5 py-1 text-xs text-slate-400">3 controls</span></div>
+        <div class="chart-shell"><canvas id="delay-chart" role="img" aria-label="Stacked bar chart of IT Provisioning, Manager Feedback, and Document Verification delays"></canvas></div>
+        <p class="chart-fallback hidden text-sm text-slate-400">The chart library is unavailable. Open exceptions remain visible in the employee register.</p>
+      </article>
+    </section>
+
+    <section class="panel mt-7 overflow-hidden rounded-2xl border border-line shadow-glow" aria-labelledby="register-heading">
+      <div class="border-b border-line px-5 py-5 sm:px-6">
+        <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+          <div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan">Operational register</p><h2 id="register-heading" class="mt-1 text-xl font-semibold text-white">Onboarding cohort</h2><p id="results-count" class="mt-1 text-sm text-slate-500" aria-live="polite">Showing 20 of 20 records</p></div>
+          <div class="filters no-print grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(230px,1.4fr)_repeat(3,minmax(145px,1fr))_auto]">
+            <label class="block"><span class="mb-1.5 block text-xs font-medium text-slate-400">Search</span><input id="employee-search" type="search" aria-label="Search onboarding records" class="w-full rounded-lg border border-line bg-ink/70 px-3 py-2.5 text-sm text-white outline-none transition focus:border-cyan"></label>
+            <label class="block"><span class="mb-1.5 block text-xs font-medium text-slate-400">Department</span><select id="department-filter" class="w-full rounded-lg border border-line bg-ink/70 px-3 py-2.5 text-sm text-white outline-none transition focus:border-cyan"><option value="">All departments</option><option>Engineering</option><option>Quality</option><option>Supply Chain</option><option>Finance</option><option>People &amp; Culture</option></select></label>
+            <label class="block"><span class="mb-1.5 block text-xs font-medium text-slate-400">Status</span><select id="status-filter" class="w-full rounded-lg border border-line bg-ink/70 px-3 py-2.5 text-sm text-white outline-none transition focus:border-cyan"><option value="">All statuses</option><option>Completed</option><option>In Progress</option><option>Escalated</option></select></label>
+            <label class="block"><span class="mb-1.5 block text-xs font-medium text-slate-400">Grade</span><select id="grade-filter" class="w-full rounded-lg border border-line bg-ink/70 px-3 py-2.5 text-sm text-white outline-none transition focus:border-cyan"><option value="">All grades</option><option>APD-G1</option><option>APD-G2</option><option>APD-G3</option><option>APD-G4</option><option>APD-G5</option></select></label>
+            <button id="clear-filters" type="button" class="self-end rounded-lg border border-line px-4 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-slate-500 hover:text-white">Clear</button>
+          </div>
+        </div>
+        <div class="no-print mt-5 flex flex-wrap items-center gap-2 border-t border-line/70 pt-4" aria-label="Quick cohort filters">
+          <span class="mr-1 text-xs font-semibold uppercase tracking-[.14em] text-slate-500">Quick view</span>
+          <button id="quick-filter-all" class="quick-chip rounded-full border border-line bg-ink/40 px-3 py-1.5 text-xs font-semibold text-slate-300" type="button" data-status-filter="" data-active="true" aria-pressed="true">All Cohort <span class="ml-1 text-slate-500">20</span></button>
+          <button id="quick-filter-escalated" class="quick-chip rounded-full border border-line bg-ink/40 px-3 py-1.5 text-xs font-semibold text-slate-300" type="button" data-status-filter="Escalated" data-active="false" aria-pressed="false"><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#f43f5e]" aria-hidden="true"></span>Action Needed / Escalated <span class="ml-1 text-slate-500">3</span></button>
+          <button id="quick-filter-progress" class="quick-chip rounded-full border border-line bg-ink/40 px-3 py-1.5 text-xs font-semibold text-slate-300" type="button" data-status-filter="In Progress" data-active="false" aria-pressed="false"><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#36d6c4]" aria-hidden="true"></span>In Progress <span class="ml-1 text-slate-500">5</span></button>
+          <button id="quick-filter-completed" class="quick-chip rounded-full border border-line bg-ink/40 px-3 py-1.5 text-xs font-semibold text-slate-300" type="button" data-status-filter="Completed" data-active="false" aria-pressed="false"><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#10b981]" aria-hidden="true"></span>Fully Completed <span class="ml-1 text-slate-500">12</span></button>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full border-collapse text-left text-sm">
+          <caption class="sr-only">All synthetic onboarding employee records with scores, status, and detail actions</caption>
+          <thead class="bg-ink/60 text-xs uppercase tracking-wider text-slate-500"><tr><th scope="col" class="px-5 py-3.5 sm:px-6">Employee</th><th scope="col" class="px-4 py-3.5">Department</th><th scope="col" class="px-4 py-3.5">Grade</th><th scope="col" class="px-4 py-3.5">Joining</th><th scope="col" class="px-4 py-3.5">Status</th><th scope="col" class="px-4 py-3.5 text-right">Day 1</th><th scope="col" class="px-4 py-3.5 text-right">Day 90</th><th scope="col" class="px-4 py-3.5 text-center">Blocks</th><th scope="col" class="px-5 py-3.5 text-right sm:px-6">Action</th></tr></thead>
+          <tbody id="records-table-body" class="divide-y divide-line/80"></tbody>
+        </table>
+        <div id="empty-state" class="hidden px-6 py-14 text-center"><p class="font-semibold text-slate-200">No records match these filters.</p><p class="mt-1 text-sm text-slate-500">Clear one or more controls to restore the cohort view.</p></div>
+      </div>
+    </section>
+
+    <section class="print-hide mt-7 grid gap-4 text-sm md:grid-cols-3" aria-label="Interpretation notes">
+      <div class="rounded-xl border border-line bg-panel/60 p-4"><p class="font-semibold text-white">Research boundary</p><p class="mt-1 leading-6 text-slate-400">Scores describe a synthetic process. They do not establish causation, predict one-year retention, or measure productivity.</p></div>
+      <div class="rounded-xl border border-line bg-panel/60 p-4"><p class="font-semibold text-white">Privacy boundary</p><p class="mt-1 leading-6 text-slate-400">No demographic, health, banking, identity-document, compensation, or case-note fields are present.</p></div>
+      <div class="rounded-xl border border-line bg-panel/60 p-4"><p class="font-semibold text-white">Implementation boundary</p><p class="mt-1 leading-6 text-slate-400">This is a Frappe HR–modeled portfolio design, not a production system or vendor certification.</p></div>
+    </section>
+  </main>
+
+  <footer class="print-hide mt-10 border-t border-line/70 px-4 py-6 text-center text-xs leading-5 text-slate-500">APD is fictional. Every name, identifier, score, event, and result is synthetic. Built for HR Operations and HRIS portfolio review.</footer>
+
+  <p id="action-status" class="sr-only" aria-live="polite"></p>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title" class="panel m-auto w-[min(720px,calc(100%-2rem))] overflow-hidden rounded-2xl border border-line bg-panel p-0 text-slate-100 shadow-2xl">
+    <div class="flex items-start justify-between border-b border-line px-5 py-4 sm:px-6"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan">Individual milestone view</p><h2 id="detail-title" class="mt-1 text-xl font-semibold text-white"></h2><p id="detail-subtitle" class="mt-1 text-sm text-slate-400"></p></div><button id="dialog-close" type="button" aria-label="Close employee details" class="rounded-lg border border-line px-3 py-2 text-sm text-slate-300 transition hover:text-white">Close</button></div>
+    <div class="max-h-[72vh] overflow-y-auto px-5 py-5 sm:px-6">
+      <div id="detail-meta" class="grid gap-3 sm:grid-cols-3"></div>
+      <h3 class="mt-6 text-sm font-semibold uppercase tracking-wider text-slate-400">30–60–90 milestone scores</h3>
+      <div id="detail-progress" class="mt-3 space-y-3"></div>
+      <h3 class="mt-6 text-sm font-semibold uppercase tracking-wider text-slate-400">Sampled task evidence</h3>
+      <div id="detail-tasks" class="mt-3 space-y-2"></div>
+      <div id="detail-alert" class="mt-5 rounded-xl border border-amber/25 bg-amber/5 p-4 text-sm leading-6 text-amber-100"></div>
+    </div>
+  </dialog>
+
+  <script id="records-data" type="application/json">[{"Employee_ID":"APD-2026-001","Full_Name":"Aanya Mehta","Department":"Engineering","Designation":"Graduate Manufacturing Engineer","Grade":"APD-G1","Joining_Date":"2026-01-12","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-ENG-01","Buddy_ID":"APD-BDY-ENG-03","Day1_Readiness_Score":"95","Day30_Role_Clarity_Score":"4.4","Day30_Task_Mastery_Score":"4.1","Day60_Social_Acceptance_Score":"4.3","Day90_Overall_Adjustment_Score":"4.2","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-002","Full_Name":"Arjun Rao","Department":"Quality","Designation":"Quality Systems Analyst","Grade":"APD-G2","Joining_Date":"2026-02-02","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-QUA-01","Buddy_ID":"APD-BDY-QUA-02","Day1_Readiness_Score":"94","Day30_Role_Clarity_Score":"4.2","Day30_Task_Mastery_Score":"4.0","Day60_Social_Acceptance_Score":"4.4","Day90_Overall_Adjustment_Score":"4.2","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-003","Full_Name":"Meera Iyer","Department":"Supply Chain","Designation":"Procurement Coordinator","Grade":"APD-G2","Joining_Date":"2026-02-23","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-SCM-01","Buddy_ID":"APD-BDY-SCM-01","Day1_Readiness_Score":"97","Day30_Role_Clarity_Score":"4.1","Day30_Task_Mastery_Score":"3.9","Day60_Social_Acceptance_Score":"4.2","Day90_Overall_Adjustment_Score":"4.0","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-004","Full_Name":"Vivaan Shah","Department":"Finance","Designation":"Financial Planning Analyst","Grade":"APD-G3","Joining_Date":"2026-03-09","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-FIN-01","Buddy_ID":"APD-BDY-FIN-02","Day1_Readiness_Score":"92","Day30_Role_Clarity_Score":"4.0","Day30_Task_Mastery_Score":"3.8","Day60_Social_Acceptance_Score":"4.1","Day90_Overall_Adjustment_Score":"3.9","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-005","Full_Name":"Zoya Khan","Department":"People & Culture","Designation":"People Operations Associate","Grade":"APD-G1","Joining_Date":"2026-03-23","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-PNC-01","Buddy_ID":"APD-BDY-PNC-03","Day1_Readiness_Score":"95","Day30_Role_Clarity_Score":"4.5","Day30_Task_Mastery_Score":"4.2","Day60_Social_Acceptance_Score":"4.6","Day90_Overall_Adjustment_Score":"4.4","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-006","Full_Name":"Kabir Nair","Department":"Engineering","Designation":"Maintenance Planner","Grade":"APD-G2","Joining_Date":"2026-04-06","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-ENG-02","Buddy_ID":"APD-BDY-ENG-04","Day1_Readiness_Score":"93","Day30_Role_Clarity_Score":"3.9","Day30_Task_Mastery_Score":"4.0","Day60_Social_Acceptance_Score":"4.1","Day90_Overall_Adjustment_Score":"4.0","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-007","Full_Name":"Diya Menon","Department":"Quality","Designation":"Quality Assurance Engineer","Grade":"APD-G3","Joining_Date":"2026-04-20","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-QUA-01","Buddy_ID":"APD-BDY-QUA-03","Day1_Readiness_Score":"96","Day30_Role_Clarity_Score":"4.3","Day30_Task_Mastery_Score":"4.1","Day60_Social_Acceptance_Score":"4.2","Day90_Overall_Adjustment_Score":"4.2","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-008","Full_Name":"Reyansh Kapoor","Department":"Supply Chain","Designation":"Inventory Analyst","Grade":"APD-G2","Joining_Date":"2026-05-11","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-SCM-01","Buddy_ID":"APD-BDY-SCM-02","Day1_Readiness_Score":"90","Day30_Role_Clarity_Score":"3.8","Day30_Task_Mastery_Score":"3.7","Day60_Social_Acceptance_Score":"4.0","Day90_Overall_Adjustment_Score":"3.8","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-009","Full_Name":"Sana Qureshi","Department":"Finance","Designation":"Accounts Officer","Grade":"APD-G2","Joining_Date":"2026-06-01","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-FIN-01","Buddy_ID":"APD-BDY-FIN-01","Day1_Readiness_Score":"94","Day30_Role_Clarity_Score":"4.1","Day30_Task_Mastery_Score":"3.9","Day60_Social_Acceptance_Score":"4.3","Day90_Overall_Adjustment_Score":"4.1","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-010","Full_Name":"Neil D'Souza","Department":"People & Culture","Designation":"Talent Operations Specialist","Grade":"APD-G3","Joining_Date":"2026-06-15","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-PNC-01","Buddy_ID":"APD-BDY-PNC-02","Day1_Readiness_Score":"96","Day30_Role_Clarity_Score":"4.6","Day30_Task_Mastery_Score":"4.3","Day60_Social_Acceptance_Score":"4.5","Day90_Overall_Adjustment_Score":"4.5","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-011","Full_Name":"Ishita Bose","Department":"Engineering","Designation":"Process Improvement Engineer","Grade":"APD-G3","Joining_Date":"2026-07-06","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-ENG-01","Buddy_ID":"APD-BDY-ENG-05","Day1_Readiness_Score":"91","Day30_Role_Clarity_Score":"3.9","Day30_Task_Mastery_Score":"3.8","Day60_Social_Acceptance_Score":"4.0","Day90_Overall_Adjustment_Score":"3.9","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-012","Full_Name":"Rohan Kulkarni","Department":"Quality","Designation":"Supplier Quality Lead","Grade":"APD-G4","Joining_Date":"2026-07-20","Onboarding_Status":"Completed","Manager_ID":"APD-MGR-QUA-02","Buddy_ID":"APD-BDY-QUA-01","Day1_Readiness_Score":"95","Day30_Role_Clarity_Score":"4.4","Day30_Task_Mastery_Score":"4.2","Day60_Social_Acceptance_Score":"4.3","Day90_Overall_Adjustment_Score":"4.3","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-013","Full_Name":"Anika Verma","Department":"Supply Chain","Designation":"Logistics Planner","Grade":"APD-G3","Joining_Date":"2026-08-03","Onboarding_Status":"In Progress","Manager_ID":"APD-MGR-SCM-01","Buddy_ID":"APD-BDY-SCM-03","Day1_Readiness_Score":"93","Day30_Role_Clarity_Score":"4.0","Day30_Task_Mastery_Score":"3.9","Day60_Social_Acceptance_Score":"4.2","Day90_Overall_Adjustment_Score":"4.0","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-014","Full_Name":"Aarav Bhat","Department":"Finance","Designation":"Commercial Finance Partner","Grade":"APD-G4","Joining_Date":"2026-08-17","Onboarding_Status":"In Progress","Manager_ID":"APD-MGR-FIN-02","Buddy_ID":"APD-BDY-FIN-03","Day1_Readiness_Score":"92","Day30_Role_Clarity_Score":"4.2","Day30_Task_Mastery_Score":"4.0","Day60_Social_Acceptance_Score":"4.1","Day90_Overall_Adjustment_Score":"4.1","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-015","Full_Name":"Maya Thomas","Department":"People & Culture","Designation":"Learning and Development Partner","Grade":"APD-G4","Joining_Date":"2026-09-07","Onboarding_Status":"Escalated","Manager_ID":"APD-MGR-PNC-02","Buddy_ID":"APD-BDY-PNC-01","Day1_Readiness_Score":"97","Day30_Role_Clarity_Score":"3.4","Day30_Task_Mastery_Score":"3.3","Day60_Social_Acceptance_Score":"3.8","Day90_Overall_Adjustment_Score":"3.5","Escalations_Count":"1","Extended_Onboarding_Flag":"Yes"},{"Employee_ID":"APD-2026-016","Full_Name":"Aditya Sen","Department":"Engineering","Designation":"Automation Engineer","Grade":"APD-G3","Joining_Date":"2026-10-05","Onboarding_Status":"In Progress","Manager_ID":"APD-MGR-ENG-02","Buddy_ID":"APD-BDY-ENG-01","Day1_Readiness_Score":"89","Day30_Role_Clarity_Score":"3.8","Day30_Task_Mastery_Score":"3.7","Day60_Social_Acceptance_Score":"4.0","Day90_Overall_Adjustment_Score":"3.8","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-017","Full_Name":"Kiara Joshi","Department":"Engineering","Designation":"Production Team Lead","Grade":"APD-G4","Joining_Date":"2026-10-19","Onboarding_Status":"In Progress","Manager_ID":"APD-MGR-ENG-01","Buddy_ID":"APD-BDY-ENG-02","Day1_Readiness_Score":"94","Day30_Role_Clarity_Score":"4.1","Day30_Task_Mastery_Score":"3.9","Day60_Social_Acceptance_Score":"4.2","Day90_Overall_Adjustment_Score":"4.0","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-018","Full_Name":"Omar Siddiqui","Department":"Quality","Designation":"Quality Director","Grade":"APD-G5","Joining_Date":"2026-11-02","Onboarding_Status":"Escalated","Manager_ID":"APD-MGR-EXE-01","Buddy_ID":"APD-BDY-QUA-04","Day1_Readiness_Score":"96","Day30_Role_Clarity_Score":"3.6","Day30_Task_Mastery_Score":"3.8","Day60_Social_Acceptance_Score":"3.7","Day90_Overall_Adjustment_Score":"3.7","Escalations_Count":"1","Extended_Onboarding_Flag":"Yes"},{"Employee_ID":"APD-2026-019","Full_Name":"Naina Pillai","Department":"People & Culture","Designation":"HRIS Analyst","Grade":"APD-G3","Joining_Date":"2026-11-16","Onboarding_Status":"In Progress","Manager_ID":"APD-MGR-PNC-01","Buddy_ID":"APD-BDY-PNC-04","Day1_Readiness_Score":"90","Day30_Role_Clarity_Score":"4.0","Day30_Task_Mastery_Score":"3.9","Day60_Social_Acceptance_Score":"4.3","Day90_Overall_Adjustment_Score":"4.0","Escalations_Count":"0","Extended_Onboarding_Flag":"No"},{"Employee_ID":"APD-2026-020","Full_Name":"Dev Malhotra","Department":"Engineering","Designation":"Operations Excellence Manager","Grade":"APD-G5","Joining_Date":"2026-12-07","Onboarding_Status":"Escalated","Manager_ID":"APD-MGR-EXE-01","Buddy_ID":"APD-BDY-ENG-06","Day1_Readiness_Score":"89","Day30_Role_Clarity_Score":"3.2","Day30_Task_Mastery_Score":"3.5","Day60_Social_Acceptance_Score":"3.6","Day90_Overall_Adjustment_Score":"3.4","Escalations_Count":"1","Extended_Onboarding_Flag":"Yes"}]</script>
+  <script id="tasks-data" type="application/json">[{"Task_ID":"TASK-001","Employee_ID":"APD-2026-001","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"18","Variance_Hours":"-6","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-002","Employee_ID":"APD-2026-001","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"456","Variance_Hours":"-264","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-003","Employee_ID":"APD-2026-001","Phase":"Preboarding","Task_Name":"Document Verification","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"36","Variance_Hours":"-12","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-004","Employee_ID":"APD-2026-002","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"20","Variance_Hours":"-4","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-005","Employee_ID":"APD-2026-002","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"480","Variance_Hours":"-240","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-006","Employee_ID":"APD-2026-002","Phase":"Week 1","Task_Name":"Buddy Introduction and Network Map","Assigned_Role":"BY","SLA_Hours":"48","Actual_Hours":"30","Variance_Hours":"-18","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-007","Employee_ID":"APD-2026-003","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"16","Variance_Hours":"-8","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-008","Employee_ID":"APD-2026-003","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"504","Variance_Hours":"-216","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-009","Employee_ID":"APD-2026-003","Phase":"Month 2","Task_Name":"Manager Feedback Checkpoint","Assigned_Role":"HM","SLA_Hours":"48","Actual_Hours":"288","Variance_Hours":"240","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-010","Employee_ID":"APD-2026-004","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"22","Variance_Hours":"-2","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-011","Employee_ID":"APD-2026-004","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"528","Variance_Hours":"-192","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-012","Employee_ID":"APD-2026-004","Phase":"Month 3","Task_Name":"Culture Navigation Reflection","Assigned_Role":"EE","SLA_Hours":"48","Actual_Hours":"40","Variance_Hours":"-8","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-013","Employee_ID":"APD-2026-005","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"17","Variance_Hours":"-7","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-014","Employee_ID":"APD-2026-005","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"552","Variance_Hours":"-168","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-015","Employee_ID":"APD-2026-005","Phase":"Preboarding","Task_Name":"IT Provisioning","Assigned_Role":"IT","SLA_Hours":"48","Actual_Hours":"336","Variance_Hours":"288","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-016","Employee_ID":"APD-2026-006","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"21","Variance_Hours":"-3","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-017","Employee_ID":"APD-2026-006","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"576","Variance_Hours":"-144","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-018","Employee_ID":"APD-2026-006","Phase":"Week 1","Task_Name":"Safety and Site Induction","Assigned_Role":"EE","SLA_Hours":"48","Actual_Hours":"42","Variance_Hours":"-6","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-019","Employee_ID":"APD-2026-007","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"18","Variance_Hours":"-6","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-020","Employee_ID":"APD-2026-007","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"600","Variance_Hours":"-120","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-021","Employee_ID":"APD-2026-007","Phase":"Month 2","Task_Name":"Manager Feedback Checkpoint","Assigned_Role":"HM","SLA_Hours":"48","Actual_Hours":"360","Variance_Hours":"312","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-022","Employee_ID":"APD-2026-008","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"23","Variance_Hours":"-1","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-023","Employee_ID":"APD-2026-008","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"624","Variance_Hours":"-96","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-024","Employee_ID":"APD-2026-008","Phase":"Month 3","Task_Name":"90-Day Review Pack","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"44","Variance_Hours":"-4","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-025","Employee_ID":"APD-2026-009","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"19","Variance_Hours":"-5","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-026","Employee_ID":"APD-2026-009","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"648","Variance_Hours":"-72","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-027","Employee_ID":"APD-2026-009","Phase":"Preboarding","Task_Name":"Document Verification","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"40","Variance_Hours":"-8","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-028","Employee_ID":"APD-2026-010","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"16","Variance_Hours":"-8","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-029","Employee_ID":"APD-2026-010","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"672","Variance_Hours":"-48","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-030","Employee_ID":"APD-2026-010","Phase":"Week 1","Task_Name":"Buddy Introduction and Network Map","Assigned_Role":"BY","SLA_Hours":"48","Actual_Hours":"36","Variance_Hours":"-12","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-031","Employee_ID":"APD-2026-011","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"22","Variance_Hours":"-2","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-032","Employee_ID":"APD-2026-011","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"480","Variance_Hours":"-240","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-033","Employee_ID":"APD-2026-011","Phase":"Month 2","Task_Name":"Manager Feedback Checkpoint","Assigned_Role":"HM","SLA_Hours":"48","Actual_Hours":"41","Variance_Hours":"-7","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-034","Employee_ID":"APD-2026-012","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"17","Variance_Hours":"-7","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-035","Employee_ID":"APD-2026-012","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"504","Variance_Hours":"-216","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-036","Employee_ID":"APD-2026-012","Phase":"Month 3","Task_Name":"Culture Navigation Reflection","Assigned_Role":"EE","SLA_Hours":"48","Actual_Hours":"46","Variance_Hours":"-2","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-037","Employee_ID":"APD-2026-013","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"20","Variance_Hours":"-4","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-038","Employee_ID":"APD-2026-013","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"528","Variance_Hours":"-192","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-039","Employee_ID":"APD-2026-013","Phase":"Preboarding","Task_Name":"IT Provisioning","Assigned_Role":"IT","SLA_Hours":"48","Actual_Hours":"43","Variance_Hours":"-5","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-040","Employee_ID":"APD-2026-014","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"21","Variance_Hours":"-3","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-041","Employee_ID":"APD-2026-014","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"552","Variance_Hours":"-168","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-042","Employee_ID":"APD-2026-014","Phase":"Week 1","Task_Name":"Quality SOP Walkthrough","Assigned_Role":"EE","SLA_Hours":"48","Actual_Hours":"40","Variance_Hours":"-8","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-043","Employee_ID":"APD-2026-015","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"18","Variance_Hours":"-6","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-044","Employee_ID":"APD-2026-015","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"576","Variance_Hours":"-144","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-045","Employee_ID":"APD-2026-015","Phase":"Month 2","Task_Name":"Manager Feedback Checkpoint","Assigned_Role":"HM","SLA_Hours":"48","Actual_Hours":"348","Variance_Hours":"300","Status":"Overdue","Escalation_Required":"Yes"},{"Task_ID":"TASK-046","Employee_ID":"APD-2026-016","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"23","Variance_Hours":"-1","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-047","Employee_ID":"APD-2026-016","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"600","Variance_Hours":"-120","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-048","Employee_ID":"APD-2026-016","Phase":"Month 3","Task_Name":"90-Day Review Pack","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"44","Variance_Hours":"-4","Status":"In Progress","Escalation_Required":"No"},{"Task_ID":"TASK-049","Employee_ID":"APD-2026-017","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"19","Variance_Hours":"-5","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-050","Employee_ID":"APD-2026-017","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"624","Variance_Hours":"-96","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-051","Employee_ID":"APD-2026-017","Phase":"Preboarding","Task_Name":"Document Verification","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"46","Variance_Hours":"-2","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-052","Employee_ID":"APD-2026-018","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"18","Variance_Hours":"-6","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-053","Employee_ID":"APD-2026-018","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"648","Variance_Hours":"-72","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-054","Employee_ID":"APD-2026-018","Phase":"Week 1","Task_Name":"Document Verification","Assigned_Role":"HR","SLA_Hours":"48","Actual_Hours":"348","Variance_Hours":"300","Status":"Overdue","Escalation_Required":"Yes"},{"Task_ID":"TASK-055","Employee_ID":"APD-2026-019","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"HR","SLA_Hours":"24","Actual_Hours":"20","Variance_Hours":"-4","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-056","Employee_ID":"APD-2026-019","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"672","Variance_Hours":"-48","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-057","Employee_ID":"APD-2026-019","Phase":"Month 2","Task_Name":"Manager Feedback Checkpoint","Assigned_Role":"HM","SLA_Hours":"48","Actual_Hours":"45","Variance_Hours":"-3","Status":"In Progress","Escalation_Required":"No"},{"Task_ID":"TASK-058","Employee_ID":"APD-2026-020","Phase":"Day 1","Task_Name":"Day 1 Readiness Verification","Assigned_Role":"IT","SLA_Hours":"24","Actual_Hours":"22","Variance_Hours":"-2","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-059","Employee_ID":"APD-2026-020","Phase":"Month 1","Task_Name":"Day 30 Role Clarity Sign-off","Assigned_Role":"HM","SLA_Hours":"720","Actual_Hours":"792","Variance_Hours":"72","Status":"Completed","Escalation_Required":"No"},{"Task_ID":"TASK-060","Employee_ID":"APD-2026-020","Phase":"Month 3","Task_Name":"IT Provisioning Remediation","Assigned_Role":"IT","SLA_Hours":"48","Actual_Hours":"357.6","Variance_Hours":"309.6","Status":"Overdue","Escalation_Required":"Yes"}]</script>
+
+  <script>
+    'use strict';
+
+    const records = JSON.parse(document.getElementById('records-data').textContent);
+    const tasks = JSON.parse(document.getElementById('tasks-data').textContent);
+    const number = value => Number.parseFloat(value);
+    const sum = (items, selector) => items.reduce((total, item) => total + selector(item), 0);
+    const average = (items, selector) => items.length ? sum(items, selector) / items.length : 0;
+
+    const calculated = {
+      readiness: average(records, row => number(row.Day1_Readiness_Score)),
+      sla: (1 - sum(tasks, row => Math.max(number(row.Variance_Hours), 0)) / sum(tasks, row => number(row.SLA_Hours))) * 100,
+      clarity: average(tasks.filter(row => row.Task_Name === 'Day 30 Role Clarity Sign-off'), row => number(row.Actual_Hours) / 24),
+      cohort: records.length,
+      escalations: sum(records, row => number(row.Escalations_Count))
+    };
+
+    document.getElementById('kpi-readiness').textContent = `${calculated.readiness.toFixed(1)}%`;
+    document.getElementById('kpi-sla').textContent = `${calculated.sla.toFixed(1)}%`;
+    document.getElementById('kpi-clarity').textContent = calculated.clarity.toFixed(1);
+    document.getElementById('kpi-cohort').textContent = String(calculated.cohort);
+    document.getElementById('kpi-escalations').textContent = String(calculated.escalations);
+
+    const expected = { readiness: 93.4, sla: 88.5, clarity: 24.2, cohort: 20, escalations: 3 };
+    const integrityPass = Object.keys(expected).every(key => Math.abs(calculated[key] - expected[key]) < 0.001);
+    document.getElementById('integrity-note').classList.toggle('hidden', integrityPass);
+
+    const tableBody = document.getElementById('records-table-body');
+    const emptyState = document.getElementById('empty-state');
+    const resultCount = document.getElementById('results-count');
+    const search = document.getElementById('employee-search');
+    const department = document.getElementById('department-filter');
+    const status = document.getElementById('status-filter');
+    const grade = document.getElementById('grade-filter');
+    const quickChips = [...document.querySelectorAll('[data-status-filter]')];
+    const actionStatus = document.getElementById('action-status');
+    let currentFilteredRecords = records.slice();
+
+    const create = (tag, className, text) => {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (text !== undefined) element.textContent = text;
+      return element;
+    };
+
+    const statusClasses = {
+      'Completed': 'status-badge--completed',
+      'In Progress': 'status-badge--progress',
+      'Escalated': 'status-badge--escalated'
+    };
+    const statusDotClasses = {
+      'Completed': 'badge-dot--completed',
+      'In Progress': 'badge-dot--progress',
+      'Escalated': 'badge-dot--escalated'
+    };
+
+    function addCell(row, text, className = 'px-4 py-4 text-slate-300') {
+      const cell = create('td', className, text);
+      row.appendChild(cell);
+      return cell;
+    }
+
+    function renderTable() {
+      const query = search.value.trim().toLowerCase();
+      const filtered = records.filter(row => {
+        const haystack = [row.Employee_ID, row.Full_Name, row.Designation, row.Manager_ID, row.Buddy_ID].join(' ').toLowerCase();
+        return (!query || haystack.includes(query)) &&
+          (!department.value || row.Department === department.value) &&
+          (!status.value || row.Onboarding_Status === status.value) &&
+          (!grade.value || row.Grade === grade.value);
+      });
+      currentFilteredRecords = filtered;
+
+      tableBody.replaceChildren();
+      filtered.forEach(record => {
+        const row = create('tr', 'table-row transition-colors');
+        const employeeCell = create('td', 'px-5 py-4 sm:px-6');
+        employeeCell.append(create('p', 'font-semibold text-white', record.Full_Name), create('p', 'mt-1 text-xs text-slate-500', `${record.Employee_ID} · ${record.Designation}`));
+        row.appendChild(employeeCell);
+        addCell(row, record.Department);
+        addCell(row, record.Grade, 'px-4 py-4 font-mono text-xs text-slate-300');
+        addCell(row, record.Joining_Date);
+        const statusCell = create('td', 'px-4 py-4');
+        const badge = create('span', `inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-semibold ${statusClasses[record.Onboarding_Status]}`);
+        badge.append(create('span', `badge-dot ${statusDotClasses[record.Onboarding_Status]}`), create('span', '', record.Onboarding_Status));
+        badge.firstChild.setAttribute('aria-hidden', 'true');
+        statusCell.appendChild(badge);
+        row.appendChild(statusCell);
+        addCell(row, `${record.Day1_Readiness_Score}%`, 'px-4 py-4 text-right tabular-nums text-slate-200');
+        addCell(row, record.Day90_Overall_Adjustment_Score, 'px-4 py-4 text-right tabular-nums text-slate-200');
+        const blockerCell = addCell(row, record.Escalations_Count, `px-4 py-4 text-center tabular-nums ${number(record.Escalations_Count) ? 'font-semibold text-red-300' : 'text-slate-500'}`);
+        blockerCell.setAttribute('aria-label', `${record.Escalations_Count} open blockers`);
+        const actionCell = create('td', 'px-5 py-4 text-right sm:px-6');
+        const button = create('button', 'rounded-lg border border-line px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-cyan/60 hover:text-cyan', 'View details');
+        button.type = 'button';
+        button.addEventListener('click', () => showDetails(record, button));
+        actionCell.appendChild(button);
+        row.appendChild(actionCell);
+        tableBody.appendChild(row);
+      });
+
+      resultCount.textContent = `Showing ${filtered.length} of ${records.length} records`;
+      emptyState.classList.toggle('hidden', filtered.length > 0);
+    }
+
+    function updateQuickChips() {
+      quickChips.forEach(chip => {
+        const active = chip.dataset.statusFilter === status.value;
+        chip.dataset.active = String(active);
+        chip.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    function resetFilters(focusSearch = false) {
+      search.value = '';
+      department.value = '';
+      status.value = '';
+      grade.value = '';
+      updateQuickChips();
+      renderTable();
+      actionStatus.textContent = 'All filters reset. Twenty cohort records are visible.';
+      if (focusSearch) search.focus();
+    }
+
+    [search, department, grade].forEach(control => control.addEventListener(control === search ? 'input' : 'change', renderTable));
+    status.addEventListener('change', () => { updateQuickChips(); renderTable(); });
+    quickChips.forEach(chip => chip.addEventListener('click', () => {
+      status.value = chip.dataset.statusFilter;
+      updateQuickChips();
+      renderTable();
+      actionStatus.textContent = `${chip.textContent.trim()} view selected. ${currentFilteredRecords.length} records are visible.`;
+    }));
+    document.getElementById('clear-filters').addEventListener('click', () => resetFilters(true));
+    document.getElementById('reset-filters').addEventListener('click', () => resetFilters(false));
+
+    const csvHeaders = Object.keys(records[0]);
+    function safeCsvCell(value) {
+      let output = String(value ?? '');
+      if (/^[=+\-@]/.test(output.trimStart())) output = `'${output}`;
+      return /[",\r\n]/.test(output) ? `"${output.replace(/"/g, '""')}"` : output;
+    }
+
+    function exportFilteredRecords() {
+      const lines = [csvHeaders, ...currentFilteredRecords.map(row => csvHeaders.map(header => row[header]))]
+        .map(row => row.map(safeCsvCell).join(','));
+      const blob = new Blob([`\ufeff${lines.join('\r\n')}`], { type: 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `APD_Onboarding_Cohort_${currentFilteredRecords.length}_records.csv`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      actionStatus.textContent = `${currentFilteredRecords.length} filtered synthetic cohort records exported as CSV.`;
+    }
+
+    document.getElementById('export-cohort').addEventListener('click', exportFilteredRecords);
+    document.getElementById('print-report').addEventListener('click', () => window.print());
+
+    const dialog = document.getElementById('detail-dialog');
+    let returnFocus = null;
+    const roleNames = { HR: 'HR Operations', HM: 'Hiring Manager', IT: 'IT', BY: 'Buddy', EE: 'Employee' };
+
+    function showDetails(record, trigger) {
+      returnFocus = trigger;
+      document.getElementById('detail-title').textContent = record.Full_Name;
+      document.getElementById('detail-subtitle').textContent = `${record.Employee_ID} · ${record.Designation}`;
+      const meta = document.getElementById('detail-meta');
+      meta.replaceChildren();
+      [
+        ['Department / grade', `${record.Department} · ${record.Grade}`],
+        ['Manager / buddy', `${record.Manager_ID} · ${record.Buddy_ID}`],
+        ['Status / extension', `${record.Onboarding_Status} · ${record.Extended_Onboarding_Flag}`]
+      ].forEach(([label, value]) => {
+        const card = create('div', 'rounded-xl border border-line bg-ink/40 p-3');
+        card.append(create('p', 'text-xs text-slate-500', label), create('p', 'mt-1 break-words text-sm font-medium text-slate-200', value));
+        meta.appendChild(card);
+      });
+
+      const progress = document.getElementById('detail-progress');
+      progress.replaceChildren();
+      [
+        ['Day 1 readiness', number(record.Day1_Readiness_Score) / 20, `${record.Day1_Readiness_Score}%`],
+        ['Day 30 role clarity', number(record.Day30_Role_Clarity_Score), `${record.Day30_Role_Clarity_Score} / 5`],
+        ['Day 30 task mastery', number(record.Day30_Task_Mastery_Score), `${record.Day30_Task_Mastery_Score} / 5`],
+        ['Day 60 social acceptance', number(record.Day60_Social_Acceptance_Score), `${record.Day60_Social_Acceptance_Score} / 5`],
+        ['Day 90 overall adjustment', number(record.Day90_Overall_Adjustment_Score), `${record.Day90_Overall_Adjustment_Score} / 5`]
+      ].forEach(([label, score, display]) => {
+        const wrapper = create('div');
+        const head = create('div', 'mb-1.5 flex items-center justify-between text-sm');
+        head.append(create('span', 'text-slate-300', label), create('span', 'font-semibold tabular-nums text-white', display));
+        const track = create('div', 'h-2.5 overflow-hidden rounded-full bg-slate-700/70');
+        track.setAttribute('role', 'progressbar');
+        track.setAttribute('aria-label', label);
+        track.setAttribute('aria-valuemin', '0');
+        track.setAttribute('aria-valuemax', '5');
+        track.setAttribute('aria-valuenow', score.toFixed(1));
+        const bar = create('div', `h-full rounded-full ${score < 3.5 ? 'bg-amber' : 'bg-cyan'}`);
+        bar.style.width = `${Math.max(0, Math.min(100, score / 5 * 100))}%`;
+        track.appendChild(bar);
+        wrapper.append(head, track);
+        progress.appendChild(wrapper);
+      });
+
+      const taskList = document.getElementById('detail-tasks');
+      taskList.replaceChildren();
+      tasks.filter(task => task.Employee_ID === record.Employee_ID).forEach(task => {
+        const item = create('div', 'flex flex-col gap-2 rounded-xl border border-line bg-ink/35 p-3 sm:flex-row sm:items-center sm:justify-between');
+        const left = create('div');
+        left.append(create('p', 'font-medium text-slate-200', task.Task_Name), create('p', 'mt-1 text-xs text-slate-500', `${task.Phase} · ${roleNames[task.Assigned_Role]} · ${task.Task_ID}`));
+        const right = create('div', 'text-left sm:text-right');
+        right.append(create('p', `text-xs font-semibold ${task.Status === 'Overdue' ? 'text-red-300' : task.Status === 'In Progress' ? 'text-blue-300' : 'text-cyan'}`, task.Status), create('p', 'mt-1 text-xs tabular-nums text-slate-500', `${task.Variance_Hours} h variance`));
+        item.append(left, right);
+        taskList.appendChild(item);
+      });
+
+      const alert = document.getElementById('detail-alert');
+      alert.textContent = number(record.Escalations_Count)
+        ? `${record.Escalations_Count} open blocker requires named-owner follow-up. Supported extension: ${record.Extended_Onboarding_Flag}. Scores inform a human conversation and do not trigger an employment decision.`
+        : 'No open blocker is recorded. Continue normal manager and buddy support; a clear status does not remove the need for human check-ins.';
+
+      if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
+    }
+
+    function closeDialog() {
+      if (typeof dialog.close === 'function') dialog.close(); else dialog.removeAttribute('open');
+    }
+    document.getElementById('dialog-close').addEventListener('click', closeDialog);
+    dialog.addEventListener('click', event => { if (event.target === dialog) closeDialog(); });
+    dialog.addEventListener('close', () => { if (returnFocus) returnFocus.focus(); });
+
+    const chartText = '#cbd5e1';
+    const grid = 'rgba(148,163,184,.14)';
+    if (typeof Chart === 'undefined') {
+      document.querySelectorAll('canvas').forEach(canvas => canvas.classList.add('hidden'));
+      document.querySelectorAll('.chart-fallback').forEach(note => note.classList.remove('hidden'));
+    } else {
+      Chart.defaults.color = chartText;
+      Chart.defaults.font.family = 'Plus Jakarta Sans, Inter, ui-sans-serif, system-ui, sans-serif';
+      Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(5, 15, 29, .96)';
+      Chart.defaults.plugins.tooltip.borderColor = 'rgba(54, 214, 196, .34)';
+      Chart.defaults.plugins.tooltip.borderWidth = 1;
+      Chart.defaults.plugins.tooltip.titleColor = '#ffffff';
+      Chart.defaults.plugins.tooltip.bodyColor = '#dbeafe';
+      Chart.defaults.plugins.tooltip.padding = 12;
+      Chart.defaults.plugins.tooltip.cornerRadius = 10;
+      Chart.defaults.plugins.tooltip.usePointStyle = true;
+      const departments = [...new Set(records.map(row => row.Department))];
+      const colors = [
+        ['#36d6c4', 'rgba(54,214,196,.08)'], ['#6ea8fe', 'rgba(110,168,254,.08)'],
+        ['#f5b942', 'rgba(245,185,66,.08)'], ['#b79cff', 'rgba(183,156,255,.08)'], ['#fb7185', 'rgba(251,113,133,.08)']
+      ];
+      const departmentDatasets = departments.map((name, index) => {
+        const rows = records.filter(row => row.Department === name);
+        const roleClarity = average(rows, row => number(row.Day30_Role_Clarity_Score));
+        const taskMastery = average(rows, row => number(row.Day30_Task_Mastery_Score));
+        const socialAcceptance = average(rows, row => number(row.Day60_Social_Acceptance_Score));
+        return { label: name, data: [roleClarity, taskMastery, socialAcceptance, (roleClarity + taskMastery + socialAcceptance) / 3], borderColor: colors[index][0], backgroundColor: colors[index][1], pointBackgroundColor: colors[index][0], borderWidth: 2, pointRadius: 2 };
+      });
+      new Chart(document.getElementById('socialization-chart'), {
+        type: 'radar', data: { labels: ['Role clarity', 'Task mastery', 'Social acceptance', 'Culture proxy'], datasets: departmentDatasets },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 500 }, scales: { r: { min: 1, max: 5, ticks: { stepSize: 1, showLabelBackdrop: false, color: '#718096' }, angleLines: { color: grid }, grid: { color: grid }, pointLabels: { color: chartText, font: { size: 11 } } } }, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 14 } }, tooltip: { callbacks: { label: context => `${context.dataset.label}: ${context.raw.toFixed(2)}` } } } }
+      });
+
+      const roles = ['HR', 'IT', 'HM', 'BY'];
+      const roleValues = roles.map(role => {
+        const rows = tasks.filter(task => task.Assigned_Role === role);
+        const rawIndex = (1 - sum(rows, row => Math.max(number(row.Variance_Hours), 0)) / sum(rows, row => number(row.SLA_Hours))) * 100;
+        return Math.max(0, Math.min(100, rawIndex));
+      });
+      new Chart(document.getElementById('sla-role-chart'), {
+        type: 'bar', data: { labels: ['HR', 'IT', 'Hiring Manager', 'Buddy'], datasets: [{ label: 'SLA adherence %', data: roleValues, backgroundColor: roleValues.map(value => value >= 90 ? 'rgba(54,214,196,.72)' : value >= 50 ? 'rgba(245,185,66,.78)' : 'rgba(251,113,133,.78)'), borderColor: roleValues.map(value => value >= 90 ? '#36d6c4' : value >= 50 ? '#f5b942' : '#fb7185'), borderWidth: 1, borderRadius: 7, minBarLength: 3 }] },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 100, grid: { color: grid }, ticks: { callback: value => `${value}%` } }, x: { grid: { display: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: context => `${context.raw.toFixed(1)}%` } } } }
+      });
+
+      const phases = ['Preboarding', 'Day 1', 'Week 1', 'Month 1', 'Month 2', 'Month 3'];
+      const progressValues = phases.map(phase => {
+        const rows = tasks.filter(task => task.Phase === phase);
+        return rows.length ? rows.filter(task => task.Status === 'Completed').length / rows.length * 100 : 0;
+      });
+      new Chart(document.getElementById('milestone-chart'), {
+        type: 'bar', data: { labels: phases, datasets: [{ label: 'Completed %', data: progressValues, backgroundColor: ['#36d6c4','#44c7bf','#559fca','#6e8fde','#8a7fda','#a66fc8'], borderRadius: 7 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { min: 0, max: 100, grid: { color: grid }, ticks: { callback: value => `${value}%` } }, y: { grid: { display: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: context => `${context.raw.toFixed(0)}% completed` } } } }
+      });
+
+      const reasons = ['IT Provisioning', 'Manager Feedback', 'Document Verification'];
+      const classify = task => task.Task_Name.includes('IT Provisioning') ? 'IT Provisioning' : task.Task_Name.includes('Manager Feedback') ? 'Manager Feedback' : task.Task_Name.includes('Document Verification') ? 'Document Verification' : null;
+      const buckets = [
+        { label: '0–48 h', color: 'rgba(54,214,196,.72)', test: value => value > 0 && value <= 48 },
+        { label: '49–168 h', color: 'rgba(245,185,66,.78)', test: value => value > 48 && value <= 168 },
+        { label: '>168 h', color: 'rgba(251,113,133,.78)', test: value => value > 168 }
+      ];
+      new Chart(document.getElementById('delay-chart'), {
+        type: 'bar', data: { labels: reasons, datasets: buckets.map(bucket => ({ label: bucket.label, backgroundColor: bucket.color, borderRadius: 5, data: reasons.map(reason => tasks.filter(task => classify(task) === reason && bucket.test(number(task.Variance_Hours))).length) })) },
+        options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, ticks: { precision: 0 }, grid: { color: grid } } }, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, padding: 16 } } } }
+      });
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+Competency_ID,ONET_Code,Competency_Name,Department,Category,Target_Proficiency_Baseline,Current_Workforce_Proficiency,Mean_Gap,Assessment_Standard
+COMP-001,15-1252.00,Digital Systems Fluency,Engineering,Technical,4.20,3.70,-0.50,Simulation exercise
+COMP-002,17-2112.00,Process Engineering,Engineering,Technical,4.10,3.55,-0.55,Work sample
+COMP-003,17-2112.00,Lean Problem Solving,Engineering,Technical,4.25,3.80,-0.45,Case simulation
+COMP-004,17-2141.00,Reliability Engineering,Engineering,Technical,4.00,3.45,-0.55,Scenario assessment
+COMP-005,17-2112.00,Data-Informed Improvement,Engineering,Digital,4.15,3.60,-0.55,Portfolio review
+COMP-006,19-4099.01,Quality Systems Assurance,Quality,Compliance,4.30,3.85,-0.45,Calibration exercise
+COMP-007,51-9061.00,Inspection Precision,Quality,Technical,4.05,3.55,-0.50,Observed demonstration
+COMP-008,13-1041.00,Regulatory Documentation,Quality,Compliance,4.10,3.65,-0.45,Document audit
+COMP-009,19-4099.01,Root Cause Analysis,Quality,Technical,4.20,3.75,-0.45,Case simulation
+COMP-010,13-1081.00,Supply Planning,Supply Chain,Technical,4.00,3.50,-0.50,Planning simulation
+COMP-011,13-1081.00,Inventory Optimization,Supply Chain,Technical,4.15,3.60,-0.55,Work sample
+COMP-012,13-1081.02,Logistics Coordination,Supply Chain,Technical,4.25,3.75,-0.50,Scenario assessment
+COMP-013,13-1081.00,Supplier Risk Management,Supply Chain,Compliance,4.05,3.55,-0.50,Case simulation
+COMP-014,13-1071.00,Learning Needs Diagnosis,People & Culture,Leadership,4.10,3.60,-0.50,Structured rubric
+COMP-015,13-1071.00,Coaching Conversations,People & Culture,Leadership,4.20,3.70,-0.50,Observed role play
+COMP-016,13-1071.00,Workforce Analytics,People & Culture,Digital,4.15,3.65,-0.50,Analysis exercise
+COMP-017,13-1071.00,Inclusive Talent Decisions,People & Culture,Compliance,4.00,3.50,-0.50,Scenario assessment
+COMP-018,11-9199.00,Change Leadership,Enterprise,Leadership,4.30,3.85,-0.45,Panel simulation
+COMP-019,11-9199.00,Cross-Functional Collaboration,Enterprise,Leadership,4.05,3.55,-0.50,Multi-rater rubric
+COMP-020,13-1111.00,Ethical Decision Governance,Enterprise,Compliance,3.80,3.65,-0.15,Situational judgement test

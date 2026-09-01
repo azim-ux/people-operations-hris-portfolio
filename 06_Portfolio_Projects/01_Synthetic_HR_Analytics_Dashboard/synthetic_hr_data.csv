@@ -1,0 +1,121 @@
+Employee_ID,Department,Location,Job_Level,Tenure_Years,Performance_Rating,Engagement_Score,Training_Hours_YTD,Absence_Days_YTD,Monthly_Salary_INR,Attrition
+SYN-001,Technology,Delhi NCR,Entry,2.4,3,69,4,4,33500,Yes
+SYN-002,Sales,Delhi NCR,Entry,1.7,4,67,22,7,33500,No
+SYN-003,Finance,Delhi NCR,Specialist,2.8,4,70,23,5,67500,No
+SYN-004,Operations,Hyderabad,Associate,4.4,5,74,42,6,50500,No
+SYN-005,Operations,Aligarh,Associate,4.6,2,53,17,2,44000,No
+SYN-006,Technology,Delhi NCR,Specialist,1.5,4,77,20,5,78500,No
+SYN-007,Sales,Delhi NCR,Associate,1.7,2,73,28,13,51500,No
+SYN-008,Customer Support,Hyderabad,Manager,1.8,4,92,13,7,100500,No
+SYN-009,Sales,Delhi NCR,Specialist,9.8,4,76,12,6,74500,No
+SYN-010,Technology,Delhi NCR,Entry,0.8,4,63,41,13,36000,Yes
+SYN-011,Finance,Bengaluru,Entry,2.0,3,85,33,8,31500,No
+SYN-012,Human Resources,Hyderabad,Entry,4.3,3,73,40,8,32500,No
+SYN-013,Sales,Bengaluru,Entry,2.6,3,77,12,10,32500,No
+SYN-014,Finance,Aligarh,Specialist,2.4,2,66,47,7,77000,No
+SYN-015,Finance,Hyderabad,Associate,4.1,3,70,19,7,50000,No
+SYN-016,Operations,Bengaluru,Associate,1.2,3,90,6,3,50500,No
+SYN-017,Technology,Mumbai,Associate,4.0,3,59,23,3,54000,No
+SYN-018,Operations,Bengaluru,Associate,1.8,4,74,16,10,43500,No
+SYN-019,Operations,Delhi NCR,Specialist,8.9,4,82,21,9,72500,No
+SYN-020,Finance,Bengaluru,Entry,0.6,3,58,33,8,35500,No
+SYN-021,Customer Support,Delhi NCR,Entry,6.6,4,73,34,5,27000,Yes
+SYN-022,Sales,Aligarh,Entry,1.9,2,79,18,9,27500,No
+SYN-023,Operations,Mumbai,Associate,1.4,2,76,26,10,50000,Yes
+SYN-024,Technology,Aligarh,Associate,3.0,5,60,3,10,55500,No
+SYN-025,Finance,Delhi NCR,Entry,1.2,2,65,36,2,34000,No
+SYN-026,Finance,Hyderabad,Associate,0.6,3,63,13,8,55500,No
+SYN-027,Customer Support,Delhi NCR,Associate,3.3,4,55,8,4,42000,No
+SYN-028,Human Resources,Hyderabad,Associate,1.1,4,77,28,2,51500,No
+SYN-029,Customer Support,Mumbai,Entry,0.7,3,60,39,6,27500,Yes
+SYN-030,Finance,Delhi NCR,Associate,5.7,3,93,44,9,52500,No
+SYN-031,Sales,Hyderabad,Associate,2.4,4,62,19,11,43000,Yes
+SYN-032,Technology,Hyderabad,Manager,0.4,2,64,8,7,129000,No
+SYN-033,Technology,Hyderabad,Associate,2.8,3,69,7,8,57000,No
+SYN-034,Technology,Aligarh,Associate,7.6,4,81,5,6,52500,No
+SYN-035,Operations,Bengaluru,Specialist,4.4,2,71,40,4,67000,No
+SYN-036,Customer Support,Mumbai,Specialist,2.2,4,71,45,2,60000,Yes
+SYN-037,Operations,Bengaluru,Specialist,4.7,4,96,30,6,69000,No
+SYN-038,Customer Support,Mumbai,Associate,2.0,2,60,19,12,47000,No
+SYN-039,Sales,Delhi NCR,Entry,7.5,4,57,25,7,31500,No
+SYN-040,Sales,Bengaluru,Associate,1.2,2,59,53,2,53000,Yes
+SYN-041,Technology,Aligarh,Manager,5.1,3,72,45,10,106500,No
+SYN-042,Technology,Mumbai,Specialist,2.7,3,79,30,6,81000,No
+SYN-043,Customer Support,Hyderabad,Entry,3.3,2,52,4,6,29500,Yes
+SYN-044,Sales,Delhi NCR,Entry,2.4,3,57,43,6,33500,No
+SYN-045,Finance,Hyderabad,Entry,3.3,4,59,4,5,36000,No
+SYN-046,Technology,Hyderabad,Entry,5.8,3,53,9,4,36500,No
+SYN-047,Customer Support,Delhi NCR,Entry,3.1,4,80,18,3,24000,No
+SYN-048,Technology,Mumbai,Entry,2.4,2,77,32,6,33000,Yes
+SYN-049,Sales,Hyderabad,Associate,1.7,4,84,22,8,50000,No
+SYN-050,Finance,Bengaluru,Specialist,2.6,4,83,4,7,75500,No
+SYN-051,Sales,Delhi NCR,Associate,3.1,4,92,32,6,51500,No
+SYN-052,Human Resources,Mumbai,Specialist,5.9,4,67,24,8,76500,No
+SYN-053,Operations,Mumbai,Associate,1.3,4,68,37,8,45000,No
+SYN-054,Technology,Mumbai,Entry,0.3,3,61,31,9,39000,No
+SYN-055,Human Resources,Bengaluru,Specialist,9.7,4,85,38,10,60500,No
+SYN-056,Technology,Delhi NCR,Specialist,3.9,4,80,14,7,77000,No
+SYN-057,Sales,Hyderabad,Associate,1.7,4,65,23,5,48000,No
+SYN-058,Technology,Delhi NCR,Manager,12.0,4,67,40,5,112500,No
+SYN-059,Operations,Aligarh,Entry,5.8,3,86,21,7,31500,Yes
+SYN-060,Human Resources,Bengaluru,Specialist,4.8,3,79,28,12,61500,No
+SYN-061,Operations,Bengaluru,Associate,2.7,3,65,30,10,48000,No
+SYN-062,Technology,Aligarh,Associate,3.3,3,64,12,10,62000,No
+SYN-063,Technology,Bengaluru,Associate,0.9,3,74,30,9,62000,No
+SYN-064,Technology,Bengaluru,Specialist,1.2,3,91,12,4,88500,No
+SYN-065,Operations,Aligarh,Specialist,6.5,5,89,20,6,61000,No
+SYN-066,Customer Support,Delhi NCR,Entry,0.4,3,80,19,1,28500,No
+SYN-067,Customer Support,Delhi NCR,Associate,1.9,2,71,45,8,46000,No
+SYN-068,Customer Support,Bengaluru,Manager,3.5,2,82,33,10,89500,No
+SYN-069,Operations,Mumbai,Associate,3.4,5,57,18,1,41000,No
+SYN-070,Customer Support,Mumbai,Entry,6.7,3,89,19,4,25000,No
+SYN-071,Customer Support,Aligarh,Associate,4.4,3,92,24,12,43500,No
+SYN-072,Customer Support,Hyderabad,Associate,1.0,3,74,20,7,38000,No
+SYN-073,Sales,Hyderabad,Entry,1.3,4,85,18,6,34000,No
+SYN-074,Customer Support,Delhi NCR,Specialist,3.1,4,52,13,12,60000,Yes
+SYN-075,Finance,Bengaluru,Associate,3.0,4,76,26,10,58000,No
+SYN-076,Customer Support,Bengaluru,Associate,3.1,5,90,42,3,46500,No
+SYN-077,Customer Support,Mumbai,Specialist,1.7,4,74,22,2,57000,Yes
+SYN-078,Operations,Aligarh,Entry,5.7,2,84,14,12,28500,No
+SYN-079,Customer Support,Delhi NCR,Associate,4.3,3,78,34,2,40000,No
+SYN-080,Sales,Delhi NCR,Specialist,1.8,2,72,31,4,75000,No
+SYN-081,Sales,Bengaluru,Associate,3.2,2,66,14,8,52000,Yes
+SYN-082,Operations,Delhi NCR,Associate,3.4,4,84,23,7,49000,No
+SYN-083,Operations,Mumbai,Associate,2.4,4,86,24,9,47000,No
+SYN-084,Operations,Delhi NCR,Associate,1.6,3,69,27,5,50000,No
+SYN-085,Operations,Mumbai,Entry,4.5,3,79,30,1,26000,Yes
+SYN-086,Finance,Mumbai,Manager,1.3,3,59,13,4,103000,Yes
+SYN-087,Sales,Delhi NCR,Entry,1.6,4,59,35,6,32000,No
+SYN-088,Sales,Aligarh,Specialist,3.0,3,65,31,9,78500,No
+SYN-089,Sales,Aligarh,Specialist,3.4,4,74,26,6,70000,No
+SYN-090,Sales,Bengaluru,Entry,3.1,3,59,25,13,28500,Yes
+SYN-091,Operations,Hyderabad,Entry,0.6,4,90,34,12,27000,No
+SYN-092,Technology,Bengaluru,Specialist,0.2,2,58,40,4,79000,Yes
+SYN-093,Human Resources,Aligarh,Associate,1.9,3,79,13,6,49000,No
+SYN-094,Sales,Aligarh,Entry,1.6,4,68,5,6,30000,Yes
+SYN-095,Customer Support,Bengaluru,Specialist,3.9,4,59,24,10,67000,No
+SYN-096,Operations,Delhi NCR,Associate,4.9,3,56,22,8,45000,Yes
+SYN-097,Sales,Aligarh,Associate,3.5,4,53,0,10,52000,No
+SYN-098,Operations,Bengaluru,Associate,6.6,3,77,19,10,50500,No
+SYN-099,Technology,Aligarh,Specialist,3.2,4,53,44,4,86500,Yes
+SYN-100,Technology,Bengaluru,Specialist,5.8,3,73,26,11,80000,No
+SYN-101,Finance,Delhi NCR,Specialist,3.0,3,71,30,9,80000,No
+SYN-102,Sales,Aligarh,Manager,4.4,4,59,24,5,94500,No
+SYN-103,Sales,Bengaluru,Entry,0.5,4,78,44,4,31000,No
+SYN-104,Human Resources,Mumbai,Entry,1.5,5,81,30,6,30500,No
+SYN-105,Operations,Delhi NCR,Entry,1.0,4,74,19,1,33000,Yes
+SYN-106,Sales,Bengaluru,Entry,2.5,3,78,39,14,27000,No
+SYN-107,Operations,Delhi NCR,Associate,4.5,3,71,19,11,52000,No
+SYN-108,Operations,Mumbai,Associate,5.0,3,75,22,3,49000,No
+SYN-109,Human Resources,Mumbai,Specialist,0.8,4,65,16,8,72000,No
+SYN-110,Customer Support,Hyderabad,Specialist,1.6,4,81,23,5,69500,Yes
+SYN-111,Human Resources,Aligarh,Specialist,6.9,2,69,14,2,63000,No
+SYN-112,Operations,Hyderabad,Entry,2.4,4,68,21,11,30500,No
+SYN-113,Operations,Delhi NCR,Associate,2.7,5,70,20,2,48000,No
+SYN-114,Sales,Bengaluru,Entry,3.7,4,71,23,9,32000,Yes
+SYN-115,Sales,Delhi NCR,Entry,5.8,2,68,5,7,31500,No
+SYN-116,Customer Support,Bengaluru,Associate,10.0,4,81,18,9,42500,No
+SYN-117,Sales,Hyderabad,Specialist,2.3,2,70,17,5,73000,No
+SYN-118,Operations,Bengaluru,Associate,1.3,5,86,34,6,50000,No
+SYN-119,Sales,Mumbai,Associate,1.0,4,89,37,2,53500,No
+SYN-120,Sales,Delhi NCR,Entry,1.2,5,69,44,10,29000,No

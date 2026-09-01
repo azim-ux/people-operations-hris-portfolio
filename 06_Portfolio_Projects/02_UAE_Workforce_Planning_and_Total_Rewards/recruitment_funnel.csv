@@ -1,0 +1,49 @@
+Requisition_ID,Department,Job_Family,Job_Level,Open_Date,Close_Date,Status,Applications,Screened,Interviewed,Offers,Hires,Time_to_Fill_Days,Recruitment_Cost_AED
+REQ-SYN-001,Operations,Operations,L1,2024-08-17,2024-10-29,Closed,110,51,18,4,3,73,10400
+REQ-SYN-002,Technology,Technology,L2,2024-09-19,2024-12-01,Closed,139,33,16,6,3,73,10300
+REQ-SYN-003,Sales,Commercial,L1,2024-10-14,2024-12-24,Closed,102,40,21,2,2,71,9600
+REQ-SYN-004,Customer Experience,Customer Experience,L1,2024-11-04,2025-01-04,Closed,92,43,27,1,1,61,9400
+REQ-SYN-005,Customer Experience,Customer Experience,L3,2024-12-11,2025-01-28,Closed,64,27,15,1,1,48,6900
+REQ-SYN-006,Customer Experience,Customer Experience,L2,2025-01-07,2025-03-13,Closed,158,59,29,6,1,65,10500
+REQ-SYN-007,Customer Experience,Customer Experience,L2,2025-02-09,2025-03-10,Closed,56,15,7,2,2,29,6500
+REQ-SYN-008,Finance,Finance,L4,2025-03-13,2025-06-03,Closed,165,42,21,5,1,82,9200
+REQ-SYN-009,People & Culture,People & Culture,L1,2025-04-15,2025-07-05,Closed,176,77,26,5,3,81,12600
+REQ-SYN-010,Finance,Finance,L1,2025-05-15,2025-07-19,Closed,189,42,18,1,1,65,8900
+REQ-SYN-011,Technology,Technology,L2,2025-06-01,2025-06-26,Closed,78,19,10,1,1,25,6100
+REQ-SYN-012,Operations,Operations,L1,2025-07-18,2025-09-18,Closed,157,57,33,5,1,62,11200
+REQ-SYN-013,People & Culture,People & Culture,L2,2025-08-11,2025-09-11,Closed,180,41,20,7,1,31,9200
+REQ-SYN-014,Technology,Technology,L2,2025-09-10,2025-10-24,Closed,52,16,5,2,1,44,4900
+REQ-SYN-015,Technology,Technology,L4,2025-10-05,2025-12-22,Closed,54,17,9,2,2,78,6900
+REQ-SYN-016,Customer Experience,Customer Experience,L1,2025-11-17,2026-02-02,Closed,148,58,33,11,2,77,12300
+REQ-SYN-017,Technology,Technology,L1,2025-12-13,2026-01-30,Closed,128,49,20,4,2,48,9700
+REQ-SYN-018,Operations,Operations,L3,2026-01-16,2026-03-19,Closed,110,23,14,4,1,62,7200
+REQ-SYN-019,Customer Experience,Customer Experience,L1,2026-02-02,2026-03-30,Closed,109,42,27,3,2,56,10800
+REQ-SYN-020,Customer Experience,Customer Experience,L4,2026-03-04,2026-05-20,Closed,63,14,7,1,1,77,5400
+REQ-SYN-021,Technology,Technology,L1,2026-04-05,2026-05-12,Closed,140,65,27,6,3,37,12300
+REQ-SYN-022,Customer Experience,Customer Experience,L3,2026-05-19,2026-07-06,Closed,106,31,17,2,2,48,8900
+REQ-SYN-023,Sales,Commercial,L1,2026-06-17,2026-07-26,Closed,83,27,10,2,1,39,6200
+REQ-SYN-024,Finance,Finance,L2,2026-07-14,2026-08-21,Closed,72,16,9,1,1,38,5900
+REQ-SYN-025,Finance,Finance,L3,2024-08-21,2024-10-29,Closed,93,26,17,3,2,69,8800
+REQ-SYN-026,People & Culture,People & Culture,L3,2024-09-13,2024-11-27,Closed,64,23,13,1,1,75,6500
+REQ-SYN-027,Operations,Operations,L1,2024-10-01,2024-12-07,Closed,136,60,30,6,1,67,10400
+REQ-SYN-028,Sales,Commercial,L3,2024-11-03,2024-12-20,Closed,106,24,9,2,1,47,6300
+REQ-SYN-029,Operations,Operations,L3,2024-12-09,2025-02-13,Closed,78,19,6,2,1,66,5400
+REQ-SYN-030,Finance,Finance,L1,2025-01-15,2025-02-17,Closed,111,45,21,7,1,33,8500
+REQ-SYN-031,People & Culture,People & Culture,L1,2025-02-14,2025-05-03,Closed,150,62,38,6,1,78,12000
+REQ-SYN-032,Finance,Finance,L2,2025-03-08,2025-05-12,Closed,66,25,10,3,2,65,7200
+REQ-SYN-033,Sales,Commercial,L2,2025-04-01,2025-05-19,Closed,48,16,9,1,1,48,5600
+REQ-SYN-034,Customer Experience,Customer Experience,L1,2025-05-01,2025-07-09,Closed,113,39,23,6,1,69,8900
+REQ-SYN-035,Finance,Finance,L3,2025-06-21,2025-07-22,Closed,135,34,13,4,3,31,9800
+REQ-SYN-036,Customer Experience,Customer Experience,L2,2025-07-06,2025-08-26,Closed,185,78,38,3,2,51,13700
+REQ-SYN-037,People & Culture,People & Culture,L1,2025-08-01,2025-09-01,Closed,73,35,20,7,3,31,10300
+REQ-SYN-038,Sales,Commercial,L2,2025-09-07,2025-11-16,Closed,105,43,19,3,1,70,8100
+REQ-SYN-039,Sales,Commercial,L2,2025-10-10,2025-11-17,Closed,46,14,9,1,1,38,5600
+REQ-SYN-040,Finance,Finance,L2,2025-11-20,2026-02-09,Closed,95,25,12,3,2,81,7900
+REQ-SYN-041,Finance,Finance,L2,2025-12-01,2026-01-04,Closed,188,79,38,13,3,34,14900
+REQ-SYN-042,Sales,Commercial,L3,2026-01-14,2026-03-19,Closed,136,55,21,2,2,64,10000
+REQ-SYN-043,Technology,Technology,L2,2026-02-18,,Open,147,49,26,7,0,0,8600
+REQ-SYN-044,Operations,Operations,L1,2026-03-15,,Open,90,35,20,3,1,0,8100
+REQ-SYN-045,Sales,Commercial,L1,2026-04-13,,Open,79,18,11,1,1,0,6300
+REQ-SYN-046,Finance,Finance,L2,2026-05-19,,Open,91,18,7,2,0,0,4600
+REQ-SYN-047,Finance,Finance,L1,2026-06-21,,Open,93,40,20,4,1,0,8100
+REQ-SYN-048,Sales,Commercial,L1,2026-07-03,,Open,148,46,21,5,1,0,9000

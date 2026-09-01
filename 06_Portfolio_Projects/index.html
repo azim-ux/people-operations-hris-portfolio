@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mohammad Azimuddin's People Operations and HRIS portfolio: structured hiring, evidence-based onboarding, and skills-led talent development.">
+  <meta name="theme-color" content="#0b1220">
+  <title>Mohammad Azimuddin | People Operations &amp; HRIS Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{night:"#0b1220",navy:"#111b2e",paper:"#f4f5f7",line:"#dce1e8",cobalt:"#3559e8",teal:"#07847a",lime:"#b7ef5a",ink:"#142033"}}}};
+  </script>
+  <style>
+    :root{color-scheme:light;--night:#0b1220;--navy:#111b2e;--paper:#f4f5f7;--line:#dce1e8;--cobalt:#3559e8;--teal:#07847a;--ink:#142033}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-rendering:optimizeLegibility}
+    a,button{font:inherit}
+    .shell{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+    .skip-link{position:fixed;z-index:100;left:16px;top:12px;transform:translateY(-160%);border-radius:9px;background:#fff;padding:10px 14px;color:var(--night);font-weight:800;box-shadow:0 8px 28px rgba(0,0,0,.2)}
+    .skip-link:focus{transform:translateY(0)}
+    .hero-grid{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),radial-gradient(circle at 82% 18%,rgba(53,89,232,.28),transparent 28%),radial-gradient(circle at 15% 88%,rgba(7,132,122,.18),transparent 26%);background-size:38px 38px,38px 38px,auto,auto}
+    .eyebrow{font-size:.69rem;font-weight:850;letter-spacing:.17em;text-transform:uppercase}
+    .display{font-size:clamp(3.15rem,7.4vw,7.15rem);line-height:.89;letter-spacing:-.065em;font-weight:900}
+    .section-title{font-size:clamp(2rem,4vw,4.2rem);line-height:.98;letter-spacing:-.05em;font-weight:880}
+    .metric{font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+    .glass{border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.065);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(16px)}
+    .project-card{position:relative;isolation:isolate;overflow:hidden;min-height:570px;border-radius:26px;transition:transform .24s ease,box-shadow .24s ease}
+    .project-card::before{content:"";position:absolute;z-index:-1;inset:0;opacity:.85;background:radial-gradient(circle at 90% 5%,var(--glow),transparent 38%)}
+    .project-card:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(11,18,32,.16)}
+    .project-card:focus-within{outline:3px solid rgba(53,89,232,.28);outline-offset:3px}
+    .chip{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;font-size:.68rem;font-weight:800;line-height:1}
+    .link-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:12px 15px;font-size:.78rem;font-weight:850;transition:transform .16s ease,background-color .16s ease,border-color .16s ease}
+    .link-button:hover{transform:translateY(-2px)}
+    .architecture-track{position:absolute;left:16.66%;right:16.66%;top:42px;height:1px;background:linear-gradient(90deg,#3559e8,#07847a,#7c3aed)}
+    .stage-button{position:relative;z-index:1;width:100%;border:1px solid #dce1e8;border-radius:20px;background:#fff;padding:20px;text-align:left;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+    .stage-button:hover,.stage-button[aria-pressed="true"]{border-color:var(--stage);box-shadow:0 13px 36px rgba(20,32,51,.1);transform:translateY(-3px)}
+    .stage-dot{display:grid;height:44px;width:44px;place-items:center;border:7px solid var(--paper);border-radius:50%;background:var(--stage);color:#fff;box-shadow:0 0 0 1px #dce1e8;font-weight:900}
+    .credential{display:flex;min-height:104px;align-items:center;gap:15px;border:1px solid #dce1e8;border-radius:17px;background:#fff;padding:18px;transition:border-color .16s ease,transform .16s ease}
+    .credential:hover{border-color:#9aa8ba;transform:translateY(-2px)}
+    .icon-box{display:grid;height:43px;width:43px;flex:0 0 auto;place-items:center;border-radius:12px;background:#edf0f5;color:#1f2b3d}
+    :focus-visible{outline:3px solid rgba(83,116,255,.48);outline-offset:3px}
+    @media(max-width:900px){.architecture-track{display:none}.project-card{min-height:auto}.display{font-size:clamp(3.1rem,13vw,6rem)}}
+    @media(max-width:640px){.shell{width:min(100% - 28px,1180px)}.display{font-size:3.55rem}.hero-grid{background-size:28px 28px,28px 28px,auto,auto}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media print{.no-print{display:none!important}body{background:#fff}.project-card{break-inside:avoid;box-shadow:none!important}.hero-grid{background:#0b1220!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to portfolio</a>
+
+  <header class="absolute inset-x-0 top-0 z-40 text-white">
+    <div class="shell flex h-20 items-center justify-between border-b border-white/10">
+      <a href="#top" class="flex items-center gap-3 font-black tracking-tight" aria-label="Mohammad Azimuddin portfolio home">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-sm text-night">MA</span>
+        <span class="hidden sm:inline">Mohammad Azimuddin</span>
+      </a>
+      <nav class="no-print flex items-center gap-4 text-xs font-bold sm:gap-7" aria-label="Portfolio navigation">
+        <a class="text-white/70 hover:text-white" href="#portfolio">Projects</a>
+        <a class="hidden text-white/70 hover:text-white sm:inline" href="#architecture">Architecture</a>
+        <a class="hidden text-white/70 hover:text-white md:inline" href="#credentials">Credentials</a>
+        <a class="rounded-lg border border-white/20 px-3 py-2 hover:bg-white/10" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="top" class="hero-grid relative overflow-hidden bg-night pt-20 text-white">
+      <div class="shell grid min-h-[760px] gap-12 py-16 lg:grid-cols-[1.35fr_.65fr] lg:items-center lg:py-24">
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip bg-white/10 text-white/80"><i data-lucide="map-pin" class="h-3.5 w-3.5"></i>Aligarh, India</span>
+            <span class="chip bg-lime/15 text-lime"><i data-lucide="plane" class="h-3.5 w-3.5"></i>Open to India &amp; UAE relocation</span>
+          </div>
+          <p class="eyebrow mt-10 text-blue-300">People Operations · HRIS · Talent Systems</p>
+          <h1 class="display mt-5 max-w-5xl">Designing the<br><span class="text-blue-400">employee lifecycle.</span></h1>
+          <p class="mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">Mohammad Azimuddin builds evidence-led HR operations systems—from structured hiring and onboarding control to skills-based development—with transparent metrics, workflow governance, and privacy by design.</p>
+          <div class="no-print mt-9 flex flex-wrap gap-3">
+            <a class="link-button bg-white text-night hover:bg-blue-50" href="#portfolio"><i data-lucide="layout-grid" class="h-4 w-4"></i>Explore 3 labs</a>
+            <a class="link-button border border-white/20 bg-white/5 text-white hover:bg-white/10" data-link="cv-download" href="../02_CV_Library/01_UAE/02_HR_Coordinator/Mohammad_Azimuddin_UAE_HR_Coordinator.html"><i data-lucide="file-user" class="h-4 w-4"></i>View ATS CV</a>
+            <a class="link-button border border-white/20 bg-white/5 text-white hover:bg-white/10" href="https://www.linkedin.com/in/md-azimuddin-34b088174" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile, opens in a new tab"><i data-lucide="linkedin" class="h-4 w-4"></i>LinkedIn</a>
+            <a class="link-button border border-white/20 bg-white/5 text-white hover:bg-white/10" href="https://github.com/azim-ux" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile, opens in a new tab"><i data-lucide="github" class="h-4 w-4"></i>GitHub</a>
+          </div>
+        </div>
+
+        <aside class="glass rounded-[28px] p-6 sm:p-8" aria-label="Verified profile summary">
+          <div class="flex items-start justify-between gap-4">
+            <div><p class="eyebrow text-blue-300">Verified credential</p><h2 class="mt-3 text-2xl font-black leading-tight">Oracle Fusion Cloud Applications HCM</h2></div>
+            <span class="grid h-12 w-12 flex-none place-items-center rounded-2xl bg-blue-400 text-night"><i data-lucide="badge-check" class="h-6 w-6"></i></span>
+          </div>
+          <p class="mt-4 text-sm leading-6 text-slate-300">Process Essentials Certified – Rel 1 · 1Z0-1162-1</p>
+          <div class="my-7 h-px bg-white/10"></div>
+          <dl class="space-y-5">
+            <div><dt class="text-xs font-bold uppercase tracking-widest text-white/45">Education</dt><dd class="mt-1 font-bold">Master of Human Resource Management</dd><dd class="mt-1 text-sm text-slate-300">Aligarh Muslim University · 2024–2026</dd></div>
+            <div><dt class="text-xs font-bold uppercase tracking-widest text-white/45">Foundation</dt><dd class="mt-1 font-bold">B.A. in Economics · AMU</dd></div>
+            <div><dt class="text-xs font-bold uppercase tracking-widest text-white/45">Operating context</dt><dd class="mt-1 font-bold">HR Operations &amp; General Administration</dd><dd class="mt-1 text-sm text-slate-300">Candidate-reported 70-headcount environment</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="border-t border-white/10 bg-white/[.035]">
+        <div class="shell grid grid-cols-2 divide-x divide-white/10 md:grid-cols-4">
+          <div class="py-6 pr-4"><p class="metric text-3xl font-black">3</p><p class="mt-1 text-xs text-slate-400">Integrated HR labs</p></div>
+          <div class="px-4 py-6"><p class="metric text-3xl font-black">4,090</p><p class="mt-1 text-xs text-slate-400">Synthetic people profiles</p></div>
+          <div class="px-4 py-6"><p class="metric text-3xl font-black">140</p><p class="mt-1 text-xs text-slate-400">Governed hires &amp; joiners</p></div>
+          <div class="py-6 pl-4"><p class="metric text-3xl font-black">L1–L4</p><p class="mt-1 text-xs text-slate-400">Learning evaluation chain</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="py-20 sm:py-28">
+      <div class="shell">
+        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <div><p class="eyebrow text-cobalt">Selected work · 2026</p><h2 class="section-title mt-4">Three labs.<br>One operating model.</h2></div>
+          <p class="max-w-2xl text-base leading-7 text-slate-600 lg:justify-self-end">Each case moves beyond a dashboard into architecture: controlled data models, accountable workflows, source-reconciled measures, implementation documents, and decision-ready executive communication.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 xl:grid-cols-3">
+          <article id="project-ats" class="project-card flex flex-col bg-night p-6 text-white sm:p-8" style="--glow:rgba(80,112,255,.42)">
+            <div class="flex items-start justify-between gap-4"><span class="chip bg-blue-400/15 text-blue-300">01 · Talent acquisition</span><i data-lucide="scan-search" class="h-6 w-6 text-blue-300"></i></div>
+            <h3 class="mt-8 text-3xl font-black leading-[1.03] tracking-[-.04em]">Structured Hiring &amp; ATS Architecture Lab</h3>
+            <p class="mt-4 text-sm leading-6 text-slate-300">Talent Acquisition Operations &amp; Psychometrics</p>
+            <div class="my-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
+              <div class="bg-night p-4"><strong class="metric text-2xl">4,000</strong><span class="mt-1 block text-[11px] text-slate-400">Candidates</span></div>
+              <div class="bg-night p-4"><strong class="metric text-2xl">120</strong><span class="mt-1 block text-[11px] text-slate-400">Hires · 3.0%</span></div>
+              <div class="bg-night p-4"><strong class="metric text-2xl">28.5d</strong><span class="mt-1 block text-[11px] text-slate-400">Time-to-fill</span></div>
+              <div class="bg-night p-4"><strong class="metric text-2xl">91.8%</strong><span class="mt-1 block text-[11px] text-slate-400">48h feedback SLA</span></div>
+            </div>
+            <p class="text-xs leading-5 text-slate-400">OpenCATS workflow model · 5 requisitions · 40/40/20 selection composite · 0.87 adverse-impact ratio</p>
+            <div class="no-print mt-auto flex gap-2 pt-8"><a class="link-button flex-1 bg-white text-night" href="04_Structured_Hiring_and_ATS_Lab/index.html">Open lab<i data-lucide="arrow-up-right" class="h-4 w-4"></i></a><a class="link-button border border-white/15 text-white" href="04_Structured_Hiring_and_ATS_Lab/slides.html" aria-label="Open Structured Hiring slide deck"><i data-lucide="presentation" class="h-4 w-4"></i>Deck</a></div>
+          </article>
+
+          <article id="project-onboarding" class="project-card flex flex-col bg-[#073a3b] p-6 text-white sm:p-8" style="--glow:rgba(19,207,183,.32)">
+            <div class="flex items-start justify-between gap-4"><span class="chip bg-teal-300/15 text-teal-200">02 · Onboarding</span><i data-lucide="route" class="h-6 w-6 text-teal-200"></i></div>
+            <h3 class="mt-8 text-3xl font-black leading-[1.03] tracking-[-.04em]">Evidence-Based 90-Day Onboarding &amp; HR Ops Lab</h3>
+            <p class="mt-4 text-sm leading-6 text-teal-50/75">Employee Onboarding, HRIS Workflow &amp; Socialization</p>
+            <div class="my-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
+              <div class="bg-[#073a3b] p-4"><strong class="metric text-2xl">93.4%</strong><span class="mt-1 block text-[11px] text-teal-50/65">Day-1 readiness</span></div>
+              <div class="bg-[#073a3b] p-4"><strong class="metric text-2xl">88.5%</strong><span class="mt-1 block text-[11px] text-teal-50/65">Task SLA</span></div>
+              <div class="bg-[#073a3b] p-4"><strong class="metric text-2xl">24.2 days</strong><span class="mt-1 block text-[11px] text-teal-50/65">Role clarity</span></div>
+              <div class="bg-[#073a3b] p-4"><strong class="metric text-2xl">3</strong><span class="mt-1 block text-[11px] text-teal-50/65">Open escalations</span></div>
+            </div>
+            <p class="text-xs leading-5 text-teal-50/65">Frappe HR data model · 20 active joiners · 60 tasks · 25-activity RACI · Bauer 4-pillar evidence model</p>
+            <div class="no-print mt-auto flex gap-2 pt-8"><a class="link-button flex-1 bg-white text-[#073a3b]" href="project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/index.html">Open lab<i data-lucide="arrow-up-right" class="h-4 w-4"></i></a><a class="link-button border border-white/15 text-white" href="project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/slides.html" aria-label="Open Onboarding slide deck"><i data-lucide="presentation" class="h-4 w-4"></i>Deck</a></div>
+          </article>
+
+          <article id="project-ld" class="project-card flex flex-col border border-line bg-white p-6 text-ink sm:p-8" style="--glow:rgba(79,70,229,.20)">
+            <div class="flex items-start justify-between gap-4"><span class="chip bg-indigo-50 text-indigo-700">03 · Talent development</span><i data-lucide="brain-circuit" class="h-6 w-6 text-indigo-600"></i></div>
+            <h3 class="mt-8 text-3xl font-black leading-[1.03] tracking-[-.04em]">Skills-Based L&amp;D Planner &amp; Talent Growth Engine</h3>
+            <p class="mt-4 text-sm leading-6 text-slate-500">Talent Development, Competency Modeling &amp; Training ROI</p>
+            <div class="my-7 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line">
+              <div class="bg-white p-4"><strong class="metric text-2xl">81.4%</strong><span class="mt-1 block text-[11px] text-slate-500">Mastery</span></div>
+              <div class="bg-white p-4"><strong class="metric text-2xl">58</strong><span class="mt-1 block text-[11px] text-slate-500">Active IDPs</span></div>
+              <div class="bg-white p-4"><strong class="metric text-2xl text-emerald-600">+24.6%</strong><span class="mt-1 block text-[11px] text-slate-500">Yield gain</span></div>
+              <div class="bg-white p-4"><strong class="metric text-2xl text-emerald-600">-18.2%</strong><span class="mt-1 block text-[11px] text-slate-500">Scrap reduction</span></div>
+            </div>
+            <p class="text-xs leading-5 text-slate-500">70 profiles · 20 O*NET 31.0 competencies · 70 IDPs · 14 Star Talent · ₹4.8 Lakhs quarterly savings</p>
+            <div class="no-print mt-auto flex gap-2 pt-8"><a class="link-button flex-1 bg-night text-white" href="05_Skills_Based_LD_Planner/index.html">Open lab<i data-lucide="arrow-up-right" class="h-4 w-4"></i></a><a class="link-button border border-line text-ink" href="05_Skills_Based_LD_Planner/slides.html" aria-label="Open Skills-Based L&D slide deck"><i data-lucide="presentation" class="h-4 w-4"></i>Deck</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="border-y border-line bg-[#edf0f4] py-20 sm:py-28">
+      <div class="shell">
+        <div class="max-w-4xl"><p class="eyebrow text-teal">End-to-end architecture</p><h2 class="section-title mt-4">One employee lifecycle.<br>Three governed systems.</h2><p class="mt-6 max-w-3xl text-base leading-7 text-slate-600">Select a stage to trace the decision, system model, evidence standard, and hand-off to the next part of the lifecycle.</p></div>
+
+        <div id="lifecycle-map" class="relative mt-12" aria-label="Interactive employee lifecycle architecture">
+          <div class="architecture-track" aria-hidden="true"></div>
+          <div class="grid gap-4 lg:grid-cols-3" role="group" aria-label="Lifecycle stages">
+            <button id="stage-talent-acquisition" class="stage-button" style="--stage:#3559e8" type="button" data-stage="talent-acquisition" aria-pressed="true"><span class="stage-dot">01</span><span class="mt-5 block text-xs font-black uppercase tracking-widest text-blue-700">Attract → assess → select</span><strong class="mt-2 block text-xl">Talent Acquisition</strong><span class="mt-2 block text-sm leading-6 text-slate-500">Structured evidence enters the people system.</span></button>
+            <button id="stage-onboarding" class="stage-button" style="--stage:#07847a" type="button" data-stage="onboarding" aria-pressed="false"><span class="stage-dot">02</span><span class="mt-5 block text-xs font-black uppercase tracking-widest text-teal-700">Prepare → integrate → clarify</span><strong class="mt-2 block text-xl">Onboarding &amp; HR Ops</strong><span class="mt-2 block text-sm leading-6 text-slate-500">Accepted hires become supported contributors.</span></button>
+            <button id="stage-talent-development" class="stage-button" style="--stage:#7c3aed" type="button" data-stage="talent-development" aria-pressed="false"><span class="stage-dot">03</span><span class="mt-5 block text-xs font-black uppercase tracking-widest text-violet-700">Diagnose → practice → evaluate</span><strong class="mt-2 block text-xl">Talent Development</strong><span class="mt-2 block text-sm leading-6 text-slate-500">Verified gaps become governed growth plans.</span></button>
+          </div>
+
+          <article id="architecture-detail" class="mt-6 grid gap-8 rounded-[24px] bg-night p-6 text-white sm:p-8 lg:grid-cols-[.72fr_1.28fr]" aria-live="polite">
+            <div><p id="detail-kicker" class="eyebrow text-blue-300">Talent acquisition control plane</p><h3 id="detail-title" class="mt-3 text-3xl font-black tracking-[-.035em]">Evidence before impression.</h3><p id="detail-copy" class="mt-4 text-sm leading-6 text-slate-300">OpenCATS-modeled stages connect requisition demand, structured work samples, BARS interviews, fairness review, feedback SLAs, and auditable disposition.</p></div>
+            <dl class="grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-3">
+              <div class="bg-night p-5"><dt class="text-[10px] font-black uppercase tracking-widest text-white/45">System model</dt><dd id="detail-system" class="mt-2 text-sm font-bold">OpenCATS ATS</dd></div>
+              <div class="bg-night p-5"><dt class="text-[10px] font-black uppercase tracking-widest text-white/45">Governed evidence</dt><dd id="detail-evidence" class="mt-2 text-sm font-bold">40/40/20 composite</dd></div>
+              <div class="bg-night p-5"><dt class="text-[10px] font-black uppercase tracking-widest text-white/45">Lifecycle hand-off</dt><dd id="detail-handoff" class="mt-2 text-sm font-bold">Accepted hire → preboarding</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="credentials" class="bg-white py-20 sm:py-28">
+      <div class="shell grid gap-12 lg:grid-cols-[.72fr_1.28fr]">
+        <div><p class="eyebrow text-cobalt">Credentials &amp; toolkit</p><h2 class="section-title mt-4">HR domain depth.<br>Systems discipline.</h2><p class="mt-6 max-w-lg text-base leading-7 text-slate-600">A practical stack for HR operations roles that need process clarity, controlled data, analytics, and credible executive communication.</p></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="credential"><span class="icon-box"><i data-lucide="cloud-cog" class="h-5 w-5"></i></span><div><strong>Oracle Fusion Cloud HCM</strong><span class="mt-1 block text-xs text-slate-500">Certified Process Essentials</span></div></div>
+          <div class="credential"><span class="icon-box"><i data-lucide="workflow" class="h-5 w-5"></i></span><div><strong>Frappe HR</strong><span class="mt-1 block text-xs text-slate-500">Onboarding data model</span></div></div>
+          <div class="credential"><span class="icon-box"><i data-lucide="users-round" class="h-5 w-5"></i></span><div><strong>OpenCATS</strong><span class="mt-1 block text-xs text-slate-500">ATS workflow architecture</span></div></div>
+          <div class="credential"><span class="icon-box"><i data-lucide="network" class="h-5 w-5"></i></span><div><strong>O*NET 31.0</strong><span class="mt-1 block text-xs text-slate-500">Skills ontology provenance</span></div></div>
+          <div class="credential"><span class="icon-box"><i data-lucide="chart-no-axes-combined" class="h-5 w-5"></i></span><div><strong>Chart.js</strong><span class="mt-1 block text-xs text-slate-500">Interactive decision views</span></div></div>
+          <div class="credential"><span class="icon-box"><i data-lucide="braces" class="h-5 w-5"></i></span><div><strong>Python &amp; SQL</strong><span class="mt-1 block text-xs text-slate-500">Validation and data logic</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-night py-20 text-white sm:py-24">
+      <div class="shell grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <div><p class="eyebrow text-blue-300">Role alignment</p><h2 class="mt-4 text-4xl font-black tracking-[-.045em] sm:text-5xl">Ready to support the work behind the employee experience.</h2></div>
+        <div class="grid gap-2 sm:grid-cols-2">
+          <span class="glass rounded-xl p-4 text-sm font-bold">HR Operations Specialist</span>
+          <span class="glass rounded-xl p-4 text-sm font-bold">People Operations Associate</span>
+          <span class="glass rounded-xl p-4 text-sm font-bold">Junior HRIS Analyst</span>
+          <span class="glass rounded-xl p-4 text-sm font-bold">Talent Acquisition Operations</span>
+          <span class="glass rounded-xl p-4 text-sm font-bold sm:col-span-2">L&amp;D Coordinator</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="border-t border-line bg-white">
+    <div class="shell flex flex-col gap-6 py-9 sm:flex-row sm:items-center sm:justify-between">
+      <div><strong class="text-sm">Mohammad Azimuddin</strong><p class="mt-1 text-xs text-slate-500">People Operations · HRIS · Talent Systems</p></div>
+      <div class="no-print flex flex-wrap gap-4 text-xs font-bold text-slate-600"><a class="hover:text-cobalt" href="#top">Back to top</a><a class="hover:text-cobalt" href="https://www.linkedin.com/in/md-azimuddin-34b088174" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="hover:text-cobalt" href="https://github.com/azim-ux" target="_blank" rel="noopener noreferrer">GitHub</a><a class="hover:text-cobalt" href="README.md">Portfolio notes</a></div>
+      <p class="max-w-sm text-xs leading-5 text-slate-500 sm:text-right">All lab records are synthetic. Outcomes are descriptive unless a project explicitly states otherwise.</p>
+    </div>
+  </footer>
+
+  <script id="portfolio-data" type="application/json">{"candidate":{"name":"Mohammad Azimuddin","certification":"Oracle Fusion Cloud Applications HCM Process Essentials Certified – Rel 1 (1Z0-1162-1)"},"projects":[{"id":"talent-acquisition","directory":"04_Structured_Hiring_and_ATS_Lab","title":"Structured Hiring & ATS Architecture Lab","domain":"Talent Acquisition Operations & Psychometrics","metrics":{"conversion":"3.0%","hires":"120","time_to_fill":"28.5d","sla":"91.8%","adverse_impact_ratio":"0.87"},"links":{"project":"04_Structured_Hiring_and_ATS_Lab/index.html","slides":"04_Structured_Hiring_and_ATS_Lab/slides.html"}},{"id":"onboarding","directory":"project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab","title":"Evidence-Based 90-Day Onboarding & HR Ops Lab","domain":"Employee Onboarding, HRIS Workflow & Socialization","metrics":{"day_1_readiness":"93.4%","task_sla":"88.5%","role_clarity":"24.2 days","active_cohort":"20","open_escalations":"3"},"links":{"project":"project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/index.html","slides":"project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/slides.html"}},{"id":"talent-development","directory":"05_Skills_Based_LD_Planner","title":"Skills-Based L&D Planner & Talent Growth Engine","domain":"Talent Development, Competency Modeling & Training ROI","metrics":{"mastery":"81.4%","active_idps":"58","star_talent":"14","yield_gain":"+24.6%","scrap_reduction":"-18.2%","quarterly_savings":"₹4.8 Lakhs"},"links":{"project":"05_Skills_Based_LD_Planner/index.html","slides":"05_Skills_Based_LD_Planner/slides.html"}}]}</script>
+  <script>
+    (function(){
+      "use strict";
+      const stages={
+        "talent-acquisition":{kicker:"Talent acquisition control plane",title:"Evidence before impression.",copy:"OpenCATS-modeled stages connect requisition demand, structured work samples, BARS interviews, fairness review, feedback SLAs, and auditable disposition.",system:"OpenCATS ATS",evidence:"40/40/20 composite",handoff:"Accepted hire → preboarding"},
+        "onboarding":{kicker:"Onboarding operations control plane",title:"Clarity before complexity.",copy:"A Frappe HR–modeled journey assigns owners from preboarding through Day 90, monitors task SLAs and readiness, and escalates blocked work without treating socialization as a checklist.",system:"Frappe HR",evidence:"Bauer 4-pillar model",handoff:"Role clarity → skill baseline"},
+        "talent-development":{kicker:"Talent development control plane",title:"Practice before attribution.",copy:"An O*NET-linked competency ontology turns verified gaps into 30/60/90-day IDPs, transparent nine-box calibration, mentor support, and distinct Kirkpatrick L1–L4 evidence.",system:"Skills + LMS workflow",evidence:"O*NET 31.0 · Kirkpatrick",handoff:"Reassessment → next growth cycle"}
+      };
+      const buttons=Array.from(document.querySelectorAll("[data-stage]"));
+      const detail={kicker:document.getElementById("detail-kicker"),title:document.getElementById("detail-title"),copy:document.getElementById("detail-copy"),system:document.getElementById("detail-system"),evidence:document.getElementById("detail-evidence"),handoff:document.getElementById("detail-handoff")};
+      function selectStage(stage){
+        const item=stages[stage];
+        if(!item)return;
+        buttons.forEach(function(button){button.setAttribute("aria-pressed",String(button.dataset.stage===stage));});
+        Object.keys(detail).forEach(function(key){detail[key].textContent=item[key];});
+      }
+      buttons.forEach(function(button){button.addEventListener("click",function(){selectStage(button.dataset.stage);});});
+      if(window.lucide)window.lucide.createIcons({"stroke-width":1.8});
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthetic HR Workforce Dashboard</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #f2f5f8; color: #172438; font: 15px/1.45 Arial, sans-serif; }
+  .dashboard { max-width: 1180px; margin: 28px auto; padding: 0 20px 34px; }
+  .dash-header { padding: 24px 28px; border-radius: 12px; background: #173a56; color: white; }
+  h1 { margin: 0; font-size: 30px; }
+  .dash-header p { margin: 7px 0 0; color: #d7e5ef; }
+  h2 { margin: 0 0 13px; color: #173a56; font-size: 20px; }
+  .warning { margin: 18px 0; padding: 13px 16px; border-left: 5px solid #b66a00; background: #fff5e6; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+  .card, .panel { border: 1px solid #d8e0e7; border-radius: 10px; background: white; box-shadow: 0 2px 7px #173a5612; }
+  .card { padding: 18px; }
+  .card .value { color: #195b84; font-size: 29px; font-weight: 700; }
+  .card .label { color: #607080; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel { margin-bottom: 16px; padding: 20px; }
+  .bar-row { display: grid; grid-template-columns: 128px 1fr 54px; align-items: center; gap: 10px; margin: 9px 0; }
+  .track { height: 12px; overflow: hidden; border-radius: 8px; background: #e5ebf0; }
+  .bar { height: 100%; border-radius: 8px; background: #2c779f; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 9px; border-bottom: 1px solid #dde4ea; text-align: left; }
+  th { color: #173a56; background: #edf3f7; }
+  ul { margin: 7px 0 0 19px; padding: 0; }
+  li { margin: 5px 0; }
+  .small { color: #657585; font-size: 13px; }
+  @media (max-width: 800px) { .kpis, .grid { grid-template-columns: 1fr; } }
+  @media print { body { background: white; } .dashboard { margin: 0; max-width: none; } .card, .panel { box-shadow: none; } }
+</style>
+</head>
+<body>
+<div class="dashboard">
+<div class="dash-header">
+  <h1>Synthetic HR Workforce Dashboard</h1>
+  <p>Descriptive portfolio project · 120 fictional employee records · Generated 27 July 2026</p>
+</div>
+<div class="warning"><strong>Privacy and interpretation:</strong> this dataset is entirely synthetic. It contains no real employees and supports descriptive practice only. The generated relationships are not causal and must not be used for employment decisions.</div>
+<div class="kpis">
+  <div class="card"><div class="value">120</div><div class="label">Synthetic headcount</div></div>
+  <div class="card"><div class="value">20.0%</div><div class="label">Generated attrition rate</div></div>
+  <div class="card"><div class="value">72.2</div><div class="label">Average engagement / 100</div></div>
+  <div class="card"><div class="value">24.4</div><div class="label">Average training hours YTD</div></div>
+</div>
+<div class="grid">
+  <div class="panel"><h2>Headcount by department</h2><div class="bar-row"><span>Sales</span><div class="track"><div class="bar" style="width:100.0%"></div></div><strong>29.0</strong></div><div class="bar-row"><span>Operations</span><div class="track"><div class="bar" style="width:93.1%"></div></div><strong>27.0</strong></div><div class="bar-row"><span>Customer Support</span><div class="track"><div class="bar" style="width:72.4%"></div></div><strong>21.0</strong></div><div class="bar-row"><span>Finance</span><div class="track"><div class="bar" style="width:44.8%"></div></div><strong>13.0</strong></div><div class="bar-row"><span>Human Resources</span><div class="track"><div class="bar" style="width:31.0%"></div></div><strong>9.0</strong></div><div class="bar-row"><span>Technology</span><div class="track"><div class="bar" style="width:72.4%"></div></div><strong>21.0</strong></div></div>
+  <div class="panel"><h2>Generated attrition rate by department</h2><div class="bar-row"><span>Sales</span><div class="track"><div class="bar" style="width:62.2%"></div></div><strong>20.7%</strong></div><div class="bar-row"><span>Operations</span><div class="track"><div class="bar" style="width:55.6%"></div></div><strong>18.5%</strong></div><div class="bar-row"><span>Customer Support</span><div class="track"><div class="bar" style="width:100.0%"></div></div><strong>33.3%</strong></div><div class="bar-row"><span>Finance</span><div class="track"><div class="bar" style="width:23.1%"></div></div><strong>7.7%</strong></div><div class="bar-row"><span>Human Resources</span><div class="track"><div class="bar" style="width:0.0%"></div></div><strong>0.0%</strong></div><div class="bar-row"><span>Technology</span><div class="track"><div class="bar" style="width:71.5%"></div></div><strong>23.8%</strong></div></div>
+</div>
+<div class="panel">
+  <h2>Department summary</h2>
+  <table><thead><tr><th>Department</th><th>Headcount</th><th>Attrition</th><th>Avg engagement</th></tr></thead><tbody><tr><td>Sales</td><td>29</td><td>20.7%</td><td>70.0</td></tr><tr><td>Operations</td><td>27</td><td>18.5%</td><td>75.9</td></tr><tr><td>Customer Support</td><td>21</td><td>33.3%</td><td>73.6</td></tr><tr><td>Finance</td><td>13</td><td>7.7%</td><td>70.6</td></tr><tr><td>Human Resources</td><td>9</td><td>0.0%</td><td>75.0</td></tr><tr><td>Technology</td><td>21</td><td>23.8%</td><td>68.8</td></tr></tbody></table>
+</div>
+<div class="grid">
+  <div class="panel">
+    <h2>Tenure comparison</h2>
+    <table><thead><tr><th>Tenure band</th><th>Headcount</th><th>Attrition</th></tr></thead><tbody><tr><td>Under 1.5 years</td><td>26</td><td>26.9%</td></tr><tr><td>1.5–3 years</td><td>40</td><td>17.5%</td></tr><tr><td>Over 3 years</td><td>54</td><td>18.5%</td></tr></tbody></table>
+  </div>
+  <div class="panel">
+    <h2>Interpretation checklist</h2>
+    <ul>
+      <li>Start with data quality and field definitions.</li>
+      <li>Compare rates as well as counts.</li>
+      <li>Do not infer causation from descriptive patterns.</li>
+      <li>Do not use protected characteristics for individual decisions.</li>
+      <li>Validate findings with qualitative and operational context.</li>
+    </ul>
+  </div>
+</div>
+<div class="panel">
+  <h2>Project scope</h2>
+  <p>This work sample demonstrates a reproducible descriptive workflow: synthetic data creation, CSV preparation, KPI definition, department and tenure aggregation, visual reporting, and limitations documentation.</p>
+  <p class="small">Average performance in the synthetic dataset: 3.38/5. See the accompanying data dictionary, analysis notes, and source CSV.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+Employee_ID,Full_Name,Department,Designation,Grade,Joining_Date,Onboarding_Status,Manager_ID,Buddy_ID,Day1_Readiness_Score,Day30_Role_Clarity_Score,Day30_Task_Mastery_Score,Day60_Social_Acceptance_Score,Day90_Overall_Adjustment_Score,Escalations_Count,Extended_Onboarding_Flag
+APD-2026-001,Aanya Mehta,Engineering,Graduate Manufacturing Engineer,APD-G1,2026-01-12,Completed,APD-MGR-ENG-01,APD-BDY-ENG-03,95,4.4,4.1,4.3,4.2,0,No
+APD-2026-002,Arjun Rao,Quality,Quality Systems Analyst,APD-G2,2026-02-02,Completed,APD-MGR-QUA-01,APD-BDY-QUA-02,94,4.2,4.0,4.4,4.2,0,No
+APD-2026-003,Meera Iyer,Supply Chain,Procurement Coordinator,APD-G2,2026-02-23,Completed,APD-MGR-SCM-01,APD-BDY-SCM-01,97,4.1,3.9,4.2,4.0,0,No
+APD-2026-004,Vivaan Shah,Finance,Financial Planning Analyst,APD-G3,2026-03-09,Completed,APD-MGR-FIN-01,APD-BDY-FIN-02,92,4.0,3.8,4.1,3.9,0,No
+APD-2026-005,Zoya Khan,People & Culture,People Operations Associate,APD-G1,2026-03-23,Completed,APD-MGR-PNC-01,APD-BDY-PNC-03,95,4.5,4.2,4.6,4.4,0,No
+APD-2026-006,Kabir Nair,Engineering,Maintenance Planner,APD-G2,2026-04-06,Completed,APD-MGR-ENG-02,APD-BDY-ENG-04,93,3.9,4.0,4.1,4.0,0,No
+APD-2026-007,Diya Menon,Quality,Quality Assurance Engineer,APD-G3,2026-04-20,Completed,APD-MGR-QUA-01,APD-BDY-QUA-03,96,4.3,4.1,4.2,4.2,0,No
+APD-2026-008,Reyansh Kapoor,Supply Chain,Inventory Analyst,APD-G2,2026-05-11,Completed,APD-MGR-SCM-01,APD-BDY-SCM-02,90,3.8,3.7,4.0,3.8,0,No
+APD-2026-009,Sana Qureshi,Finance,Accounts Officer,APD-G2,2026-06-01,Completed,APD-MGR-FIN-01,APD-BDY-FIN-01,94,4.1,3.9,4.3,4.1,0,No
+APD-2026-010,Neil D'Souza,People & Culture,Talent Operations Specialist,APD-G3,2026-06-15,Completed,APD-MGR-PNC-01,APD-BDY-PNC-02,96,4.6,4.3,4.5,4.5,0,No
+APD-2026-011,Ishita Bose,Engineering,Process Improvement Engineer,APD-G3,2026-07-06,Completed,APD-MGR-ENG-01,APD-BDY-ENG-05,91,3.9,3.8,4.0,3.9,0,No
+APD-2026-012,Rohan Kulkarni,Quality,Supplier Quality Lead,APD-G4,2026-07-20,Completed,APD-MGR-QUA-02,APD-BDY-QUA-01,95,4.4,4.2,4.3,4.3,0,No
+APD-2026-013,Anika Verma,Supply Chain,Logistics Planner,APD-G3,2026-08-03,In Progress,APD-MGR-SCM-01,APD-BDY-SCM-03,93,4.0,3.9,4.2,4.0,0,No
+APD-2026-014,Aarav Bhat,Finance,Commercial Finance Partner,APD-G4,2026-08-17,In Progress,APD-MGR-FIN-02,APD-BDY-FIN-03,92,4.2,4.0,4.1,4.1,0,No
+APD-2026-015,Maya Thomas,People & Culture,Learning and Development Partner,APD-G4,2026-09-07,Escalated,APD-MGR-PNC-02,APD-BDY-PNC-01,97,3.4,3.3,3.8,3.5,1,Yes
+APD-2026-016,Aditya Sen,Engineering,Automation Engineer,APD-G3,2026-10-05,In Progress,APD-MGR-ENG-02,APD-BDY-ENG-01,89,3.8,3.7,4.0,3.8,0,No
+APD-2026-017,Kiara Joshi,Engineering,Production Team Lead,APD-G4,2026-10-19,In Progress,APD-MGR-ENG-01,APD-BDY-ENG-02,94,4.1,3.9,4.2,4.0,0,No
+APD-2026-018,Omar Siddiqui,Quality,Quality Director,APD-G5,2026-11-02,Escalated,APD-MGR-EXE-01,APD-BDY-QUA-04,96,3.6,3.8,3.7,3.7,1,Yes
+APD-2026-019,Naina Pillai,People & Culture,HRIS Analyst,APD-G3,2026-11-16,In Progress,APD-MGR-PNC-01,APD-BDY-PNC-04,90,4.0,3.9,4.3,4.0,0,No
+APD-2026-020,Dev Malhotra,Engineering,Operations Excellence Manager,APD-G5,2026-12-07,Escalated,APD-MGR-EXE-01,APD-BDY-ENG-06,89,3.2,3.5,3.6,3.4,1,Yes
