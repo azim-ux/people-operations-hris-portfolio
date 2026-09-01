@@ -34,6 +34,7 @@ __pycache__/
 03_Career_Research/
 04_Application_Toolkit/
 05_Ready_to_Use_Application_Pack/
+02_CV_Library/
 *.docx
 *.pdf
 *.zip
@@ -50,8 +51,7 @@ __pycache__/
 *.p12
 
 # ==========================================
-# Whitelist Audited Public CVs & Portfolio PDFs
+# Whitelist Audited Public Portfolio PDFs
 # ==========================================
-!02_CV_Library/**/*.pdf
 !06_Portfolio_Projects/**/*.pdf
 !06_Portfolio_Projects/**/slides.html

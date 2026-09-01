@@ -9,7 +9,7 @@ This portfolio presents three connected HR technology labs across the employee l
 **Role alignment:** HR Operations Specialist · People Operations Associate · Junior HRIS Analyst · Talent Acquisition Operations · L&D Coordinator  
 **Markets:** India and UAE relocation
 
-Open the [master interactive portfolio](index.html), view the privacy-safe [primary UAE CV](../02_CV_Library/01_UAE/02_HR_Coordinator/Mohammad_Azimuddin_UAE_HR_Coordinator.html), or use the [ATS-ready project bullets](MASTER_CV_PROJECTS_SNIPPET.md).
+Open the [master interactive portfolio](index.html) or use the [ATS-ready project bullets](MASTER_CV_PROJECTS_SNIPPET.md).
 
 ## Featured Portfolio Suite
 

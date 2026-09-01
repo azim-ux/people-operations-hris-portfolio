@@ -165,7 +165,7 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
         self.assertLess(html.index('id="stage-talent-acquisition"'), html.index('id="stage-onboarding"'))
         self.assertLess(html.index('id="stage-onboarding"'), html.index('id="stage-talent-development"'))
 
-    def test_05_public_contact_and_cv_links_are_safe_and_complete(self):
+    def test_05_public_contact_links_are_safe_and_cv_library_is_absent(self):
         parser = LinkParser()
         parser.feed(load_html())
         hrefs = [link["href"] for link in parser.links]
@@ -173,13 +173,8 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
         self.assertTrue(any(href.startswith("https://github.com/") for href in hrefs))
         self.assertEqual(0, sum(href.startswith("mailto:") for href in hrefs))
         cv_links = [link for link in parser.links if link.get("data-link") == "cv-download"]
-        self.assertEqual(1, len(cv_links))
-        self.assertNotIn("download", cv_links[0])
-        cv_path = HUB / unquote(urlsplit(cv_links[0]["href"]).path)
-        self.assertTrue(cv_path.resolve().is_relative_to(ROOT.resolve()))
-        self.assertTrue(cv_path.is_file(), cv_path)
-        self.assertTrue(cv_path.resolve().is_relative_to((ROOT / "02_CV_Library").resolve()))
-        self.assertEqual(".html", cv_path.suffix.lower())
+        self.assertEqual(0, len(cv_links))
+        self.assertFalse(any("02_CV_Library" in href for href in hrefs))
         for link in parser.links:
             href = link["href"]
             if href.startswith(("https://", "mailto:")):

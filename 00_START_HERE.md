@@ -1,13 +1,12 @@
 # Mohammad Azimuddin — Public HR Technology Portfolio
 
-This is the public, privacy-audited entry point for Mohammad Azimuddin’s HR operations and HR technology portfolio. It contains synthetic work samples, ATS-ready public resumes, and automated integrity checks. No phone number, government identifier, source-evidence scan, employment document, private application record, or machine-specific path belongs in the public release.
+This is the public, privacy-audited entry point for Mohammad Azimuddin’s HR operations and HR technology portfolio. It contains synthetic work samples and automated integrity checks. No phone number, government identifier, source-evidence scan, employment document, CV library, private application record, or machine-specific path belongs in the public release.
 
 ## Start here
 
 1. Open the [Master People Operations & HRIS Portfolio](06_Portfolio_Projects/index.html).
-2. Review the [public CV library](02_CV_Library/README.md).
-3. Read the [portfolio architecture and reproduction guide](06_Portfolio_Projects/README.md).
-4. Run the [maintenance test suite](98_Maintenance/README.md) before publishing.
+2. Read the [portfolio architecture and reproduction guide](06_Portfolio_Projects/README.md).
+3. Run the [maintenance test suite](98_Maintenance/README.md) before publishing.
 
 ## Featured employee-lifecycle labs
 
@@ -21,7 +20,6 @@ Each lab uses synthetic data and documents its methodology, governance controls,
 
 ```text
 00_START_HERE.md
-02_CV_Library/          Privacy-safe ATS resumes
 06_Portfolio_Projects/  Interactive HR technology labs and master hub
 98_Maintenance/         Generators, QA records, and automated safety tests
 ```

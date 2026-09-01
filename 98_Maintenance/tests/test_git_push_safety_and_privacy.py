@@ -27,7 +27,6 @@ ROOT_GITIGNORE = ROOT / ".gitignore"
 
 PUBLIC_ROOTS = (
     ROOT / "06_Portfolio_Projects",
-    ROOT / "02_CV_Library",
     ROOT / "98_Maintenance",
 )
 PUBLIC_SINGLE_FILES = (ROOT / "00_START_HERE.md",)
@@ -52,11 +51,11 @@ REQUIRED_ROOT_IGNORE_RULES = {
     "99_Archive/",
     "09_Obsidian_Hub/",
     "07_Remote_Job_Applications/",
+    "02_CV_Library/",
     "*.docx",
     "*.pdf",
     "*.zip",
     "*.tar.gz",
-    "!02_CV_Library/**/*.pdf",
     "!06_Portfolio_Projects/**/*.pdf",
     "!06_Portfolio_Projects/**/slides.html",
 }
@@ -267,6 +266,8 @@ class GitPushSafetyAndPrivacyTests(unittest.TestCase):
                 "99_Archive/draft.zip",
                 "09_Obsidian_Hub/notes.md",
                 "07_Remote_Job_Applications/tracker.csv",
+                "02_CV_Library/01_UAE/resume.html",
+                "02_CV_Library/01_UAE/resume.pdf",
                 ".obsidian/workspace.json",
                 ".claude/settings.local.json",
                 ".gstack/security-report.json",
@@ -284,8 +285,6 @@ class GitPushSafetyAndPrivacyTests(unittest.TestCase):
             public_samples = (
                 "06_Portfolio_Projects/04_Structured_Hiring_and_ATS_Lab/deck.pdf",
                 "06_Portfolio_Projects/04_Structured_Hiring_and_ATS_Lab/slides.html",
-                "02_CV_Library/01_UAE/resume.html",
-                "02_CV_Library/01_UAE/resume.pdf",
                 "98_Maintenance/tests/privacy_test.py",
                 "00_START_HERE.md",
             )
@@ -325,6 +324,11 @@ class GitPushSafetyAndPrivacyTests(unittest.TestCase):
                 [path for path in tracked_paths if _is_forbidden_repository_path(path)],
                 f"Private paths are tracked in {relative_repository}",
             )
+            if repository == ROOT:
+                self.assertFalse(
+                    [path for path in tracked_paths if path == "02_CV_Library" or path.startswith("02_CV_Library/")],
+                    "The local-only CV library is tracked in the public root repository",
+                )
 
             status = _run(["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"], repository)
             self.assertEqual(status.returncode, 0, status.stderr.decode(errors="replace"))
@@ -404,10 +408,7 @@ class GitPushSafetyAndPrivacyTests(unittest.TestCase):
                 relative_target = target.relative_to(ROOT)
                 if _is_forbidden_repository_path(relative_target.as_posix()):
                     findings.append(f"{location}: link targets ignored/private asset: {raw_target}")
-                if target.suffix.lower() == ".pdf" and not {
-                    "02_CV_Library",
-                    "06_Portfolio_Projects",
-                }.intersection(relative_target.parts):
+                if target.suffix.lower() == ".pdf" and "06_Portfolio_Projects" not in relative_target.parts:
                     findings.append(f"{location}: link targets globally ignored PDF: {raw_target}")
                 if (
                     tracked_public_paths is not None
