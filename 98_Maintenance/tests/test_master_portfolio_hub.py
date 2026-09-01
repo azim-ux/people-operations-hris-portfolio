@@ -8,6 +8,9 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 HUB = ROOT / "06_Portfolio_Projects"
+ROOT_ENTRY = ROOT / "index.html"
+PORTFOLIO_URL = "https://azim-ux.github.io/people-operations-hris-portfolio/06_Portfolio_Projects/"
+SOCIAL_IMAGE_URL = PORTFOLIO_URL + "og-portfolio-card.png"
 
 DELIVERABLES = ["index.html", "README.md", "MASTER_CV_PROJECTS_SNIPPET.md"]
 
@@ -27,6 +30,7 @@ PROJECTS = [
         "links": {
             "project": "04_Structured_Hiring_and_ATS_Lab/index.html",
             "slides": "04_Structured_Hiring_and_ATS_Lab/slides.html",
+            "pdf": "04_Structured_Hiring_and_ATS_Lab/Structured_Hiring_and_ATS_Architecture_Case_Study.pdf",
         },
     },
     {
@@ -44,6 +48,7 @@ PROJECTS = [
         "links": {
             "project": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/index.html",
             "slides": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/slides.html",
+            "pdf": "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab/Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf",
         },
     },
     {
@@ -62,6 +67,7 @@ PROJECTS = [
         "links": {
             "project": "05_Skills_Based_LD_Planner/index.html",
             "slides": "05_Skills_Based_LD_Planner/slides.html",
+            "pdf": "05_Skills_Based_LD_Planner/Skills_Based_LD_Planner_Case_Study.pdf",
         },
     },
 ]
@@ -97,23 +103,35 @@ def embedded_portfolio_data(html):
 
 class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
     def test_01_deliverables_and_project_entry_points_exist(self):
+        self.assertTrue(ROOT_ENTRY.is_file(), "Missing root GitHub Pages entry point")
         for filename in DELIVERABLES:
             self.assertTrue((HUB / filename).is_file(), filename)
+        self.assertTrue((HUB / "og-portfolio-card.png").is_file())
         for project in PROJECTS:
             project_dir = HUB / unquote(project["directory"])
             self.assertTrue((project_dir / "index.html").is_file(), project["directory"])
             self.assertTrue((project_dir / "slides.html").is_file(), project["directory"])
+            self.assertTrue((HUB / unquote(project["links"]["pdf"])).is_file(), project["links"]["pdf"])
 
-    def test_02_hub_links_every_project_and_slide_deck(self):
+    def test_02_root_redirect_and_hub_links_are_complete(self):
+        root_html = ROOT_ENTRY.read_text(encoding="utf-8")
+        self.assertIn('content="0; url=06_Portfolio_Projects/"', root_html)
+        self.assertIn('window.location.replace("06_Portfolio_Projects/")', root_html)
+        self.assertIn(f'<link rel="canonical" href="{PORTFOLIO_URL}">', root_html)
+        self.assertIn("Redirecting to Mohammad Azimuddin's People Operations &amp; HRIS Portfolio", root_html)
+
         html = load_html()
         readme = (HUB / "README.md").read_text(encoding="utf-8")
         for project in PROJECTS:
             page = project["links"]["project"]
             slides = project["links"]["slides"]
+            pdf = project["links"]["pdf"]
             self.assertIn(f'href="{page}"', html, page)
             self.assertIn(f'href="{slides}"', html, slides)
+            self.assertIn(f'href="{pdf}"', html, pdf)
             self.assertIn(f']({page})', readme, page)
             self.assertIn(f']({slides})', readme, slides)
+            self.assertIn(f']({pdf})', readme, pdf)
 
     def test_03_embedded_metadata_matches_governed_metrics(self):
         html = load_html()
@@ -162,6 +180,16 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
         self.assertIn("lucide.createIcons", html)
         self.assertIn('href="#main-content"', html)
         self.assertIn("prefers-reduced-motion", html)
+        for meta in [
+            '<meta property="og:title" content="Mohammad Azimuddin | People Operations &amp; HRIS Portfolio">',
+            '<meta property="og:description" content="Evidence-based HR operations, structured ATS hiring, 90-day onboarding, and O*NET skills development.">',
+            '<meta property="og:type" content="website">',
+            f'<meta property="og:url" content="{PORTFOLIO_URL}">',
+            f'<meta property="og:image" content="{SOCIAL_IMAGE_URL}">',
+            '<meta name="twitter:card" content="summary_large_image">',
+            f'<meta name="twitter:image" content="{SOCIAL_IMAGE_URL}">',
+        ]:
+            self.assertIn(meta, html)
         self.assertLess(html.index('id="stage-talent-acquisition"'), html.index('id="stage-onboarding"'))
         self.assertLess(html.index('id="stage-onboarding"'), html.index('id="stage-talent-development"'))
 
@@ -183,7 +211,29 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
                     rel_tokens = set(link.get("rel", "").split())
                     self.assertTrue({"noopener", "noreferrer"} <= rel_tokens, href)
 
-    def test_06_all_relative_html_and_markdown_links_resolve(self):
+    def test_06_each_lab_links_back_to_the_hub_and_offers_its_pdf(self):
+        expected = {
+            "04_Structured_Hiring_and_ATS_Lab": (
+                "../index.html",
+                "Structured_Hiring_and_ATS_Architecture_Case_Study.pdf",
+            ),
+            "project%201/03_Evidence_Based_Onboarding_HR_Operations_Lab": (
+                "../../index.html",
+                "Evidence_Based_Onboarding_HR_Operations_Case_Study.pdf",
+            ),
+            "05_Skills_Based_LD_Planner": (
+                "../index.html",
+                "Skills_Based_LD_Planner_Case_Study.pdf",
+            ),
+        }
+        for directory, (back_link, pdf_name) in expected.items():
+            html = (HUB / unquote(directory) / "index.html").read_text(encoding="utf-8")
+            self.assertIn(f'href="{back_link}"', html, directory)
+            self.assertIn("Master Portfolio", html, directory)
+            self.assertIn(f'href="{pdf_name}"', html, directory)
+            self.assertIn("Download Case Study", html, directory)
+
+    def test_07_all_relative_html_and_markdown_links_resolve(self):
         html = load_html()
         parser = LinkParser()
         parser.feed(html)
@@ -201,7 +251,7 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
             path = HUB / unquote(urlsplit(target).path)
             self.assertTrue(path.is_file(), target)
 
-    def test_07_privacy_and_content_linter(self):
+    def test_08_privacy_and_content_linter(self):
         phone_patterns = [
             re.compile(r"(?<!\d)(?:\+?91[-\s]?)?[6-9](?:[\s-]?\d){9}(?!\d)"),
             re.compile(r"(?<!\d)(?:\+?971[-\s]?)?5(?:[\s-]?\d){8}(?!\d)"),
@@ -226,7 +276,7 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
             self.assertFalse(email_pattern.search(text), filename)
             self.assertIsNone(unfinished.search(text), filename)
 
-    def test_08_readme_and_cv_snippet_are_decision_ready(self):
+    def test_09_readme_and_cv_snippet_are_decision_ready(self):
         readme = (HUB / "README.md").read_text(encoding="utf-8")
         snippet = (HUB / "MASTER_CV_PROJECTS_SNIPPET.md").read_text(encoding="utf-8")
         for token in [

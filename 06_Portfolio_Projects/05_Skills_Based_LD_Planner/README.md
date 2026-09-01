@@ -24,7 +24,7 @@ A privacy-safe portfolio lab that turns a governed competency ontology into visi
 
 ## Start here
 
-Open [index.html](index.html) for the full interactive experience, [dashboard.html](dashboard.html) for the analytics view, or [slides.html](slides.html) for the five-slide executive narrative. All three are static files; internet access is only needed for the Tailwind CSS and Chart.js delivery networks.
+Open [index.html](index.html) for the full interactive experience, [dashboard.html](dashboard.html) for the analytics view, [slides.html](slides.html) for the five-slide executive narrative, or download the [PDF case study](Skills_Based_LD_Planner_Case_Study.pdf). All artifacts are static files; internet access is only needed for the Tailwind CSS and Chart.js delivery networks.
 
 ## Data assets
 

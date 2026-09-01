@@ -1,6 +1,7 @@
 import csv
 import json
 import re
+import subprocess
 import unittest
 from decimal import Decimal
 from pathlib import Path
@@ -30,6 +31,7 @@ EXPECTED_FILES = {
     "dashboard.html",
     "index.html",
     "slides.html",
+    "Structured_Hiring_and_ATS_Architecture_Case_Study.pdf",
 }
 
 REQUISITION_HEADERS = [
@@ -179,6 +181,15 @@ class StructuredHiringATSLabAcceptanceTests(unittest.TestCase):
         )
         for path in PROJECT.iterdir():
             if not path.is_file():
+                continue
+            if path.suffix.lower() == ".pdf":
+                self.assertTrue(path.read_bytes().startswith(b"%PDF-"), path.name)
+                self.assertGreater(path.stat().st_size, 100_000, path.name)
+                metadata = subprocess.run(
+                    ["pdfinfo", str(path)], check=True, capture_output=True, text=True
+                ).stdout
+                self.assertRegex(metadata, r"(?m)^Pages:\s+5$", path.name)
+                self.assertRegex(metadata, r"(?m)^Page size:\s+960 x 540 pts", path.name)
                 continue
             text = path.read_text(encoding="utf-8")
             domains = {match.group(1).lower() for match in email_pattern.finditer(text)}

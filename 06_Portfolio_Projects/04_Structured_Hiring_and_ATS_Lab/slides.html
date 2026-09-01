@@ -68,10 +68,20 @@
       html,body { background:white; overflow:visible; }
       .deck { background:white; color:#0b1728; }
       .deck::before,.progress-track,.controls,.hint { display:none !important; }
-      .slide,.slide.active { position:relative; display:grid !important; width:13.333in; height:7.5in; padding:.55in .7in; overflow:hidden; page-break-after:always; break-after:page; animation:none; }
+      .slide,.slide.active,.slide[aria-hidden="true"] { position:relative !important; display:block !important; width:13.333in; height:7.5in; padding:.48in .62in; overflow:hidden; page-break-after:always; break-after:page; animation:none !important; opacity:1 !important; visibility:visible !important; transform:none !important; }
       .slide:last-of-type { page-break-after:auto; }
+      .frame { display:flex; height:100%; flex-direction:column; justify-content:center; }
+      h2 { font-size:36pt; margin:6pt 0 12pt; }
+      #slide-2 .flow { gap:6px; margin-top:8pt; }
+      #slide-2 .flow div { min-height:84px; padding:11px; }
+      #slide-2 .flow b { margin-bottom:7px; }
+      #slide-2 .grid-3 { gap:8px; margin-top:10px; }
+      #slide-2 .card { padding:12px; }
+      #slide-2 .card h3 { margin:7px 0 5px; font-size:.9rem; }
+      #slide-2 .card p { font-size:.72rem; line-height:1.4; }
       .lead,.card p,.guardrails,.next div { color:#44566b; }
       .card,.flow div,.formula,.control-case,.rate,.guardrails,.result,.next div { background:white; color:#102033; box-shadow:none; border-color:#cbd5e1; }
+      .formula code { color:#0f766e; }
       .math-row strong { color:#102033; }
     }
   </style>

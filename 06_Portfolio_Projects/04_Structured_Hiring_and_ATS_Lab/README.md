@@ -15,6 +15,7 @@ All people, identifiers, dates, scores, and events are fictional. Demographic co
 - [Open the enterprise project experience](index.html)
 - [Open the high-volume analytics dashboard](dashboard.html)
 - [Open the five-slide case presentation](slides.html)
+- [Download the five-page PDF case study](Structured_Hiring_and_ATS_Architecture_Case_Study.pdf)
 
 Both dashboard pages embed all three source datasets as JSON. Search, filtering, 25/50-row pagination, charts, and scorecards run directly from the local file. Custom CSS preserves the application shell if the visual CDN libraries are unavailable.
 
@@ -80,4 +81,3 @@ The acceptance suite checks the exact inventory, schemas, row counts, references
 ## Interpretation boundary
 
 This is a systems-design and analytics work sample, not a validated production selection instrument, legal opinion, or employment recommendation. Production use requires local job analysis, candidate accessibility review, criterion validation, security and load testing, employment-law review, recruiter-capacity planning, and ongoing subgroup monitoring.
-

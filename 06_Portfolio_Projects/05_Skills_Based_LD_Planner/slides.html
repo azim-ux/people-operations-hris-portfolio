@@ -29,7 +29,15 @@
       @page{size:13.333in 7.5in;margin:0}
       body{background:#fff;overflow:visible}
       .deck{display:block;height:auto;padding:0}
-      .slide,.slide.active{display:flex;width:13.333in;height:7.5in;aspect-ratio:16/9;border:0;box-shadow:none;page-break-after:always;break-after:page}
+      .slide,.slide.active{display:flex;width:13.333in;height:7.5in;aspect-ratio:16/9;flex-direction:column!important;overflow:hidden;border:0;box-shadow:none;padding:.38in .5in!important;page-break-after:always;break-after:page}
+      #slide-1>.grid{grid-template-columns:1.25fr .75fr!important}
+      #slide-1 .hide-mobile{display:flex!important}
+      #slide-2>.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+      #slide-3>.grid{grid-template-columns:1fr .6fr!important}
+      #slide-3 .hide-mobile{display:block!important}
+      #slide-4>.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+      #slide-5>.grid{grid-template-columns:1.1fr .9fr!important}
+      .slide:last-of-type{page-break-after:auto;break-after:auto}
       .controls,#progress-bar{display:none!important}
     }
   </style>

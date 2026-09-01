@@ -29,7 +29,10 @@ PUBLIC_ROOTS = (
     ROOT / "06_Portfolio_Projects",
     ROOT / "98_Maintenance",
 )
-PUBLIC_SINGLE_FILES = (ROOT / "00_START_HERE.md",)
+PUBLIC_SINGLE_FILES = (
+    ROOT / "00_START_HERE.md",
+    ROOT / "index.html",
+)
 
 REQUIRED_ROOT_IGNORE_RULES = {
     ".DS_Store",
