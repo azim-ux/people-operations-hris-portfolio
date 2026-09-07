@@ -21,7 +21,7 @@ Each lab uses synthetic data and documents its methodology, governance controls,
 ```text
 00_START_HERE.md
 06_Portfolio_Projects/  Interactive HR technology labs and master hub
-98_Maintenance/         Generators, QA records, and automated safety tests
+98_Maintenance/         Synthetic-data generators and automated safety tests
 ```
 
 Everything outside this public map is local working material and is excluded by the repository ignore policy.

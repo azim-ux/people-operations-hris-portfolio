@@ -1,6 +1,6 @@
 # Portfolio Maintenance and Release Safety
 
-This directory contains deterministic portfolio generators, QA records, and automated acceptance tests. Public release checks are designed to fail on private Git exposure, PII, machine-specific paths, unsafe email domains, inconsistent governed metrics, and broken links.
+This directory contains synthetic portfolio generators and automated acceptance tests. Public release checks are designed to fail on private Git exposure, PII, machine-specific paths, unsafe email domains, inconsistent governed metrics, and broken links.
 
 ## Required pre-push gate
 
@@ -25,3 +25,5 @@ python3 -m unittest discover -s "98_Maintenance/tests" -p "test_*.py" -v
 ```
 
 Generators must never embed personal contact values or absolute workstation paths. Resolve workspace paths from the script location, keep public datasets synthetic, and use LinkedIn or approved non-routable example domains for contact demonstrations.
+
+Personal CV, job-application, employment-exit and private-vault automation is excluded from the public repository. These scripts are not required to view or validate the portfolio.

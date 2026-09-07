@@ -153,8 +153,9 @@ class OnboardingLabAcceptanceTests(unittest.TestCase):
         self.assertIn("Exit Criteria", uat)
     def test_dashboard_embeds_csv_source_data_and_accessible_controls(self):
         html = (PROJECT / "index.html").read_text(encoding="utf-8")
-        self.assertIn("https://cdn.tailwindcss.com", html)
-        self.assertIn("https://cdn.jsdelivr.net/npm/chart.js", html)
+        self.assertIn("assets/styles/", html)
+        self.assertNotIn("https://cdn.tailwindcss.com", html)
+        self.assertIn("assets/vendor/chart.umd.min.js", html)
         self.assertIn("93.4%", html)
         self.assertIn("88.5%", html)
         self.assertIn("24.2", html)

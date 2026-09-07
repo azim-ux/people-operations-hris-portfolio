@@ -55,3 +55,34 @@ __pycache__/
 # ==========================================
 !06_Portfolio_Projects/**/*.pdf
 !06_Portfolio_Projects/**/slides.html
+
+# Local tooling, private artifacts, and credential backups
+node_modules/
+.gstack/
+.agents/
+.codex/
+.claude/
+*.pfx
+*.kdbx
+*.keychain-db
+*.sqlite
+*.sqlite3
+*.bak
+*.bundle
+Internal_Storage_Audit*/
+Restored_Images_and_Study_Materials*/
+Latest_CV*/
+Career_Launch*/
+
+# Personal career automation remains local, outside the public portfolio
+98_Maintenance/build_obsidian_career_vault.py
+98_Maintenance/register_obsidian_career_vault.py
+98_Maintenance/generate_aug_05_targeted_remote_cvs.py
+98_Maintenance/generate_corrected_portfolio.py
+98_Maintenance/generate_high_paying_early_career_resumes.py
+98_Maintenance/generate_mytvs_exit_pack.py
+98_Maintenance/generate_remote_targeted_resumes.py
+98_Maintenance/render_high_paying_early_career_resumes_pdf.py
+98_Maintenance/render_remote_targeted_resumes_pdf.py
+98_Maintenance/QA_REPORT_2026-07-27.md
+98_Maintenance/QA_REPORT_2026-08-09_ORACLE_CV_UPDATE.md

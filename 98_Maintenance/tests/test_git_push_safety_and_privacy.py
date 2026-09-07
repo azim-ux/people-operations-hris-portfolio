@@ -26,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ROOT_GITIGNORE = ROOT / ".gitignore"
 
 PUBLIC_ROOTS = (
+    ROOT / "assets",
     ROOT / "06_Portfolio_Projects",
     ROOT / "98_Maintenance",
 )

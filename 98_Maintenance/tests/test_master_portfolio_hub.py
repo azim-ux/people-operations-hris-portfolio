@@ -183,8 +183,9 @@ class MasterPortfolioHubAcceptanceTests(unittest.TestCase):
             "architecture-detail",
         ]:
             self.assertIn(f'id="{element_id}"', html, element_id)
-        self.assertIn("https://cdn.tailwindcss.com", html)
-        self.assertRegex(html, r"https://(?:unpkg\.com|cdn\.jsdelivr\.net)/.+lucide")
+        self.assertIn("assets/styles/", html)
+        self.assertNotIn("https://cdn.tailwindcss.com", html)
+        self.assertIn("assets/vendor/lucide.min.js", html)
         self.assertIn("lucide.createIcons", html)
         self.assertIn('href="#main-content"', html)
         self.assertIn("prefers-reduced-motion", html)

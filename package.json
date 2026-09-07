@@ -1,0 +1,14 @@
+{
+  "name": "people-operations-hris-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:assets": "node scripts/build-assets.cjs",
+    "check:security": "python3 scripts/security_gate.py"
+  },
+  "devDependencies": {
+    "chart.js": "4.4.7",
+    "tailwindcss": "3.4.17",
+    "lucide": "0.468.0"
+  }
+}

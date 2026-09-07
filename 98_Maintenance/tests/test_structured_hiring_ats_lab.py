@@ -250,8 +250,9 @@ class StructuredHiringATSLabAcceptanceTests(unittest.TestCase):
         _, interviews = read_csv("synthetic_interviews.csv")
         for filename in ["index.html", "dashboard.html"]:
             html = (PROJECT / filename).read_text(encoding="utf-8")
-            self.assertIn("https://cdn.tailwindcss.com", html)
-            self.assertIn("https://cdn.jsdelivr.net/npm/chart.js", html)
+            self.assertIn("assets/styles/", html)
+            self.assertNotIn("https://cdn.tailwindcss.com", html)
+            self.assertIn("assets/vendor/chart.umd.min.js", html)
             for value in ["4,000", "3.0%", "28.5d", "91.8%", "0.87"]:
                 self.assertIn(value, html)
             for element_id in [

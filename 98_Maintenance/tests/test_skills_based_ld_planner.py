@@ -228,8 +228,9 @@ class SkillsBasedLDPlannerAcceptanceTests(unittest.TestCase):
         _, plans = read_csv("synthetic_development_plans.csv")
         for filename in ["index.html", "dashboard.html"]:
             html = (PROJECT / filename).read_text(encoding="utf-8")
-            self.assertIn("https://cdn.tailwindcss.com", html)
-            self.assertIn("https://cdn.jsdelivr.net/npm/chart.js", html)
+            self.assertIn("assets/styles/", html)
+            self.assertNotIn("https://cdn.tailwindcss.com", html)
+            self.assertIn("assets/vendor/chart.umd.min.js", html)
             for value in ["81.4%", "58", "14", "+24.6%", "-18.2%", "₹4.8 lakhs", "-0.48"]:
                 self.assertIn(value, html, (filename, value))
             for element_id in [
